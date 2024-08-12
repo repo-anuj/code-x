@@ -1,0 +1,4 @@
+export const POST_License_Validation = "https://api5.codeplayers.in/api/authentication/authenticate";
+export const GET_COMPANYSELECTIONDATA = "https://api5.codeplayers.in/api/ListOfCompanies";
+export const POST_ERP_Login = "/api/Authentication/Authenticate";
+export const GET_ERP_MAIN_DASHBOARD = "/api/InfinityX/DashboardData";
