@@ -51,12 +51,7 @@ const DataOverview = () => {
                                                 <div className="p-3 border border-dashed border-start-0">
                                                     <h5 className="mb-1">
                                                         <span className="counter-value" data-target={arg.argument}>
-                                                            <CountUp
-                                                                start={0}
-                                                                end={parseFloat(arg.value)}
-                                                                separator=","
-                                                                duration={4}
-                                                            />
+                                                            <CountUp start={0} end={parseFloat(arg.value)} separator=","duration={4} />
                                                         </span>
                                                     </h5>
                                                     <p className="text-muted mb-0">{arg.argument}</p>

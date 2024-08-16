@@ -1,40 +1,29 @@
 import { ERP_POST_Login } from '../../../../helpers/fakebackend_helper';
-import { loginSuccess, logoutUserSuccess, apiError, reset_login_flag } from './reducer';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
-
-export const POST_Login = (user, history) => async (dispatch) => {
-  const companyCode = JSON.parse(localStorage.getItem("selectedCompany"))?.companyCode;
-  try {
-    let response;
-    
-      response = ERP_POST_Login({Username: user.email,password: user.password,CompanyCode: companyCode,});
-
-    var data = await response;
-
-    if (data) {
+export const POST_Login  = createAsyncThunk('login/post',async (user, thunkAPI)  => {
+    try {
+      const response = ERP_POST_Login({Username: user.email,password: user.password,CompanyCode: user.company});
+      const data = await response;
       localStorage.setItem("authUser2", JSON.stringify(data));
-      
-        var finallogin = JSON.stringify(data);
-        finallogin = JSON.parse(finallogin)
-        data = finallogin.data;
-        if (finallogin.status === "success") {
-          dispatch(loginSuccess(data));
-          history('/Dashboards-ERP')
-        } else {
-          dispatch(apiError(finallogin));
-        }
+      console.log(localStorage.getItem("authUser2"));
+
+      localStorage.setItem("email2", user.email);
+      localStorage.setItem("password2", user.password);
+      return data;
+    } catch (error) {
+      return  thunkAPI.rejectWithValue(error.response.data);
     }
-  } catch (error) {
-    dispatch(apiError(error));
   }
-};
+);
+
 
 export const logoutUser = () => async (dispatch) => {
   try {
-    sessionStorage.removeItem("authUser");
-          dispatch(logoutUserSuccess(true));
+    sessionStorage.removeItem("authUser2");
+          //dispatch(logoutUserSuccess(true));
     
   } catch (error) {
-    dispatch(apiError(error));
+    //dispatch(error);
   }
 };

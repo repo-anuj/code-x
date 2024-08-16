@@ -1,19 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ldrs from "ldrs";
-import {
-  Card,
-  CardBody,
-  Col,
-  Container,
-  Input,
-  Label,
-  Row,
-  Button,
-  Form,
-  FormFeedback,
-  Alert,
-  Spinner,
-} from "reactstrap"; // Used for UI Components
+import {Card,CardBody,Col,Container,Input,Label,Row,Button,Form,FormFeedback,Alert,Spinner,} from "reactstrap"; // Used for UI Components
 import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 
 // redux
@@ -28,35 +14,25 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
 // actions
-import { POST_Login} from "../../../slices/thunks"; // Used for API Logics
+import { POST_Login} from "../../../slices/ERPLogin/auth/login/thunk"; // Used for API Logics
 
 import infinity3 from "../../../assets/INFINITY.png";
 import clientLogo from "../../../assets/client.png";
-import { createSelector } from "reselect";
 import { infinity } from "ldrs";
 
 infinity.register();
 
 const Login = (props) => {
   const dispatch = useDispatch(); // Used for API connection
-  const selectLayoutState = (state) => state;
-  const loginpageData = createSelector(selectLayoutState, (state) => ({
-    user: state.Account.user,
-    error: state.Login.error,
-    loading2: state.Login.loading2,
-    errorMsg: state.Login.errorMsg,
-  }));
-  // Inside your component
-  const { user, error, loading, errorMsg } = useSelector(loginpageData);
-
-  const [userLogin, setUserLogin] = useState([]);
-  const [showPassword, setShowPassword] = useState(false);
-  const [localLoading, setLocalLoading] = useState(false); // Local loading state
-  const [initialLoading, setInitialLoading] = useState(true); // Initial loading state
+   const data = useSelector((state) => state.ERPLogin.data);
+   const loading = useSelector((state) => state.ERPLogin.loading);
+   const error = useSelector((state) => state.ERPLogin.error);
+   const success = useSelector((state) => state.ERPLogin.success);
+   const navigate = useNavigate(); // Initialize useNavigate
+   
+  const [showPassword, setShowPassword] = useState(false); //Set Show Password
+  const [userLogin, setUserLogin] = useState([]); //Data is sent to userLogin Variable
   const [autoSubmitted, setAutoSubmitted] = useState(false); // Track auto submission
-  const [error2,seterror2]= useState();
-
-  const navigate = useNavigate();
 
   const companyCode = JSON.parse(localStorage.getItem("selectedCompany"))?.companyCode;
   const companyName = JSON.parse(localStorage.getItem("selectedCompany"))?.companyName;
@@ -72,31 +48,13 @@ const Login = (props) => {
       // Automatically submit the form after 2 seconds if not already auto-submitted
       if (!autoSubmitted) {
         setAutoSubmitted(true);
-        setLocalLoading(true); // Start loading for auto-submit
-        setTimeout(() => {
-          validation.handleSubmit();
-        }, 2000); // Delay of 2 seconds
+        setTimeout(() => {validation.handleSubmit();}, 500); // Delay of 2 seconds
       }
     }
   }, []);
 
-  useEffect(() => {
-    if (user && user) {
-      const updatedUserData =
-        process.env.REACT_APP_DEFAULTAUTH === "firebase"
-          ? user.multiFactor.user.email
-          : user.user.email;
-      const updatedUserPassword =
-        process.env.REACT_APP_DEFAULTAUTH === "firebase"
-          ? ""
-          : user.user.confirm_password;
-      setUserLogin({
-        email: updatedUserData,
-        password: updatedUserPassword,
-      });
-    }
-  }, [user]);
 
+  
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
@@ -104,41 +62,32 @@ const Login = (props) => {
     initialValues: {
       email: userLogin.email || "" || "",
       password: userLogin.password || "" || "",
+      company:userLogin.companyCode || "" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      localStorage.setItem("email2", values.email);
-      localStorage.setItem("password2", values.password);
-      setLocalLoading(true); // Start local loading
-      dispatch(POST_Login(values, props.router.navigate)).finally(() => {
-        setLocalLoading(false); // End local loading after dispatch
-      });
+      values.company= companyCode;
+        dispatch(POST_Login(values));
     },
   });
+
+  
   useEffect(() => {
-    if (error === 'Request failed with status code 401') {
-      const errorMessage = 'Unauthorized';
-      seterror2(errorMessage);
+    if (success) {
+      navigate("/Dashboards-ERP");
     }
-  }, [error]);
+}, [success, navigate]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setInitialLoading(false);
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, []);
-
+  
   document.title = "Infinity-X | CODEPLAYERS Business System Private Limited";
   return (
     <React.Fragment>
       <ParticlesAuth>
         <div className="auth-page-content">
-        {(initialLoading || localLoading) && (
+        {(loading) && (
   <div className="loader-overlay">
     <div className="loader-container">
       <l-infinity
@@ -173,9 +122,7 @@ const Login = (props) => {
   <p className="text-muted">Company Code: {companyCode}</p>
 </div>
 
-{error2 && (
-                      <Alert color="danger"> {error2} </Alert>
-                    )}
+                    {error && (<Alert color="danger"> {error} </Alert>)}
                     <div className="p-2 mt-4">
                       <Form
                         onSubmit={(e) => {
@@ -275,11 +222,11 @@ const Login = (props) => {
                         <div className="mt-4">
                           <Button
                             color="success"
-                            disabled={error ? null : localLoading ? true : false}
+                            disabled={error ? null : loading ? true : false}
                             className="btn btn-success w-100"
                             type="submit"
                           >
-                            {localLoading ? (
+                            {loading ? (
                               <Spinner size="sm" className="me-2">
                                 {" "}
                                 Loading...{" "}

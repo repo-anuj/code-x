@@ -26,7 +26,7 @@ axios.interceptors.response.use(
         message = "Sorry! the data you are looking for could not be found";
         break;
       default:
-        message = error.message || error;
+        message = error;
     }
     return Promise.reject(message);
   }
@@ -50,7 +50,7 @@ class APIClient {
       : "";
 
      
-    const response = await axios.get(queryString ? `${url}&${queryString}` : url);
+    const response = await axios.get(queryString ? `${url}?${queryString}` : url);
     return response;
   };
 

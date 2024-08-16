@@ -1,18 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  CardBody,
-  Col,
-  Container,
-  Input,
-  Label,
-  Row,
-  Button,
-  Form,
-  FormFeedback,
-  Alert,
-  Spinner,
-} from "reactstrap"; // Used for UI Components
+import {Card,CardBody,Col,Container,Input,Label,Row,Button,Form,FormFeedback,Alert,Spinner,} from "reactstrap"; // Used for UI Components
 import ParticlesAuth from "../../ERPLogin/AuthenticationInner/ParticlesAuth";
 
 // redux
@@ -20,58 +7,37 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { Link } from "react-router-dom";
 import withRouter from "../../../Components/Common/withRouter";
-// Formik validation
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
 // actions
-import {
-  POST_LicenseValidation
-} from "../../../slices/thunks"; // Used for API Logics
+import {POST_LicenseValidation,resetState} from "../../../slices/API5/LicenseValidation/thunk"
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 // type it
 import TypeIt from "typeit";
 
 import infinity3 from "../../../assets/INFINITY.png";
-import { createSelector } from "reselect";
 import { infinity } from 'ldrs';
 
 infinity.register();
 // import images
 
 const LicenseValidation = (props) => {
-  const dispatch = useDispatch(); // Used for API connection
-  const selectLayoutState = (state) => state;
-  const loginpageData = createSelector(selectLayoutState, (state) => ({
-    user: state.Account.user,
-    error: state.LicenseValidation.error,
-    loading2: state.LicenseValidation.loading2,
-    errorMsg: state.LicenseValidation.errorMsg,
-  }));
-  
-  const { error} = useSelector(loginpageData);
-  const [userLogin, setUserLogin] = useState([]);
-  const [showPassword, setShowPassword] = useState(false);
-  const [localLoading, setLocalLoading] = useState(false); // Local loading state
-  const [ loading,setLoading] = useState(false); // Initial loading state set to true
+   const dispatch = useDispatch(); // Used for API connection
+   const data = useSelector((state) => state.LicenseValidation.data);
+   const loading = useSelector((state) => state.LicenseValidation.loading);
+   const error = useSelector((state) => state.LicenseValidation.error);
+   const success = useSelector((state) => state.LicenseValidation.success);
+   const navigate = useNavigate(); // Initialize useNavigate
+
+   
+  const [showPassword, setShowPassword] = useState(false); //Set Show Password
+  const [userLogin, setUserLogin] = useState([]); //Data is sent to userLogin Variable
   const [autoSubmitted, setAutoSubmitted] = useState(false); // Track auto submission
-  const [error2,seterror2]= useState();
 
   useEffect(() => {
-    const email = sessionStorage.getItem("email");
-    const password = sessionStorage.getItem("password");
     
-    if (email && password && !autoSubmitted) {
-      setAutoSubmitted(true);
-      setLocalLoading(true); // Start loading for auto-submit
-  
-      setTimeout(() => {
-        validation.handleSubmit();
-      }, 2000); // Delay of 2 seconds before auto-submit
-    }
-  }, []);
-
-  useEffect(() => {
     // Check if email and password are stored in cookies
     const email = localStorage.getItem("email");
     const password = localStorage.getItem("password");
@@ -82,22 +48,12 @@ const LicenseValidation = (props) => {
       // Automatically submit the form after 2 seconds if not already auto-submitted
       if (!autoSubmitted) {
         setAutoSubmitted(true);
-        setLocalLoading(true); // Start loading for auto-submit
-        setTimeout(() => {
-          validation.handleSubmit();
-        }, 2000); // Delay of 2 seconds
+        setTimeout(() => {validation.handleSubmit();}, 500); // Delay of 2 seconds
+
       }
     }
   }, []);
 
-  useEffect(() => {
-    if (error === 'Request failed with status code 401') {
-      const errorMessage = 'Unauthorized';
-      seterror2(errorMessage);
-    }
-  }, [error]);
-
-  
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
@@ -112,16 +68,17 @@ const LicenseValidation = (props) => {
     }),
     onSubmit: (values) => {
       // Store credentials in session storage
-      localStorage.setItem("email", values.email);
-      localStorage.setItem("password", values.password);
     
-      setLocalLoading(true); // Start local loading
-      dispatch(POST_LicenseValidation(values, props.router.navigate)).finally(() => {
-        setLocalLoading(false); // End local loading after dispatch
-      });
-    },
-    
+      dispatch(POST_LicenseValidation(values));
+    },    
   });
+
+
+  useEffect(() => {
+    if (success) {
+         navigate("/CompanySelection");
+    }
+}, [success, navigate]);
 
 
   // TYPE_IT
@@ -133,20 +90,10 @@ const LicenseValidation = (props) => {
         waitUntilVisible: true,
       }).go();
 
-      return () => {
-        typeItInstance.destroy();
-      };
+      return () => {typeItInstance.destroy();};
     });
 
     return () => cancelAnimationFrame(handle);
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-
-    return () => clearTimeout(timer);
   }, []);
 
   document.title = "Infinity-X | CODEPLAYERS Business System Private Limited";
@@ -154,7 +101,7 @@ const LicenseValidation = (props) => {
     <React.Fragment>
       <ParticlesAuth>
         <div className="auth-page-content">
-          {(loading || localLoading) && (
+          {(loading) && (
             <div className="loader-overlay">
               <l-infinity
                 size="55"
@@ -188,9 +135,7 @@ const LicenseValidation = (props) => {
                         Login to continue to Infinity-X
                       </p>
                     </div>
-                    {error2 && (
-                      <Alert color="danger"> {error2} </Alert>
-                    )}
+                    {error && (<Alert color="danger"> {error} </Alert>)}
                     <div className="p-2 mt-4">
                       <Form
                         onSubmit={(e) => {
@@ -212,10 +157,7 @@ const LicenseValidation = (props) => {
                             onChange={validation.handleChange}
                             onBlur={validation.handleBlur}
                             value={validation.values.email || ""}
-                            invalid={
-                              validation.touched.email &&
-                              !!validation.errors.email
-                            }
+                            invalid={validation.touched.email && !!validation.errors.email }
                           />
                           {validation.touched.email &&
                           validation.errors.email && (
@@ -245,10 +187,7 @@ const LicenseValidation = (props) => {
                               placeholder="Enter Password"
                               onChange={validation.handleChange}
                               onBlur={validation.handleBlur}
-                              invalid={
-                                validation.touched.password &&
-                                !!validation.errors.password
-                              }
+                              invalid={validation.touched.password && !!validation.errors.password }
                             />
                             {validation.touched.password &&
                             validation.errors.password && (
@@ -283,11 +222,11 @@ const LicenseValidation = (props) => {
                         <div className="mt-4">
                           <Button
                             color="success"
-                            disabled={localLoading}
+                            disabled={loading}
                             className="btn btn-success w-100"
                             type="submit"
                           >
-                            {localLoading && (
+                            {loading && (
                               <Spinner size="sm" className="me-2">
                                 Loading...
                               </Spinner>

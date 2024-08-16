@@ -11,6 +11,9 @@ import Logout from "../pages/ERPLogin/Authentication/Logout";
 
 //Dashboards
 import ERPDashboard from "../pages/Dashboards/ERPDashboard";
+import WBDashboard from "../pages/Dashboards/WBDashboard"; 
+//VoucherNum
+import VoucherNum from "../pages/ERPReportings/VoucherNum"
 
 const authProtectedRoutes = [
   {
@@ -19,6 +22,8 @@ const authProtectedRoutes = [
     component: <Navigate to="/LicenseValidation" />,
   },
   { path: "/Dashboards-ERP", component: <ERPDashboard /> },
+  { path: "/Dashboards-WB", component: <WBDashboard /> },
+  { path: "/VoucherNum", component: <VoucherNum /> },
   { path: "*", component: <Navigate to="/LicenseValidation" /> },
 ];
 
@@ -26,8 +31,9 @@ const publicRoutes = [
   // Authentication Page
   { path: "/ERPLogout", component: <Logout /> },
   { path: "/ERPLogin", component: <Login /> },
-   { path: "/LicenseValidation", component: <LicenseValidation /> },
-   { path: "/CompanySelection", component: <CompanySelection /> },
+  { path: "/LicenseValidation", component: <LicenseValidation /> },
+  { path: "/CompanySelection", component: <CompanySelection /> },
+  
 ];
 
 export { authProtectedRoutes, publicRoutes };

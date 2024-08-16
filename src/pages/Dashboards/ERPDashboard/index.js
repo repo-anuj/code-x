@@ -1,28 +1,79 @@
 import React, { useEffect } from 'react';
 import { Container } from 'reactstrap';
 import DataOverview from './DataOverview';
+import CPVoucherNumDisplayCard from '../../../Components/CPComponents/CPVouchers/CPVoucherNumDisplayCard';
+import CPDashboardDataTile from '../../../Components/CPComponents/CPDashboard/CPDashboardDataTile';
 import BreadCrumb from '../../../Components/Common/BreadCrumb';
 import {  useNavigate } from 'react-router-dom'; // Import useHistory from react-router-dom
 
 const ERPDashboard = () => {
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
-    //     // Check if token exists and is not expired
-    //     if (token) {
-    //         // Perform any necessary actions with the token, like refreshing data or checking validity
-    //         console.log('Token exists and is valid. Performing necessary actions.');
-    //         // Example: Navigate to ERP dashboard
-    //         navigate('/dashboard-ERP'); // Replace with your ERP dashboard route
-    //     } else {
-    //         // Redirect user to the start of the application or handle as needed
-    //         console.log('Token not found or expired. Redirecting to login page or handling as needed.');
-    //         navigate('/LicenseValidation')
-    //     }
-    // }, [navigate]); // Ensure history is included in dependencies to avoid eslint warning
-
     document.title = "Infinity X | ERP";
+
+    const data = [
+        {
+          key: 1,
+          item: {
+            voucherType: "Sales Voucher",
+            argumentValue: [
+              { argument: "Total Sales", value: "1540.75" },
+              { argument: "Total Items", value: "320" },
+              { argument: "Net Profit", value: "560.50" },
+              { argument: "Discount", value: "45.00" },
+            ],
+          },
+        },
+        {
+          key: 2,
+          item: {
+            voucherType: "Purchase Voucher",
+            argumentValue: [
+              { argument: "Total Purchases", value: "2400.00" },
+              { argument: "Total Items", value: "450" },
+              { argument: "Net Cost", value: "2100.75" },
+              { argument: "Discount", value: "120.00" },
+            ],
+          },
+        },
+        {
+          key: 4,
+          item: {
+            voucherType: "Return Voucher",
+            argumentValue: [
+              { argument: "Total Returns", value: "750.30" },
+              { argument: "Total Items", value: "150" },
+              { argument: "Net Loss", value: "200.00" },
+              { argument: "Restocking Fee", value: "15.00" },
+            ],
+          },
+        },
+        {
+          key: 5,
+          item: {
+            voucherType: "Return Voucher",
+            argumentValue: [
+              { argument: "Total Returns", value: "750.30" },
+              { argument: "Total Items", value: "150" },
+              { argument: "Net Loss", value: "200.00" },
+              { argument: "Restocking Fee", value: "15.00" },
+            ],
+          },
+        },
+        {
+          key: 6,
+          item: {
+            voucherType: "Return Voucher",
+            argumentValue: [
+              { argument: "Total Returns", value: "750.30" },
+              { argument: "Total Items", value: "150" },
+              { argument: "Net Loss", value: "200.00" },
+              { argument: "Restocking Fee", value: "15.00" },
+            ],
+          },
+        },
+      ];
+
 
     return (
         <React.Fragment>
@@ -30,6 +81,7 @@ const ERPDashboard = () => {
                 <Container fluid>
                     <BreadCrumb title="ERP Dashboard" pageTitle="Infinity X" />
                     <DataOverview />
+                    <CPDashboardDataTile individualData={data[0]}/>
                 </Container>
             </div>
         </React.Fragment>

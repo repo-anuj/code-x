@@ -1,9 +1,9 @@
 import { createSlice} from '@reduxjs/toolkit';
-import { POST_LicenseValidation } from './thunk';
+import { GET_VOUCHERNUM_PDF } from './thunk';
 
 
-const license = createSlice({
-  name: 'license',
+const DownloadPDF = createSlice({
+  name: 'DownloadPDF',
   initialState: {
     data: null,
     loading: false,
@@ -20,22 +20,22 @@ const license = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(POST_LicenseValidation.pending, (state) => {
+      .addCase(GET_VOUCHERNUM_PDF.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.success = false;
       })
-      .addCase(POST_LicenseValidation.fulfilled, (state, action) => {
+      .addCase(GET_VOUCHERNUM_PDF.fulfilled, (state, action) => {
         state.success = true;
         state.loading = false;
         state.data = action.payload;
       })
-      .addCase(POST_LicenseValidation.rejected, (state, action) => {
+      .addCase(GET_VOUCHERNUM_PDF.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { resetState } = license.actions;
-export default license.reducer;
+export const { resetState } = DownloadPDF.actions;
+export default DownloadPDF.reducer;
