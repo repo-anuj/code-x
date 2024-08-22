@@ -44,27 +44,34 @@ class APIClient {
   get = async (url, params) => {
     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
     if (token) setAuthorization(token);
-  
+
     const queryString = params
-      ? Object.keys(params).map(key => key + '=' + encodeURIComponent(params[key])).join('&')
+      ? Object.keys(params)
+          .map((key) => key + "=" + encodeURIComponent(params[key]))
+          .join("&")
       : "";
 
-     
-    const response = await axios.get(queryString ? `${url}?${queryString}` : url);
+    const response = await axios.get(
+      queryString ? `${url}?${queryString}` : url
+    );
     return response;
   };
 
   api5_getdata = async (url, params) => {
     const token = JSON.parse(localStorage.getItem("authUser"))?.token;
     if (token) setAuthorization(token);
-  
-    const subscriberID = JSON.parse(localStorage.getItem("authUser"))?.subscriberID;
+
+    const subscriberID = JSON.parse(
+      localStorage.getItem("authUser")
+    )?.subscriberID;
     const queryString = params
-      ? `?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}`
+      ? `?${Object.keys(params)
+          .map((key) => `${key}=${params[key]}`)
+          .join("&")}`
       : "";
-  
+
     const fullUrl = `${url}/${subscriberID}${queryString}`;
-    
+
     const response = await axios.get(fullUrl);
     return response;
   };
@@ -72,6 +79,9 @@ class APIClient {
    * post given data to url
    */
   create = (url, data) => {
+    const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
+    if (token) setAuthorization(token); 
+
     return axios.post(url, data);
   };
 

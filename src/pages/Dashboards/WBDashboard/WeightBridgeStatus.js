@@ -8,70 +8,8 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CPDashboardDataTile from "../../../Components/CPComponents/CPDashboard/CPDashboardDataTile";
 import CPDashboardSummaryCard from "../../../Components/CPComponents/CPDashboard/CPDashboardSummaryCard";
 
-const WeightBridgeStatus = () => {
-  const data = [
-    {
-      key: 1,
-      item: {
-        voucherType: "Sales Voucher",
-        argumentValue: [
-          { argument: "Total Sales", value: "1540.75" },
-          { argument: "Total Items", value: "320" },
-          { argument: "Net Profit", value: "560.50" },
-          { argument: "Discount", value: "45.00" },
-        ],
-      },
-    },
-    {
-      key: 2,
-      item: {
-        voucherType: "Purchase Voucher",
-        argumentValue: [
-          { argument: "Total Purchases", value: "2400.00" },
-          { argument: "Total Items", value: "450" },
-          { argument: "Net Cost", value: "2100.75" },
-          { argument: "Discount", value: "120.00" },
-        ],
-      },
-    },
-    {
-      key: 4,
-      item: {
-        voucherType: "Return Voucher",
-        argumentValue: [
-          { argument: "Total Returns", value: "750.30" },
-          { argument: "Total Items", value: "150" },
-          { argument: "Net Loss", value: "200.00" },
-          { argument: "Restocking Fee", value: "15.00" },
-        ],
-      },
-    },
-    {
-      key: 5,
-      item: {
-        voucherType: "Return Voucher",
-        argumentValue: [
-          { argument: "Total Returns", value: "750.30" },
-          { argument: "Total Items", value: "150" },
-          { argument: "Net Loss", value: "200.00" },
-          { argument: "Restocking Fee", value: "15.00" },
-        ],
-      },
-    },
-    {
-      key: 6,
-      item: {
-        voucherType: "Return Voucher",
-        argumentValue: [
-          { argument: "Total Returns", value: "750.30" },
-          { argument: "Total Items", value: "150" },
-          { argument: "Net Loss", value: "200.00" },
-          { argument: "Restocking Fee", value: "15.00" },
-        ],
-      },
-    },
-  ];
-
+const WeightBridgeStatus = ({ wbStatus, itemSummary, accountSummary }) => {
+  if (itemSummary === null) return "";
   return (
     <React.Fragment>
       <Row>
@@ -102,8 +40,8 @@ const WeightBridgeStatus = () => {
           // autoplay={{ delay: 2500, disableOnInteraction: false }}
           className="mySwiper marketplace-swiper rounded gallery-light"
         >
-          {data.map((individualData) => (
-            <SwiperSlide key={individualData.key}>
+          {wbStatus.map((individualData, index) => (
+            <SwiperSlide key={index}>
               <CPDashboardDataTile individualData={individualData} />
             </SwiperSlide>
           ))}
@@ -138,11 +76,13 @@ const WeightBridgeStatus = () => {
           // autoplay={{ delay: 2500, disableOnInteraction: false }}
           className="mySwiper marketplace-swiper rounded gallery-light"
         >
-          {data.map((individualData) => (
-            <SwiperSlide key={individualData.key}>
-              <CPDashboardSummaryCard />
-            </SwiperSlide>
-          ))}
+          {(itemSummary === null) | (itemSummary === undefined)
+            ? ""
+            : itemSummary.map((individualData, index) => (
+                <SwiperSlide key={index}>
+                  <CPDashboardSummaryCard data={individualData} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </Row>
       <Row>
@@ -173,11 +113,13 @@ const WeightBridgeStatus = () => {
           // autoplay={{ delay: 2500, disableOnInteraction: false }}
           className="mySwiper marketplace-swiper rounded gallery-light"
         >
-          {data.map((individualData) => (
-            <SwiperSlide key={individualData.key}>
-              <CPDashboardSummaryCard />
-            </SwiperSlide>
-          ))}
+          {(accountSummary === null) | (accountSummary === undefined)
+            ? ""
+            : accountSummary.map((individualData, index) => (
+                <SwiperSlide key={index}>
+                  <CPDashboardSummaryCard data={individualData} />
+                </SwiperSlide>
+              ))}
         </Swiper>
       </Row>
     </React.Fragment>

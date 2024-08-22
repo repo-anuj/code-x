@@ -1,5 +1,7 @@
 // Retrieve and parse the dataExchangeURL from localStorage
-const dataExchangeURL = JSON.parse(localStorage.getItem("selectedCompany"))?.dataExchangeURL;
+const dataExchangeURL = JSON.parse(
+  localStorage.getItem("selectedCompany")
+)?.dataExchangeURL;
 
 // Export configuration
 module.exports = {
@@ -12,6 +14,7 @@ module.exports = {
     APP_ID: "",
   },
   api: {
+    // API_URL: "http://45.124.144.253:9890",
     API_URL: "http://192.168.0.99:5000",
-  }
+  },
 };

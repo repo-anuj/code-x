@@ -1,219 +1,89 @@
 import React from "react";
-import {
-  Card,
-  CardBody,
-  CardHeader,
-  Col,
-  DropdownItem,
-  DropdownMenu,
-  DropdownToggle,
-  UncontrolledDropdown,
-} from "reactstrap";
+import { Card, CardBody, CardHeader, Col } from "reactstrap";
 
+import { Link } from "react-router-dom";
 //Import Icons
-import FeatherIcon from "feather-icons-react";
+import IconsForVoucherType from "../../../Components/CPComponents/CPIcons/IconsForVoucherType";
 
 //SimpleBar
 import SimpleBar from "simplebar-react";
-import { Link } from "react-router-dom";
+import moment from "moment/moment";
 
-const RecentActivity = () => {
+const RecentActivity = ({ latestActivity }) => {
+  if (latestActivity === null || latestActivity === undefined) {
+    return "";
+  }
+  const truncateText = (text, maxLength = 26) => {
+    return text.length > maxLength
+      ? text.substring(0, maxLength) + "..."
+      : text;
+  };
+
   return (
     <React.Fragment>
       <Col xxl={12}>
         <Card className="card-height-100">
           <CardHeader className="card-header align-items-center d-flex">
+            {IconsForVoucherType("Recent Activity")}
             <h4 className="card-title mb-0 flex-grow-1">Recent Activity</h4>
           </CardHeader>
           <CardBody className="p-0">
             <SimpleBar style={{ height: "435px" }}>
               <div className="p-3">
-                <h6 className="text-muted text-uppercase mb-3 fs-11">
-                  25 Dec 2021
-                </h6>
-                <div className="d-flex align-items-center">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="arrow-down-circle"
-                        className="icon-dual-success icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Bought Bitcoin</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
-                      Visa Debit Card ***6
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-success">
-                      +0.04025745
-                      <span className="text-uppercase ms-1">Btc</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">+878.52 USD</p>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center mt-3">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="send"
-                        className="icon-dual-warning icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Sent Ethereum</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-warning fs-15 align-middle"></i>
-                      Sofia Cunha
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-muted">
-                      -0.09025182
-                      <span className="text-uppercase ms-1">Eth</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">-659.35 USD</p>
-                  </div>
-                </div>
-
-                <h6 className="text-muted text-uppercase mb-3 mt-4 fs-11">
-                  24 Dec 2021
-                </h6>
-                <div className="d-flex align-items-center">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="arrow-up-circle"
-                        className="icon-dual-danger icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Sell Dash</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-danger fs-15 align-middle"></i>
-                      www.cryptomarket.com
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-danger">
-                      -98.6025422
-                      <span className="text-uppercase ms-1">Dash</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">-1508.98 USD</p>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center mt-3">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="arrow-up-circle"
-                        className="icon-dual-danger icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Sell Dogecoin</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
-                      www.coinmarket.com
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-danger">
-                      -1058.08025142
-                      <span className="text-uppercase ms-1">Doge</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">-89.36 USD</p>
-                  </div>
-                </div>
-                <div className="d-flex align-items-center mt-3">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="arrow-up-circle"
-                        className="icon-dual-success icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Bought Litecoin</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-warning fs-15 align-middle"></i>
-                      Payment via Wallet
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-success">
-                      +0.07225912
-                      <span className="text-uppercase ms-1">Ltc</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">+759.45 USD</p>
-                  </div>
-                </div>
-
-                <h6 className="text-muted text-uppercase mb-3 mt-4 fs-11">
-                  20 Dec 2021
-                </h6>
-                <div className="d-flex align-items-center">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="send"
-                        className="icon-dual-warning icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Sent Ethereum</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-warning fs-15 align-middle"></i>
-                      Sofia Cunha
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-muted">
-                      -0.09025182
-                      <span className="text-uppercase ms-1">Eth</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">-659.35 USD</p>
-                  </div>
-                </div>
-
-                <div className="d-flex align-items-center mt-3">
-                  <div className="avatar-xs flex-shrink-0">
-                    <span className="avatar-title bg-light rounded-circle">
-                      <FeatherIcon
-                        icon="arrow-down-circle"
-                        className="icon-dual-success icon-sm"
-                      />
-                    </span>
-                  </div>
-                  <div className="flex-grow-1 ms-3">
-                    <h6 className="fs-14 mb-1">Bought Bitcoin</h6>
-                    <p className="text-muted fs-12 mb-0">
-                      <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
-                      Visa Debit Card ***6
-                    </p>
-                  </div>
-                  <div className="flex-shrink-0 text-end">
-                    <h6 className="mb-1 text-success">
-                      +0.04025745
-                      <span className="text-uppercase ms-1">Btc</span>
-                    </h6>
-                    <p className="text-muted fs-13 mb-0">+878.52 USD</p>
-                  </div>
-                </div>
-
-                <div className="mt-3 text-center">
-                  <Link to="#" className="text-muted text-decoration-underline">
-                    Load More
-                  </Link>
-                </div>
+                {latestActivity.map((individualData, index) => (
+                  <h6 className="text-muted text mb-3 fs-11">
+                    <div className="d-flex align-items-center">
+                      <div className="avatar-xs flex-shrink-0">
+                        <span className="avatar-title bg-light rounded-circle">
+                          {IconsForVoucherType(individualData.voucherType)}
+                        </span>
+                      </div>
+                      <div className="flex-grow-1 ms-3">
+                        <Link
+                          to={
+                            "/VoucherNum?VoucherNumID=" +
+                            individualData.voucherNumID
+                          }
+                        >
+                          <h6 className="fs-14 mb-1">
+                            {individualData.particulars}
+                            {" - "}
+                            {individualData.voucherNumber}
+                          </h6>
+                        </Link>
+                        <p className="text-muted fs-12 mb-0">
+                          <h6 className="mb-1 text-success">
+                            {moment(individualData.entryTime).format(
+                              "DD MMM - hh:mmA"   
+                            )}
+                          </h6>
+                        </p>
+                        <p className="text-muted fs-12 mb-0">
+                          <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
+                          {truncateText(individualData.party)}
+                        </p>
+                        <p className="text-muted fs-12 mb-0">
+                          <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
+                          {individualData.item}
+                        </p>
+                        <p className="text-muted fs-12 mb-0">
+                          <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
+                          {individualData.weight}
+                        </p>
+                      </div>
+                      {/* <div className="flex-shrink-0 text-end">
+                        <h6 className="mb-1 text-success">
+                          {moment(individualData.entryTime).format(
+                            "DD MMM - hh:mmA"
+                          )}
+                        </h6>
+                        <p className="text-muted fs-13 mb-0">
+                          {individualData.weight}
+                        </p>
+                      </div> */}
+                    </div>
+                  </h6>
+                ))}
               </div>
             </SimpleBar>
           </CardBody>

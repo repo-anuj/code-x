@@ -7,6 +7,8 @@ const Navdata = () => {
   //state data
   const [isDashboard, setIsDashboard] = useState(false);
   const [isRM, setIsRM] = useState(false);
+  const [isWB, setIsWB] = useState(false);
+  const [isSG, setIsSG] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   const [isPages, setIsPages] = useState(false);
   const [isBaseUi, setIsBaseUi] = useState(false);
@@ -18,7 +20,6 @@ const Navdata = () => {
   const [isMaps, setIsMaps] = useState(false);
   const [isMultiLevel, setIsMultiLevel] = useState(false);
 
-
   const [isLanding, setIsLanding] = useState(false);
 
   //Raw Materials
@@ -27,7 +28,6 @@ const Navdata = () => {
   const [isRWDashboard, setIsRWDashboard] = useState(false);
   const [isInventory, setIsInventory] = useState(false);
   const [isAccounting, setIsAccounting] = useState(false);
-
 
   // Multi Level
   const [isLevel1, setIsLevel1] = useState(false);
@@ -57,6 +57,12 @@ const Navdata = () => {
     }
     if (iscurrentState !== "RM") {
       setIsRM(false);
+    }
+    if (iscurrentState !== "WB") {
+      setIsWB(false);
+    }
+    if (iscurrentState !== "SG") {
+      setIsSG(false);
     }
     if (iscurrentState !== "Auth") {
       setIsAuth(false);
@@ -154,9 +160,21 @@ const Navdata = () => {
               },
               stateVariables: isLevel2,
               childItems: [
-                { id: "FnA.Masters.Accounting.Account-Group", label: "Account Group", link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountGroup" },
-                { id: "FnA.Masters.Accounting.Area", label: "Area", link: "/MastersRegister?formID=FnA.Masters.Accounting.Area" },
-                { id: "FnA.Masters.Accounting.Account-Ledger", label: "Account Ledger", link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountLedger" },
+                {
+                  id: "FnA.Masters.Accounting.Account-Group",
+                  label: "Account Group",
+                  link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountGroup",
+                },
+                {
+                  id: "FnA.Masters.Accounting.Area",
+                  label: "Area",
+                  link: "/MastersRegister?formID=FnA.Masters.Accounting.Area",
+                },
+                {
+                  id: "FnA.Masters.Accounting.Account-Ledger",
+                  label: "Account Ledger",
+                  link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountLedger",
+                },
               ],
             },
             {
@@ -170,11 +188,19 @@ const Navdata = () => {
               },
               stateVariables: isLevel3,
               childItems: [
-                { id: "FnA.Masters.Inventory.StockGroup", label: "Stock Group", link: "/#" },
-                { id: "FnA.Masters.Inventory.StockCategory", label: "Stock Category", link: "/#" },
+                {
+                  id: "FnA.Masters.Inventory.StockGroup",
+                  label: "Stock Group",
+                  link: "/#",
+                },
+                {
+                  id: "FnA.Masters.Inventory.StockCategory",
+                  label: "Stock Category",
+                  link: "/#",
+                },
                 { id: "FnA.Masters.Inventory.Unit", label: "Unit", link: "/#" },
               ],
-            }
+            },
           ],
         },
       ],
@@ -211,8 +237,16 @@ const Navdata = () => {
           parentId: "RM",
           stateVariables: isTransactions,
           childItems: [
-            { id: "RM.Transactions.InwardOrder", label: "Inward Order", link: "/MastersRegister?formID=RM.Transactions.InwardOrder" },
-            { id: "RM.Transactions.PurchaseOrder", label: "Purchase Order", link: "/MastersRegister?formID=RM.Transactions.PurchaseOrder" }, 
+            {
+              id: "RM.Transactions.InwardOrder",
+              label: "Inward Order",
+              link: "/MastersRegister?formID=RM.Transactions.InwardOrder",
+            },
+            {
+              id: "RM.Transactions.PurchaseOrder",
+              label: "Purchase Order",
+              link: "/MastersRegister?formID=RM.Transactions.PurchaseOrder",
+            },
           ],
         },
         {
@@ -227,9 +261,9 @@ const Navdata = () => {
           parentId: "RM",
           stateVariables: isMasters,
           childItems: [
-            { 
-              id: "RM.Masters.Inventory", 
-              label: "Inventory", 
+            {
+              id: "RM.Masters.Inventory",
+              label: "Inventory",
               link: "/apps-invoices-create",
               isChildItem: true,
               click: function (e) {
@@ -239,30 +273,88 @@ const Navdata = () => {
               parentId: "RM.Masters",
               stateVariables: isInventory,
               childItems: [
-                { id: "RM.Masters.Inventory.StockGroup", label: "Stock Group", link: "/MastersRegister?formID=RM.Masters.Inventory.StockGroup" },
-                { id: "RM.Masters.Inventory.StockItems", label: "Stock Item", link: "/MastersRegister?formID=RM.Masters.Inventory.StockItems" },
-              ]
+                {
+                  id: "RM.Masters.Inventory.StockGroup",
+                  label: "Stock Group",
+                  link: "/MastersRegister?formID=RM.Masters.Inventory.StockGroup",
+                },
+                {
+                  id: "RM.Masters.Inventory.StockItems",
+                  label: "Stock Item",
+                  link: "/MastersRegister?formID=RM.Masters.Inventory.StockItems",
+                },
+              ],
             },
-            { 
-              id: "RM.Masters.Accounting", 
-              label: "Accounting", 
+            {
+              id: "RM.Masters.Accounting",
+              label: "Accounting",
               link: "/apps-invoices-create",
               isChildItem: true,
               click: function (e) {
                 e.preventDefault();
                 setIsAccounting(!isAccounting);
-              },  
+              },
               parentId: "RM.Masters",
               stateVariables: isAccounting,
               childItems: [
-                { id: "RM.Masters.Accounting.AccountGroup", label: "Account Group", link: "/MastersRegister?formID=RM.Masters.Accounting.AccountGroup" },
-                { id: "RM.Masters.Accounting.LedgerAccount", label: "Ledger Account", link: "/MastersRegister?formID=FnA.Masters.Accounting.LedgerAccount" },
-              ]
-            }, 
+                {
+                  id: "RM.Masters.Accounting.AccountGroup",
+                  label: "Account Group",
+                  link: "/MastersRegister?formID=RM.Masters.Accounting.AccountGroup",
+                },
+                {
+                  id: "RM.Masters.Accounting.LedgerAccount",
+                  label: "Ledger Account",
+                  link: "/MastersRegister?formID=FnA.Masters.Accounting.LedgerAccount",
+                },
+              ],
+            },
           ],
         },
       ],
-    }
+    },
+    {
+      id: "WB",
+      label: "Weight Bridge",
+      icon: "ri-truck-fill",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsWB(!isWB);
+        setIscurrentState("WB");
+        updateIconSidebar(e);
+      },
+      stateVariables: isWB,
+      subItems: [
+        {
+          id: "WB.Dashboard",
+          label: "Dashboard",
+          link: "/Dashboards-WB",
+          parentId: "WB",
+        },
+      ],
+    },
+    {
+      id: "SG",
+      label: "Security Gate",
+      icon: "ri-npmjs-line",
+      link: "/#",
+      click: function (e) {
+        e.preventDefault();
+        setIsSG(!isSG);
+        setIscurrentState("SG");
+        updateIconSidebar(e);
+      },
+      stateVariables: isSG,
+      subItems: [
+        {
+          id: "SG.Dashboard",
+          label: "Dashboard",
+          link: "/Dashboards-SG",
+          parentId: "SG",
+        },
+      ],
+    },
   ];
   return <React.Fragment>{menuItems}</React.Fragment>;
 };

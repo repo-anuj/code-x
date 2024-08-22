@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Col, Container, Row, Card, CardHeader, Input } from "reactstrap";
 import CPBreadCrumbReporting from "../../../Components/CPComponents/CPLayouts/CPBreadCrumbReporting";
@@ -6,72 +6,82 @@ import CPBreadCrumbReporting from "../../../Components/CPComponents/CPLayouts/CP
 import WeightBridgeStatus from "./WeightBridgeStatus.js";
 import RecentActivity from "./RecentActivity.js";
 import CPDashboardDataTile from "../../../Components/CPComponents/CPDashboard/CPDashboardDataTile.js";
-import CPDashboardSummaryCard from "../../../Components/CPComponents/CPDashboard/CPDashboardSummaryCard.js";
-
-const data = [
-  {
-    key: 1,
-    item: {
-      voucherType: "Sales Voucher",
-      argumentValue: [
-        { argument: "Total Sales", value: "1540.75" },
-        { argument: "Total Items", value: "320" },
-        { argument: "Net Profit", value: "560.50" },
-        { argument: "Discount", value: "45.00" },
-      ],
-    },
-  },
-  {
-    key: 2,
-    item: {
-      voucherType: "Purchase Voucher",
-      argumentValue: [
-        { argument: "Total Purchases", value: "2400.00" },
-        { argument: "Total Items", value: "450" },
-        { argument: "Net Cost", value: "2100.75" },
-        { argument: "Discount", value: "120.00" },
-      ],
-    },
-  },
-  {
-    key: 4,
-    item: {
-      voucherType: "Return Voucher",
-      argumentValue: [
-        { argument: "Total Returns", value: "750.30" },
-        { argument: "Total Items", value: "150" },
-        { argument: "Net Loss", value: "200.00" },
-        { argument: "Restocking Fee", value: "15.00" },
-      ],
-    },
-  },
-  {
-    key: 5,
-    item: {
-      voucherType: "Return Voucher",
-      argumentValue: [
-        { argument: "Total Returns", value: "750.30" },
-        { argument: "Total Items", value: "150" },
-        { argument: "Net Loss", value: "200.00" },
-        { argument: "Restocking Fee", value: "15.00" },
-      ],
-    },
-  },
-  {
-    key: 6,
-    item: {
-      voucherType: "Return Voucher",
-      argumentValue: [
-        { argument: "Total Returns", value: "750.30" },
-        { argument: "Total Items", value: "150" },
-        { argument: "Net Loss", value: "200.00" },
-        { argument: "Restocking Fee", value: "15.00" },
-      ],
-    },
-  },
-];
+import { GET_WBDashboard } from "../../../slices/Dashboards/WBDashboard/thunk.js";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import moment from "moment";
+import { filter } from "lodash";
 
 const WBDashboard = () => {
+  const dispatch = useDispatch(); // Used for API connection
+  const data = useSelector((state) => state.WBDashboard.data);
+  const WBStatusData = useSelector((state) => state.WBDashboard.WBStatusData);
+  const ListForFilterData = useSelector(
+    (state) => state.WBDashboard.ListForFilterData
+  );
+  const WBLatestActivityData = useSelector(
+    (state) => state.WBDashboard.LatestActivityData
+  );
+  const AvgTimeData = useSelector((state) => state.WBDashboard.AvgTimeData);
+  const ItemSummaryData = useSelector(
+    (state) => state.WBDashboard.ItemSummaryData
+  );
+  const AccountSummaryData = useSelector(
+    (state) => state.WBDashboard.AccountSummaryData
+  );
+  const loading = useSelector((state) => state.WBDashboard.loading);
+  const error = useSelector((state) => state.WBDashboard.error);
+  const success = useSelector((state) => state.WBDashboard.success);
+  const navigate = useNavigate(); // Initialize useNavigate
+
+  const today = new Date();
+
+  // Retrieve stored date range from sessionStorage
+  const storedRange = JSON.parse(sessionStorage.getItem("selectedRange"));
+
+  // Set initial range
+
+  // State to hold the selected date range
+  const [selectedRange, setSelectedRange] = useState([null, null]);
+
+  // Handle date range change and store in sessionStorage
+  const onClick = (filters) => {
+    dispatch(
+      GET_WBDashboard({
+        existingData: data,
+        filterArray: filters,
+      })
+    );
+  };
+
+  const dateChange = (newRange) => {
+    if (newRange.length === 2) {
+      setSelectedRange(newRange);
+      sessionStorage.setItem("selectedRange", JSON.stringify(newRange));
+
+      dispatch(
+        GET_WBDashboard({
+          FromDate: moment(newRange[0]).format("yyyy-MM-DD"),
+          ToDate: moment(newRange[1]).format("yyyy-MM-DD"),
+          VoucherTypeID: "16acad1d-52b9-481c-b90c-4d80534a3d8a",
+        })
+      );
+    }
+  };
+
+  useEffect(() => {
+    const initialRange = storedRange
+      ? [new Date(storedRange[0]), new Date(storedRange[1])]
+      : [today, today];
+
+    if (selectedRange && selectedRange.length === 2) {
+      if (selectedRange[0] === null) {
+        dateChange(initialRange);
+      }
+      // onRangeChange(selectedRange);
+    }
+  }, [selectedRange]);
+
   return (
     <React.Fragment>
       <div className="page-content">
@@ -79,15 +89,24 @@ const WBDashboard = () => {
           <CPBreadCrumbReporting
             title="Weigh Bridge Dashboard"
             pageTitle="Data"
+            selectedRange={selectedRange}
+            onDateRangeChange={dateChange}
+            filterData={ListForFilterData}
+            onClickSetFilter={onClick}
           />
           <Row>
             <Col lg={8}>
-              <WeightBridgeStatus />
+              <WeightBridgeStatus
+                wbStatus={WBStatusData}
+                itemSummary={ItemSummaryData}
+                accountSummary={AccountSummaryData}
+              />
             </Col>
             <Col lg={4}>
-              <RecentActivity />
-              <CPDashboardDataTile individualData={data[0]} />
-              <CPDashboardSummaryCard />
+              <RecentActivity latestActivity={WBLatestActivityData} />
+              <CPDashboardDataTile individualData={AvgTimeData} />
+              {/* Transporter Wise Shortage */}
+              {/* <CPDashboardSummaryCard individualData={null} /> */}
             </Col>
           </Row>
         </Container>
