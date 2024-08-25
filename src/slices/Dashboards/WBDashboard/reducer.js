@@ -199,13 +199,13 @@ const GetListForFilters = (data) => {
 
   data.forEach((item) => {
     voucherTypes.add(item.voucherType);
-    parties.add(item.party);
+    parties.add(item.account);
     brokers.add(item.broker);
-    item.items.forEach((i) => {
+    item.item.forEach((i) => {
       items.add(i.item);
     });
 
-    item.items.forEach((i) => {
+    item.item.forEach((i) => {
       stockGroups.add(i.stockGroup);
     });
   });
@@ -248,8 +248,8 @@ const GetLatestActivity = (data) => {
       activities.push({
         entryTime: new Date(weighmentInTime),
         particulars: "First Weighment",
-        party: entry.party,
-        item: entry.items[0].item,
+        account: entry.account,
+        item: entry.item[0].particulars,
         voucherType: entry.voucherType,
         voucherNumber: entry.voucherNumber,
         voucherNumID: entry.voucherNumID,
@@ -257,7 +257,7 @@ const GetLatestActivity = (data) => {
           (entry.gateWeightRecord.grossWeight > 0) &
           (entry.gateWeightRecord.tareWeight === 0)
             ? entry.gateWeightRecord.grossWeight
-            : entry.gateWeightRecord.tareWeight + " " + entry.items[0].unit,
+            : entry.gateWeightRecord.tareWeight + " " + entry.item[0].unit,
       });
     }
 
@@ -266,8 +266,8 @@ const GetLatestActivity = (data) => {
       activities.push({
         entryTime: new Date(weighmentOutTime),
         particulars: "Final Weighment",
-        party: entry.party,
-        item: entry.items[0].item,
+        account: entry.account,
+        item: entry.item[0].particulars,
         voucherType: entry.voucherType,
         voucherNumber: entry.voucherNumber,
         voucherNumID: entry.voucherNumID,
@@ -275,7 +275,7 @@ const GetLatestActivity = (data) => {
           (entry.gateWeightRecord.grossWeight > 0) &
           (entry.gateWeightRecord.tareWeight === 0)
             ? entry.gateWeightRecord.grossWeight
-            : entry.gateWeightRecord.tareWeight + " " + entry.items[0].unit,
+            : entry.gateWeightRecord.tareWeight + " " + entry.item[0].unit,
       });
     }
   });
@@ -291,15 +291,15 @@ const GetItemSummaryData = function getItemSummaryData(data) {
   const summary = {};
 
   data.forEach((entry) => {
-    const { voucherType, gateWeightRecord, items } = entry;
+    const { voucherType, gateWeightRecord, item } = entry;
 
     if (!summary[voucherType]) {
       summary[voucherType] = [];
     }
 
-    items.forEach((item) => {
+    item.forEach((itementry) => {
       const existingItem = summary[voucherType].find(
-        (i) => i.Item === item.item
+        (i) => i.item === itementry.particulars
       );
 
       let processed = 0;
@@ -321,7 +321,7 @@ const GetItemSummaryData = function getItemSummaryData(data) {
         existingItem.shortageWeight += gateWeightRecord.shortageWeight;
       } else {
         summary[voucherType].push({
-          item: item.item,
+          item: itementry.particulars,
           pending: pending,
           processed: processed,
           grossWeight: gateWeightRecord.grossWeight,
@@ -345,15 +345,15 @@ const GetAccountSummaryData = function getAccountSummaryData(data) {
   const summary = {};
 
   data.forEach((entry) => {
-    const { voucherType, gateWeightRecord, items } = entry;
+    const { voucherType, gateWeightRecord, item } = entry;
 
     if (!summary[voucherType]) {
       summary[voucherType] = [];
     }
 
-    items.forEach((item) => {
+    item.forEach((item) => {
       const existingItem = summary[voucherType].find(
-        (i) => i.Item === entry.party
+        (i) => i.item === entry.account
       );
 
       let processed = 0;
@@ -375,7 +375,7 @@ const GetAccountSummaryData = function getAccountSummaryData(data) {
         existingItem.shortageWeight += gateWeightRecord.shortageWeight;
       } else {
         summary[voucherType].push({
-          item: entry.party,
+          item: entry.account,
           pending: pending,
           processed: processed,
           grossWeight: gateWeightRecord.grossWeight,

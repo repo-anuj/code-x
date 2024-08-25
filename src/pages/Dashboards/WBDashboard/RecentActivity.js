@@ -54,13 +54,13 @@ const RecentActivity = ({ latestActivity }) => {
                         <p className="text-muted fs-12 mb-0">
                           <h6 className="mb-1 text-success">
                             {moment(individualData.entryTime).format(
-                              "DD MMM - hh:mmA"   
+                              "DD MMM - hh:mmA"
                             )}
                           </h6>
                         </p>
                         <p className="text-muted fs-12 mb-0">
                           <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>
-                          {truncateText(individualData.party)}
+                          {truncateText(individualData.account)}
                         </p>
                         <p className="text-muted fs-12 mb-0">
                           <i className="mdi mdi-circle-medium text-success fs-15 align-middle"></i>

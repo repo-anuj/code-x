@@ -9,3 +9,6 @@ export const GET_ERP_WB_DASHBOARD = "/api/InfinityX/WeighmentRegister";
 export const GET_VOUCHERNUM_DATA = "/api/InfinityX/VoucherNumData";
 export const GET_VOUCHERNUM_IMAGES = "/api/InfinityX/VoucherNumCameraCaptures";
 export const GET_VOUCHERNUM_PDF = "/api/InfinityX/VoucherDownload";
+
+//VOUCHER REGISTER
+export const POST_REPORT_PDF = "/api/InfinityX/ReportDownload";

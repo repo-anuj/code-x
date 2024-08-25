@@ -3,7 +3,7 @@ import { Card, CardHeader, Col, Row } from "reactstrap";
 import CountUp from "react-countup";
 import IconsForVoucherType from "../CPIcons/IconsForVoucherType";
 
-const CPDashboardDataTile = ({ individualData }) => {
+const CPDashboardDataTile = ({ individualData, onCardClick }) => {
   if ((individualData === null) | (individualData === undefined)) {
     return "";
   }
@@ -14,6 +14,9 @@ const CPDashboardDataTile = ({ individualData }) => {
       return false;
     }
   }
+  const handleButtonClick = () => {
+    onCardClick("status", individualData.voucherType);
+  };
 
   return (
     <Card key={individualData.key}>
@@ -24,7 +27,7 @@ const CPDashboardDataTile = ({ individualData }) => {
         >
           {IconsForVoucherType(individualData.voucherType)}
         </span>
-        <h4 className="card-title mb-0 flex-grow-1">
+        <h4 className="card-title mb-0 flex-grow-1" onClick={handleButtonClick}>
           {individualData.voucherType}
         </h4>
       </CardHeader>

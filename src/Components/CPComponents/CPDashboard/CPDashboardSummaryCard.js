@@ -20,15 +20,18 @@ import {
   Button,
 } from "reactstrap";
 import IconsForVoucherType from "../CPIcons/IconsForVoucherType";
-const CPDashboardSummaryCard = (data) => {
+const CPDashboardSummaryCard = ({ data, cardType, onCardClick }) => {
   const toggleModal = () => setModal(!modal);
 
   if (data === null || data === undefined) {
     return "";
   }
-  if (data.data === undefined) {
-    return "";
-  }
+  // if (data.data === undefined) {
+  //   return "";
+  // }
+  const handleButtonClick = () => {
+    onCardClick(cardType, data.voucherType);
+  };
 
   const formatter = new Intl.NumberFormat("en-US", {
     minimumFractionDigits: 3,
@@ -46,10 +49,13 @@ const CPDashboardSummaryCard = (data) => {
                   className="avatar-title bg-light rounded-circle"
                   style={{ width: "24px", height: "24px", paddingRight: "5px" }}
                 >
-                  {IconsForVoucherType(data.data.voucherType)}
+                  {IconsForVoucherType(data.voucherType)}
                 </span>
-                <h4 className="card-title mb-0 flex-grow-1">
-                  {data.data.voucherType}
+                <h4
+                  className="card-title mb-0 flex-grow-1"
+                  onClick={handleButtonClick}
+                >
+                  {data.voucherType}
                 </h4>
               </div>
             </CardHeader>
@@ -85,7 +91,7 @@ const CPDashboardSummaryCard = (data) => {
                       </tr>
                     </thead>
                     <tbody>
-                      {data.data.data.map((individualData) => (
+                      {data.data.map((individualData) => (
                         <tr>
                           <td colSpan="2">
                             <h5 className="fs-14">{individualData.item} </h5>
@@ -132,13 +138,13 @@ const CPDashboardSummaryCard = (data) => {
                         Total :
                         <p className="text-muted mb-0">
                           <i className="mdi mdi-truck-fast-outline align-middle me-1 text-muted"></i>
-                          {data.data.data.reduce(
+                          {data.data.reduce(
                             (accumulator, data) => accumulator + data.processed,
                             0
                           )}{" "}
                           |{" "}
                           <text className="text-danger">
-                            {data.data.data.reduce(
+                            {data.data.reduce(
                               (accumulator, data) => accumulator + data.pending,
                               0
                             )}{" "}
@@ -150,7 +156,7 @@ const CPDashboardSummaryCard = (data) => {
                       <td className="text-end">
                         <span className="fw-semibold">
                           {formatter.format(
-                            data.data.data.reduce(
+                            data.data.reduce(
                               (accumulator, data) =>
                                 accumulator + data.netWeight,
                               0
@@ -159,7 +165,7 @@ const CPDashboardSummaryCard = (data) => {
                         </span>
                         <p className="text-danger mb-0">
                           {formatter.format(
-                            data.data.data.reduce(
+                            data.data.reduce(
                               (accumulator, data) =>
                                 accumulator + data.shortageWeight,
                               0

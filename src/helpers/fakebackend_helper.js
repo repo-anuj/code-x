@@ -27,3 +27,7 @@ export const ERP_GET_VOUCHERNUM_IMAGES = (data) =>
   api.get(url.GET_VOUCHERNUM_IMAGES, data);
 export const ERP_GET_VOUCHERNUM_PDF = (data) =>
   api.get(url.GET_VOUCHERNUM_PDF, data);
+
+//VOUCHER REGISTER
+export const ERP_POST_REPORT_PDF = (data) =>
+  api.create(url.POST_REPORT_PDF, data);

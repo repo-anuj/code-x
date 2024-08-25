@@ -8,7 +8,12 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import CPDashboardDataTile from "../../../Components/CPComponents/CPDashboard/CPDashboardDataTile";
 import CPDashboardSummaryCard from "../../../Components/CPComponents/CPDashboard/CPDashboardSummaryCard";
 
-const WeightBridgeStatus = ({ wbStatus, itemSummary, accountSummary }) => {
+const WeightBridgeStatus = ({
+  wbStatus,
+  itemSummary,
+  accountSummary,
+  showRegister,
+}) => {
   if (itemSummary === null) return "";
   return (
     <React.Fragment>
@@ -42,7 +47,10 @@ const WeightBridgeStatus = ({ wbStatus, itemSummary, accountSummary }) => {
         >
           {wbStatus.map((individualData, index) => (
             <SwiperSlide key={index}>
-              <CPDashboardDataTile individualData={individualData} />
+              <CPDashboardDataTile
+                individualData={individualData}
+                onCardClick={showRegister}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
@@ -80,7 +88,11 @@ const WeightBridgeStatus = ({ wbStatus, itemSummary, accountSummary }) => {
             ? ""
             : itemSummary.map((individualData, index) => (
                 <SwiperSlide key={index}>
-                  <CPDashboardSummaryCard data={individualData} />
+                  <CPDashboardSummaryCard
+                    data={individualData}
+                    cardType={"item.particulars"}
+                    onCardClick={showRegister}
+                  />
                 </SwiperSlide>
               ))}
         </Swiper>
@@ -117,7 +129,11 @@ const WeightBridgeStatus = ({ wbStatus, itemSummary, accountSummary }) => {
             ? ""
             : accountSummary.map((individualData, index) => (
                 <SwiperSlide key={index}>
-                  <CPDashboardSummaryCard data={individualData} />
+                  <CPDashboardSummaryCard
+                    data={individualData}
+                    cardType={"account"}
+                    onCardClick={showRegister}
+                  />
                 </SwiperSlide>
               ))}
         </Swiper>

@@ -13,3 +13,6 @@ export * from "./API5/LicenseValidation/thunk";
 // DashboardS
 export * from "./Dashboards/ERPDashboard/thunk";
 export * from "./Dashboards/WBDashboard/thunk";
+
+// ERPReportings
+export * from "./ERPReportings/VoucherRegister/thunk";

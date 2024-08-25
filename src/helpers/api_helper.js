@@ -1,12 +1,12 @@
 import axios from "axios";
 import { api } from "../config";
 // default
-axios.defaults.baseURL = api.API_URL;
+//axios.defaults.baseURL = api.API_URL;
+
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
 // content type
-
 // intercepting to capture errors
 axios.interceptors.response.use(
   function (response) {
@@ -42,6 +42,10 @@ class APIClient {
    */
 
   get = async (url, params) => {
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
+
     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
     if (token) setAuthorization(token);
 
@@ -79,8 +83,12 @@ class APIClient {
    * post given data to url
    */
   create = (url, data) => {
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
+
     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
-    if (token) setAuthorization(token); 
+    if (token) setAuthorization(token);
 
     return axios.post(url, data);
   };

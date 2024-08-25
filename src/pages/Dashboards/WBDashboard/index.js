@@ -54,6 +54,17 @@ const WBDashboard = () => {
     );
   };
 
+  const showRegister = (key, filters) => {
+    console.log(filters);
+    navigate("/VoucherRegister?GroupBy=" + key + "&title=" + filters, {
+      state: data.filter((item) => item.voucherType === filters),
+    });
+  };
+
+  const onDownload = (filters) => {
+    navigate("/VoucherRegister", { state: data });
+  };
+
   const dateChange = (newRange) => {
     if (newRange.length === 2) {
       setSelectedRange(newRange);
@@ -93,6 +104,7 @@ const WBDashboard = () => {
             onDateRangeChange={dateChange}
             filterData={ListForFilterData}
             onClickSetFilter={onClick}
+            onClickDownload={onDownload}
           />
           <Row>
             <Col lg={8}>
@@ -100,6 +112,7 @@ const WBDashboard = () => {
                 wbStatus={WBStatusData}
                 itemSummary={ItemSummaryData}
                 accountSummary={AccountSummaryData}
+                showRegister={showRegister}
               />
             </Col>
             <Col lg={4}>

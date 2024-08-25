@@ -19,6 +19,7 @@ import WBDashboardReducer from "./Dashboards/WBDashboard/reducer";
 import VoucherNumReducer from "./ERPReportings/VoucherNum/reducer";
 import VoucherNumCameraCaptureReducer from "./ERPReportings/VoucherNum/CameraCaptures/reducer";
 import VoucherNumPDFReducer from "./ERPReportings/VoucherNum/DownloadPDF/reducer";
+import VoucherNumRegisterReducer from "./ERPReportings/VoucherRegister/reducer";
 
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
@@ -32,6 +33,7 @@ const rootReducer = combineReducers({
   VoucherNum: VoucherNumReducer,
   VoucherNumCameraCapture: VoucherNumCameraCaptureReducer,
   VoucherNumPDF: VoucherNumPDFReducer,
+  VoucherRegister: VoucherNumRegisterReducer,
 });
 
 export default rootReducer;

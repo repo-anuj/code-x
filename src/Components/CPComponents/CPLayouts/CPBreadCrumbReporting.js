@@ -11,6 +11,7 @@ const CPBreadCrumbReporting = ({
   onDateRangeChange,
   filterData,
   onClickSetFilter,
+  onClickDownload,
 }) => {
   const [isInfoDetails, setIsInfoDetails] = useState(false);
   const toggleInfo = () => {
@@ -43,6 +44,7 @@ const CPBreadCrumbReporting = ({
                 <button
                   type="button"
                   className="btn btn-success me-1"
+                  onClick={onClickDownload}
                   style={{ height: "38px", marginLeft: "0px" }}
                 >
                   {" "}
