@@ -94,6 +94,51 @@ class APIClient {
   };
 
   /**
+   * post given data to url
+   */
+  createPDF = async (url, data) => {
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
+
+    const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
+    if (token) setAuthorization(token);
+
+    return axios.post(url, data, {
+      responseType: "blob", // Important to specify blob for binary data
+      headers: {
+        "Content-Type": "application/json", // Adjust as needed
+      },
+    });
+  };
+
+  getPDF = async (url, params) => {
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
+
+    const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
+    if (token) setAuthorization(token);
+
+    const queryString = params
+      ? Object.keys(params)
+          .map((key) => key + "=" + encodeURIComponent(params[key]))
+          .join("&")
+      : "";
+
+    const response = await axios.get(
+      queryString ? `${url}?${queryString}` : url,
+      {
+        responseType: "blob",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response;
+  };
+
+  /**
    * Updates data
    */
   update = (url, data) => {

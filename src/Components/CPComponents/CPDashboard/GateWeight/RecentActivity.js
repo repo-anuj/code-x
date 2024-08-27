@@ -3,7 +3,7 @@ import { Card, CardBody, CardHeader, Col } from "reactstrap";
 
 import { Link } from "react-router-dom";
 //Import Icons
-import IconsForVoucherType from "../../../Components/CPComponents/CPIcons/IconsForVoucherType";
+import IconsForVoucherType from "../../CPIcons/IconsForVoucherType";
 
 //SimpleBar
 import SimpleBar from "simplebar-react";

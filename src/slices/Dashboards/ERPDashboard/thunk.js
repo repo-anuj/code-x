@@ -1,15 +1,36 @@
 import { ERP_GET_MainDashboard } from "../../../helpers/fakebackend_helper";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 
-// action
-import { dataSuccess } from "./reducer";
-
-export const GET_MainDashboard = () => async (dispatch) => {
+export const GET_ERPDashboard = createAsyncThunk(
+  "MainDashboard/post",
+  async ({ FromDate, ToDate, existingData, filterArray }, thunkAPI) => {
     try {
-        
-           const response = await ERP_GET_MainDashboard();
-           dispatch(dataSuccess(response));
+      if (existingData && filterArray) {
+        return applyFilters(existingData, filterArray);
+      }
 
+      if (FromDate === undefined || ToDate === undefined) return;
+
+      const bodyData = {
+        FromDate: FromDate,
+        ToDate: ToDate,
+      };
+
+      const response = ERP_GET_MainDashboard(bodyData);
+      const data = await response;
+      return data;
     } catch (error) {
-        //dispatch(profileError(error));
+      return thunkAPI.rejectWithValue(error.response.data);
     }
+  }
+);
+
+const applyFilters = (existingData, filterArray) => {
+  let result = existingData;
+
+  if (filterArray.Accounts.length > 0) {
+    result = result.filter((item) => filterArray.Accounts.includes(item.party));
+  }
+
+  return result;
 };

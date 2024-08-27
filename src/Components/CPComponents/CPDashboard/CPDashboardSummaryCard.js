@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import SimpleBar from "simplebar-react";
 import "../CPSCSS/setPageScale.css";
-
+import { textSizeForOverflow } from "../TextSizeForOverflow";
 import {
   Card,
   CardHeader,
@@ -52,6 +52,7 @@ const CPDashboardSummaryCard = ({ data, cardType, onCardClick }) => {
                   {IconsForVoucherType(data.voucherType)}
                 </span>
                 <h4
+                  style={textSizeForOverflow()}
                   className="card-title mb-0 flex-grow-1"
                   onClick={handleButtonClick}
                 >

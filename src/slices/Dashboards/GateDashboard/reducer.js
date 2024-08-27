@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { GET_WBDashboard } from "./thunk";
+import { GET_GateDashboard } from "./thunk";
 import moment from "moment";
 import {
   GetSummary,
@@ -10,8 +10,8 @@ import {
   GetAverageTime,
 } from "../GateWB/CommonFunctions.js";
 
-const WBDashboard = createSlice({
-  name: "WBDashboard",
+const GateDashboard = createSlice({
+  name: "GateDashboard",
   initialState: {
     data: null,
     LatestActivityData: null,
@@ -40,12 +40,12 @@ const WBDashboard = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(GET_WBDashboard.pending, (state) => {
+      .addCase(GET_GateDashboard.pending, (state) => {
         state.loading = true;
         state.error = null;
         state.success = false;
       })
-      .addCase(GET_WBDashboard.fulfilled, (state, action) => {
+      .addCase(GET_GateDashboard.fulfilled, (state, action) => {
         state.success = true;
         state.data = action.payload;
         state.LatestActivityData = GetLatestActivity(action.payload);
@@ -64,12 +64,12 @@ const WBDashboard = createSlice({
         state.ListForFilterData = GetListForFilters(action.payload);
         state.loading = false;
       })
-      .addCase(GET_WBDashboard.rejected, (state, action) => {
+      .addCase(GET_GateDashboard.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       });
   },
 });
 
-export const { resetState } = WBDashboard.actions;
-export default WBDashboard.reducer;
+export const { resetState } = GateDashboard.actions;
+export default GateDashboard.reducer;

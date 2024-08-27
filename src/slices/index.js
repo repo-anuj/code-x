@@ -12,9 +12,11 @@ import ERPLoginReducer from "./ERPLogin/auth/login/reducer";
 import LicenseReducer from "./API5/LicenseValidation/reducer";
 
 import ProfileReducer from "./ERPLogin/auth/profile/reducer";
-//LicenseValidation
+
+//Dashboard
 import ERPDashboardReducer from "./Dashboards/ERPDashboard/reducer";
 import WBDashboardReducer from "./Dashboards/WBDashboard/reducer";
+import GateDashboardReducer from "./Dashboards/GateDashboard/reducer";
 
 import VoucherNumReducer from "./ERPReportings/VoucherNum/reducer";
 import VoucherNumCameraCaptureReducer from "./ERPReportings/VoucherNum/CameraCaptures/reducer";
@@ -27,6 +29,7 @@ const rootReducer = combineReducers({
   Account: AccountReducer,
   ERPDashboard: ERPDashboardReducer,
   WBDashboard: WBDashboardReducer,
+  GateDashboard: GateDashboardReducer,
   Profile: ProfileReducer,
   CompanySelection: CompanySelectionReducer,
   LicenseValidation: LicenseReducer,

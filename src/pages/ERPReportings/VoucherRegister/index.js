@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 import { Col, Container, Row, Card, CardHeader, Input } from "reactstrap";
 import CPBreadCrumbReporting from "../../../Components/CPComponents/CPLayouts/CPBreadCrumbReporting";
+import { POST_REPORT_PDF } from "../../../slices/ERPReportings/VoucherRegister/ReportPDF/thunk.js";
 
 import { GET_VoucherRegisterData } from "../../../slices/ERPReportings/VoucherRegister/thunk.js";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,6 +20,10 @@ const VoucherRegister = ({ dashboardData }) => {
   const navigate = useNavigate(); // Initialize useNavigate
   const groupBy = new URLSearchParams(window.location.search).get("GroupBy");
   const title = new URLSearchParams(window.location.search).get("title");
+
+  const onDownload = async () => {
+    dispatch(POST_REPORT_PDF(data));
+  };
 
   // Handle date range change and store in sessionStorage
   const onClick = (filters) => {
@@ -63,6 +68,7 @@ const VoucherRegister = ({ dashboardData }) => {
             selectedRange={selectedRange}
             onDateRangeChange={dateChange}
             onClickSetFilter={onClick}
+            onClickDownload={onDownload}
           />
           <Row
           // style={{ position: "absolute", width: "103vw", left: 0, right: 0 }}

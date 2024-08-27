@@ -54,7 +54,9 @@ const CPVoucherNumHeaderCard = ({ data, labelTitle }) => {
             <div className="flex-grow-1 ms-2">
               <p className="text-muted mb-0">
                 <b>{data.purchaseNumber}</b> |{" "}
-                {moment(data.purchaseDate).format("DD-MM-yyyy")}
+                {moment(data.purchaseDate).format("DD-MM-yyyy") === "01-01-0001"
+                  ? ""
+                  : moment(data.purchaseDate).format("DD-MM-yyyy")}
               </p>
             </div>
           </div>

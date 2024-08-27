@@ -1,8 +1,8 @@
-import { ERP_GET_WBDashboard } from "../../../helpers/fakebackend_helper";
+import { ERP_GET_GateDashboard } from "../../../helpers/fakebackend_helper";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-export const GET_WBDashboard = createAsyncThunk(
-  "wbDashboard/post",
+export const GET_GateDashboard = createAsyncThunk(
+  "GateDashboard/post",
   async ({ FromDate, ToDate, existingData, filterArray }, thunkAPI) => {
     try {
       if (existingData && filterArray) {
@@ -15,7 +15,7 @@ export const GET_WBDashboard = createAsyncThunk(
         FromDate: FromDate,
         ToDate: ToDate,
       };
-      const response = ERP_GET_WBDashboard(bodyData);
+      const response = ERP_GET_GateDashboard(bodyData);
       const data = await response;
       return data;
     } catch (error) {

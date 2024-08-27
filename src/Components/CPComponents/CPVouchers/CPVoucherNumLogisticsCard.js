@@ -3,7 +3,7 @@ import { Card, CardHeader, CardBody } from "reactstrap";
 import { Link } from "react-router-dom";
 import moment from "moment/moment";
 
-const CPVoucherNumLogisticsCard = ({ logistics, labelTitle}) => {
+const CPVoucherNumLogisticsCard = ({ logistics, labelTitle }) => {
   return (
     <React.Fragment>
       <Card>
@@ -25,12 +25,12 @@ const CPVoucherNumLogisticsCard = ({ logistics, labelTitle}) => {
             ></lord-icon>
 
             <h5 className="fs-16 mt-2">{logistics.vehicleNumber}</h5>
-            <p className="text-muted mb-0">
-              {logistics.transporterName}
-            </p>
+            <p className="text-muted mb-0">{logistics.transporterName}</p>
             <p className="text-muted mb-0">
               LR : <b>{logistics.lrNumber}</b> dt.{" "}
-              {moment(logistics.lrDate).format("DD-MM-yyyy")}
+              {moment(logistics.lrDate).format("DD-MM-yyyy") === "01-01-0001"
+                ? ""
+                : moment(logistics.lrDate).format("DD-MM-yyyy")}
             </p>
           </div>
         </CardBody>

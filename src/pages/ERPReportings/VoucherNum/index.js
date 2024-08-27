@@ -65,7 +65,7 @@ const EcommerceOrderDetail = (props) => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-            <BreadCrumb title={data.voucherType} pageTitle={data.voucherNumber} />
+          <BreadCrumb title={data.voucherType} pageTitle={data.voucherNumber} />
 
           <Row>
             <Col xl={9}>
@@ -93,7 +93,7 @@ const EcommerceOrderDetail = (props) => {
                 billingShipping={data.shipping}
                 labelTitle={"Shipping Details"}
               />
-              <CPVoucherNumOrderDetailsCard voucher={data.shipping} />
+              {/* <CPVoucherNumOrderDetailsCard voucher={data.shipping} /> */}
               <CPVoucherNumAttachments voucherNumID={voucherNumID} />
               <CPVoucherNumCameraCaptures voucherdata={data} />
 
@@ -113,7 +113,7 @@ const EcommerceOrderDetail = (props) => {
                       style={{ width: "90px", height: "90px" }}
                     ></lord-icon>
                   </div>
-                  <h3 className="mb-1 text-center">9 hrs 13 min</h3>
+                  <h3 className="mb-1 text-center">{data.totalTimeTaken}</h3>
                 </CardBody>
               </Card>
             </Col>

@@ -16,9 +16,11 @@ export const ERP_POST_Login = (data) => api.create(url.POST_ERP_Login, data);
 
 // ERP Main Dashboard
 export const ERP_GET_MainDashboard = (data) =>
-  api.get(url.GET_ERP_MAIN_DASHBOARD, data);
+  api.create(url.GET_ERP_MAIN_DASHBOARD, data);
 export const ERP_GET_WBDashboard = (data) =>
   api.create(url.GET_ERP_WB_DASHBOARD, data);
+export const ERP_GET_GateDashboard = (data) =>
+  api.create(url.GET_ERP_GATE_DASHBOARD, data);
 
 //ERP VoucherNum
 export const ERP_GET_VOUCHERNUM = (data) =>
@@ -26,8 +28,8 @@ export const ERP_GET_VOUCHERNUM = (data) =>
 export const ERP_GET_VOUCHERNUM_IMAGES = (data) =>
   api.get(url.GET_VOUCHERNUM_IMAGES, data);
 export const ERP_GET_VOUCHERNUM_PDF = (data) =>
-  api.get(url.GET_VOUCHERNUM_PDF, data);
+  api.getPDF(url.GET_VOUCHERNUM_PDF, data);
 
 //VOUCHER REGISTER
 export const ERP_POST_REPORT_PDF = (data) =>
-  api.create(url.POST_REPORT_PDF, data);
+  api.createPDF(url.POST_REPORT_PDF, data);

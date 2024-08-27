@@ -7,32 +7,32 @@ import RecentActivity from "../../../Components/CPComponents/CPDashboard/GateWei
 import DataStatus from "../../../Components/CPComponents/CPDashboard/GateWeight/DataStatus.js";
 
 import CPDashboardDataTile from "../../../Components/CPComponents/CPDashboard/CPDashboardDataTile.js";
-import { GET_WBDashboard } from "../../../slices/Dashboards/WBDashboard/thunk.js";
+import { GET_GateDashboard } from "../../../slices/Dashboards/GateDashboard/thunk.js";
 import { POST_REPORT_PDF } from "../../../slices/ERPReportings/VoucherRegister/ReportPDF/thunk.js";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import moment from "moment";
 
-const WBDashboard = () => {
+const GateDashboard = () => {
   const dispatch = useDispatch(); // Used for API connection
-  const data = useSelector((state) => state.WBDashboard.data);
-  const StatusData = useSelector((state) => state.WBDashboard.StatusData);
+  const data = useSelector((state) => state.GateDashboard.data);
+  const StatusData = useSelector((state) => state.GateDashboard.StatusData);
   const ListForFilterData = useSelector(
-    (state) => state.WBDashboard.ListForFilterData
+    (state) => state.GateDashboard.ListForFilterData
   );
   const LatestActivityData = useSelector(
-    (state) => state.WBDashboard.LatestActivityData
+    (state) => state.GateDashboard.LatestActivityData
   );
-  const AvgTimeData = useSelector((state) => state.WBDashboard.AvgTimeData);
+  const AvgTimeData = useSelector((state) => state.GateDashboard.AvgTimeData);
   const ItemSummaryData = useSelector(
-    (state) => state.WBDashboard.ItemSummaryData
+    (state) => state.GateDashboard.ItemSummaryData
   );
   const AccountSummaryData = useSelector(
-    (state) => state.WBDashboard.AccountSummaryData
+    (state) => state.GateDashboard.AccountSummaryData
   );
-  const loading = useSelector((state) => state.WBDashboard.loading);
-  const error = useSelector((state) => state.WBDashboard.error);
-  const success = useSelector((state) => state.WBDashboard.success);
+  const loading = useSelector((state) => state.GateDashboard.loading);
+  const error = useSelector((state) => state.GateDashboard.error);
+  const success = useSelector((state) => state.GateDashboard.success);
   const navigate = useNavigate(); // Initialize useNavigate
 
   const today = new Date();
@@ -48,7 +48,7 @@ const WBDashboard = () => {
   // Handle date range change and store in sessionStorage
   const onClick = (filters) => {
     dispatch(
-      GET_WBDashboard({
+      GET_GateDashboard({
         existingData: data,
         filterArray: filters,
       })
@@ -72,7 +72,7 @@ const WBDashboard = () => {
       sessionStorage.setItem("selectedRange", JSON.stringify(newRange));
 
       dispatch(
-        GET_WBDashboard({
+        GET_GateDashboard({
           FromDate: moment(newRange[0]).format("yyyy-MM-DD"),
           ToDate: moment(newRange[1]).format("yyyy-MM-DD"),
         })
@@ -118,8 +118,6 @@ const WBDashboard = () => {
             <Col lg={4}>
               <RecentActivity latestActivity={LatestActivityData} />
               <CPDashboardDataTile individualData={AvgTimeData} />
-              {/* Transporter Wise Shortage */}
-              {/* <CPDashboardSummaryCard individualData={null} /> */}
             </Col>
           </Row>
         </Container>
@@ -128,4 +126,4 @@ const WBDashboard = () => {
   );
 };
 
-export default WBDashboard;
+export default GateDashboard;

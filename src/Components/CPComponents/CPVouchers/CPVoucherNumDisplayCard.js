@@ -20,6 +20,7 @@ import { GET_VOUCHERNUM_PDF } from "../../../slices/ERPReportings/VoucherNum/Dow
 import { useSelector, useDispatch } from "react-redux";
 import CPVoucherNumBillingShippingCard from "./CPVoucherNumBillingShippingCard";
 import { useNavigate } from "react-router-dom";
+import moment from "moment";
 
 const NumberFormatter = ({ number }) => {
   const formattedNumber = Number(number).toLocaleString("en-IN", {
@@ -42,12 +43,16 @@ const CPVoucherNumDisplayCard = ({ voucher }) => {
   const handleDownload = async () => {
     dispatch(GET_VOUCHERNUM_PDF(voucher.voucherNumID));
   };
-
+  const handleWhatsAppClick = (message) => {
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://api.whatsapp.com/send?text=${encodedMessage}`;
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+  };
   const toggleModal = () => {
     if (voucher.billing) {
       setModal(!modal);
     } else {
-        navigate("/VoucherNum?VoucherNumID=" + voucher.voucherNumID);
+      navigate("/VoucherNum?VoucherNumID=" + voucher.voucherNumID);
     }
   };
 
@@ -99,9 +104,13 @@ const CPVoucherNumDisplayCard = ({ voucher }) => {
                         </DropdownItem>
                       </li>
                       <li>
-                        <DropdownItem>
+                        <DropdownItem
+                          onClick={() => {
+                            handleWhatsAppClick("testing");
+                          }}
+                        >
                           <i className="ri-whatsapp-fill align-bottom me-2 text-success"></i>{" "}
-                          Whatsapp
+                          Whatsapp  
                         </DropdownItem>
                       </li>
                     </DropdownMenu>
@@ -117,7 +126,8 @@ const CPVoucherNumDisplayCard = ({ voucher }) => {
                   </div>
                   <div>
                     <i className="ri-time-line text-primary me-1 align-bottom"></i>
-                    RM/PO/1223 13-Aug-2024
+                    {voucher.voucherNumber} |{" "}
+                    {moment(voucher.voucherDate).format("DD-MM-yyyy")}
                   </div>
                 </div>
               </div>

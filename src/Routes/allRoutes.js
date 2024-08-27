@@ -12,6 +12,7 @@ import Logout from "../pages/ERPLogin/Authentication/Logout";
 //Dashboards
 import ERPDashboard from "../pages/Dashboards/ERPDashboard";
 import WBDashboard from "../pages/Dashboards/WBDashboard";
+import GateDashboard from "../pages/Dashboards/GateDashboard";
 //VoucherNum
 import VoucherNum from "../pages/ERPReportings/VoucherNum";
 import VoucherRegister from "../pages/ERPReportings/VoucherRegister";
@@ -24,6 +25,7 @@ const authProtectedRoutes = [
   },
   { path: "/Dashboards-ERP", component: <ERPDashboard /> },
   { path: "/Dashboards-WB", component: <WBDashboard /> },
+  { path: "/Dashboards-SG", component: <GateDashboard /> },
   { path: "/VoucherNum", component: <VoucherNum /> },
   { path: "/VoucherRegister", component: <VoucherRegister /> },
   { path: "*", component: <Navigate to="/LicenseValidation" /> },

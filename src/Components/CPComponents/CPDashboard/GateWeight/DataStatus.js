@@ -5,11 +5,11 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Navigation, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import CPDashboardDataTile from "../../../Components/CPComponents/CPDashboard/CPDashboardDataTile";
-import CPDashboardSummaryCard from "../../../Components/CPComponents/CPDashboard/CPDashboardSummaryCard";
-
-const WeightBridgeStatus = ({
-  wbStatus,
+import CPDashboardDataTile from "../CPDashboardDataTile";
+import CPDashboardSummaryCard from "../CPDashboardSummaryCard";
+  
+const DataStatus = ({
+  dataStatus,
   itemSummary,
   accountSummary,
   showRegister,
@@ -45,7 +45,7 @@ const WeightBridgeStatus = ({
           // autoplay={{ delay: 2500, disableOnInteraction: false }}
           className="mySwiper marketplace-swiper rounded gallery-light"
         >
-          {wbStatus.map((individualData, index) => (
+          {dataStatus.map((individualData, index) => (
             <SwiperSlide key={index}>
               <CPDashboardDataTile
                 individualData={individualData}
@@ -142,4 +142,4 @@ const WeightBridgeStatus = ({
   );
 };
 
-export default WeightBridgeStatus;
+export default DataStatus;

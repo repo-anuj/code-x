@@ -2,6 +2,8 @@ import React from "react";
 import { Card, CardHeader, Col, Row } from "reactstrap";
 import CountUp from "react-countup";
 import IconsForVoucherType from "../CPIcons/IconsForVoucherType";
+import { size } from "lodash";
+import { textSizeForOverflow } from "../TextSizeForOverflow";
 
 const CPDashboardDataTile = ({ individualData, onCardClick }) => {
   if ((individualData === null) | (individualData === undefined)) {
@@ -27,7 +29,11 @@ const CPDashboardDataTile = ({ individualData, onCardClick }) => {
         >
           {IconsForVoucherType(individualData.voucherType)}
         </span>
-        <h4 className="card-title mb-0 flex-grow-1" onClick={handleButtonClick}>
+        <h4
+          style={textSizeForOverflow()}
+          className="card-title mb-0 flex-grow-1"
+          onClick={handleButtonClick}
+        >
           {individualData.voucherType}
         </h4>
       </CardHeader>

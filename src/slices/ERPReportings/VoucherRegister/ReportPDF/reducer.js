@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { POST_REPORT_PDF } from "./thunk";
 
-const DownloadPDF = createSlice({
+const ReportPDF = createSlice({
   name: "ReportPDF",
   initialState: {
     data: null,
@@ -36,5 +36,5 @@ const DownloadPDF = createSlice({
   },
 });
 
-export const { resetState } = DownloadPDF.actions;
-export default DownloadPDF.reducer;
+export const { resetState } = ReportPDF.actions;
+export default ReportPDF.reducer;

@@ -5,17 +5,11 @@ const IconsForVoucherType = (voucherType) => {
   switch (voucherType) {
     case "Outward Weighment":
       return (
-        <FeatherIcon
-          icon="arrow-up-circle"
-          className="icon-dual-warning icon-sm"
-        />
+        <FeatherIcon icon="minus-square" className="icon-dual-danger   icon-sm" />
       );
     case "Inward Weighment":
       return (
-        <FeatherIcon
-          icon="arrow-down-circle"
-          className="icon-dual-success icon-sm"
-        />
+        <FeatherIcon icon="plus-square" className="icon-dual-success icon-sm" />
       );
     case "Internal Shifting":
       return (
