@@ -4,6 +4,7 @@ import { Card, CardBody, CardHeader, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 //Import Icons
 import IconsForVoucherType from "../../CPIcons/IconsForVoucherType";
+import { truncateText } from "../../TextSizeForOverflow";
 
 //SimpleBar
 import SimpleBar from "simplebar-react";
@@ -13,11 +14,6 @@ const RecentActivity = ({ latestActivity }) => {
   if (latestActivity === null || latestActivity === undefined) {
     return "";
   }
-  const truncateText = (text, maxLength = 26) => {
-    return text.length > maxLength
-      ? text.substring(0, maxLength) + "..."
-      : text;
-  };
 
   return (
     <React.Fragment>

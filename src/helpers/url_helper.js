@@ -15,3 +15,6 @@ export const GET_VOUCHERNUM_PDF = "/api/InfinityX/VoucherDownload";
 
 //VOUCHER REGISTER
 export const POST_REPORT_PDF = "/api/InfinityX/ReportDownload";
+
+//User
+export const GET_USER_NOTIFICATIONS = "/api/InfinityX/UserNotifications";

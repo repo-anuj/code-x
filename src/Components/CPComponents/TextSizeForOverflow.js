@@ -5,3 +5,6 @@ export const textSizeForOverflow = () => {
     textOverflow: "ellipsis",
   };
 };
+export const truncateText = (text, maxLength = 26) => {
+  return text.length > maxLength ? text.substring(0, maxLength) + "..." : text;
+};

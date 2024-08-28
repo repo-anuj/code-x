@@ -1,10 +1,13 @@
 import axios from "axios";
-import { api } from "../config";
-// default
-//axios.defaults.baseURL = api.API_URL;
+//import https from "https";
+// require("https").defaults({ rejectUnauthorized: false });
 
+// const httpsAgent = new https.Agent({
+//   rejectUnauthorized: false,
+// });
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
+// axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false });
 
 // content type
 // intercepting to capture errors

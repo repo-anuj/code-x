@@ -23,6 +23,9 @@ import VoucherNumCameraCaptureReducer from "./ERPReportings/VoucherNum/CameraCap
 import VoucherNumPDFReducer from "./ERPReportings/VoucherNum/DownloadPDF/reducer";
 import VoucherNumRegisterReducer from "./ERPReportings/VoucherRegister/reducer";
 
+//Users
+import UserNotificationsReducer from "./UserNotifications/reducer";
+
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   ERPLogin: ERPLoginReducer,
@@ -37,6 +40,7 @@ const rootReducer = combineReducers({
   VoucherNumCameraCapture: VoucherNumCameraCaptureReducer,
   VoucherNumPDF: VoucherNumPDFReducer,
   VoucherRegister: VoucherNumRegisterReducer,
+  UserNotifications: UserNotificationsReducer,
 });
 
 export default rootReducer;

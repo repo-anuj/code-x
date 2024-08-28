@@ -1,0 +1,112 @@
+/* General Button Styling */
+button {
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Tick and Cross Circle Styling */
+.tick-circle, .cross-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    background-color: #f0f0f0;
+}
+
+.tick-circle {
+    background-color: #e6ffed;
+    border: 2px solid #28a745;
+}
+
+.cross-circle {
+    background-color: #ffe6e6;
+    border: 2px solid #dc3545;
+}
+
+.icon {
+    font-size: 2.5rem;
+}
+
+.tick-circle .icon {
+    color: #28a745;
+}
+
+.cross-circle .icon {
+    color: #dc3545;
+}
+
+/* Modal Heading Styling */
+h4 {
+    margin-top: 1rem;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Modal Body Styling */
+.modal-body {
+    padding: 2rem;
+}
+
+/* Padding for Buttons in Modal Footer */
+.modal-footer {
+    justify-content: center;
+    padding-bottom: 10px; /* Reduce padding to move buttons up */
+}
+
+/* Timer Line Animation */
+.timer-line {
+    width: 100%;
+    height: 4px;
+    background-color: lightgrey;
+    margin-top: 1rem;
+    animation: shrink 4s linear forwards;
+    border-radius: 0.5rem;
+}
+
+@keyframes shrink {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0;
+    }
+}
+
+/* Button Colors */
+button.btn-primary {
+    background-color: #007bff;
+    border: none;
+}
+
+button.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+button.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+button.btn-danger:hover {
+    background-color: #c82333;
+}
+
+button.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+
+button.btn-success:hover {
+    background-color: #218838;
+}
+
+/* Add bottom margin to buttons */
+.modal-footer button {
+    margin-bottom: 1%;  /* Reduce bottom margin to move buttons up */
+}
