@@ -16,3 +16,6 @@ export * from "./Dashboards/WBDashboard/thunk";
 
 // ERPReportings
 export * from "./ERPReportings/VoucherRegister/thunk";
+
+// Masters
+export * from "./ERPMasters/Register/thunk";

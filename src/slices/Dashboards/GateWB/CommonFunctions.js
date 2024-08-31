@@ -6,15 +6,15 @@ export const GetSummary = (data, fromdatetime, todatetime) => {
   const summary = {};
 
   data.forEach((entry) => {
-    const { voucherType, gateWeightRecord } = entry;
+    const { voucherSeries, gateWeightRecord } = entry;
     const { checkDataInTime, checkDataOutTime } = gateWeightRecord;
 
     const InTime = new Date(checkDataInTime);
     const OutTime = new Date(checkDataOutTime);
 
-    if (!summary[voucherType]) {
-      summary[voucherType] = {
-        voucherType,
+    if (!summary[voucherSeries]) {
+      summary[voucherSeries] = {
+        voucherSeries,
         argumentValue: [
           { argument: "Opening", value: 0 },
           { argument: "Total-In", value: 0 },
@@ -26,12 +26,12 @@ export const GetSummary = (data, fromdatetime, todatetime) => {
 
     // Opening
     if (InTime < fromDateStart) {
-      summary[voucherType].argumentValue[0].value += 1;
+      summary[voucherSeries].argumentValue[0].value += 1;
     }
 
     // Inward
     if (InTime >= fromDateStart && InTime <= toDateEnd) {
-      summary[voucherType].argumentValue[1].value += 1;
+      summary[voucherSeries].argumentValue[1].value += 1;
     }
 
     // Processed
@@ -39,7 +39,7 @@ export const GetSummary = (data, fromdatetime, todatetime) => {
       (OutTime <= toDateEnd) &
       (new Date(OutTime).toDateString() !== "Mon Jan 01 0001")
     ) {
-      summary[voucherType].argumentValue[2].value += 1;
+      summary[voucherSeries].argumentValue[2].value += 1;
     }
 
     // Pending
@@ -47,7 +47,7 @@ export const GetSummary = (data, fromdatetime, todatetime) => {
       OutTime > toDateEnd ||
       new Date(OutTime).toDateString() === "Mon Jan 01 0001"
     ) {
-      summary[voucherType].argumentValue[3].value += 1;
+      summary[voucherSeries].argumentValue[3].value += 1;
     }
   });
 
@@ -57,14 +57,14 @@ export const GetSummary = (data, fromdatetime, todatetime) => {
 
 // Function to get entries for Filter
 export const GetListForFilters = (data) => {
-  const voucherTypes = new Set();
+  const voucherSeriess = new Set();
   const parties = new Set();
   const items = new Set();
   const stockGroups = new Set();
   const brokers = new Set();
 
   data.forEach((item) => {
-    voucherTypes.add(item.voucherType);
+    voucherSeriess.add(item.voucherSeries);
     parties.add(item.account);
     brokers.add(item.broker);
     item.item.forEach((i) => {
@@ -79,7 +79,7 @@ export const GetListForFilters = (data) => {
   return [
     {
       filterType: "Voucher Types",
-      filterValues: Array.from(voucherTypes),
+      filterValues: Array.from(voucherSeriess),
     },
     {
       filterType: "Accounts",
@@ -116,7 +116,7 @@ export const GetLatestActivity = (data) => {
         particulars: "First Entry",
         account: entry.account,
         item: entry.item[0].particulars,
-        voucherType: entry.voucherType,
+        voucherSeries: entry.voucherSeries,
         voucherNumber: entry.voucherNumber,
         voucherNumID: entry.voucherNumID,
         weight:
@@ -134,7 +134,7 @@ export const GetLatestActivity = (data) => {
         particulars: "Final Entry",
         account: entry.account,
         item: entry.item[0].particulars,
-        voucherType: entry.voucherType,
+        voucherSeries: entry.voucherSeries,
         voucherNumber: entry.voucherNumber,
         voucherNumID: entry.voucherNumID,
         weight:
@@ -158,14 +158,14 @@ export const GetItemSummaryData = function getItemSummaryData(data) {
   const summary = {};
 
   data.forEach((entry) => {
-    const { voucherType, gateWeightRecord, item } = entry;
+    const { voucherSeries, gateWeightRecord, item } = entry;
 
-    if (!summary[voucherType]) {
-      summary[voucherType] = [];
+    if (!summary[voucherSeries]) {
+      summary[voucherSeries] = [];
     }
 
     item.forEach((itementry) => {
-      const existingItem = summary[voucherType].find(
+      const existingItem = summary[voucherSeries].find(
         (i) => i.item === itementry.particulars
       );
 
@@ -187,7 +187,7 @@ export const GetItemSummaryData = function getItemSummaryData(data) {
         existingItem.challanWeight += gateWeightRecord.challanWeight;
         existingItem.shortageWeight += gateWeightRecord.shortageWeight;
       } else {
-        summary[voucherType].push({
+        summary[voucherSeries].push({
           item: itementry.particulars,
           pending: pending,
           processed: processed,
@@ -202,9 +202,9 @@ export const GetItemSummaryData = function getItemSummaryData(data) {
   });
 
   // Transform the summary object into the desired array format
-  return Object.keys(summary).map((voucherType) => ({
-    voucherType,
-    data: summary[voucherType],
+  return Object.keys(summary).map((voucherSeries) => ({
+    voucherSeries,
+    data: summary[voucherSeries],
   }));
 };
 
@@ -213,14 +213,14 @@ export const GetAccountSummaryData = function getAccountSummaryData(data) {
   const summary = {};
 
   data.forEach((entry) => {
-    const { voucherType, gateWeightRecord, item } = entry;
+    const { voucherSeries, gateWeightRecord, item } = entry;
 
-    if (!summary[voucherType]) {
-      summary[voucherType] = [];
+    if (!summary[voucherSeries]) {
+      summary[voucherSeries] = [];
     }
 
     item.forEach((item) => {
-      const existingItem = summary[voucherType].find(
+      const existingItem = summary[voucherSeries].find(
         (i) => i.item === entry.account
       );
 
@@ -242,7 +242,7 @@ export const GetAccountSummaryData = function getAccountSummaryData(data) {
         existingItem.challanWeight += gateWeightRecord.challanWeight;
         existingItem.shortageWeight += gateWeightRecord.shortageWeight;
       } else {
-        summary[voucherType].push({
+        summary[voucherSeries].push({
           item: entry.account,
           pending: pending,
           processed: processed,
@@ -257,14 +257,14 @@ export const GetAccountSummaryData = function getAccountSummaryData(data) {
   });
 
   // Transform the summary object into the desired array format
-  return Object.keys(summary).map((voucherType) => ({
-    voucherType,
-    data: summary[voucherType],
+  return Object.keys(summary).map((voucherSeries) => ({
+    voucherSeries,
+    data: summary[voucherSeries],
   }));
 };
 
 //Function to GetAverageProcessTime
-export const GetAverageTime = function avgTimeForEachVoucherType(data) {
+export const GetAverageTime = function avgTimeForEachvoucherSeries(data) {
   // Helper function to convert ISO date string to Date object
   function parseISODateString(dateString) {
     return new Date(dateString);
@@ -286,7 +286,7 @@ export const GetAverageTime = function avgTimeForEachVoucherType(data) {
   const processData = [];
 
   data.map((item) => {
-    const voucherType = item.voucherType; // Assuming items are in the format [{ "itemName": value }]
+    const voucherSeries = item.voucherSeries; // Assuming items are in the format [{ "itemName": value }]
     const gateWeightRecord = item.gateWeightRecord;
 
     if (
@@ -299,13 +299,13 @@ export const GetAverageTime = function avgTimeForEachVoucherType(data) {
         getTimeDifferenceInMinutes(inTime, outTime)
       );
 
-      const dataExists = processData.find((item) => item[0] === voucherType);
+      const dataExists = processData.find((item) => item[0] === voucherSeries);
 
       if (dataExists != undefined) {
         dataExists[1] = dataExists[1] + timeInMinutes;
         dataExists[2] = dataExists[2] + 1;
       } else {
-        processData.push([voucherType, timeInMinutes, 1]);
+        processData.push([voucherSeries, timeInMinutes, 1]);
       }
     }
   });
@@ -319,9 +319,9 @@ export const GetAverageTime = function avgTimeForEachVoucherType(data) {
 
   const convertData = (data) => {
     return {
-      voucherType: "Average Process Time",
-      argumentValue: data.map(([voucherType, minutes, vechile]) => ({
-        argument: voucherType,
+      voucherSeries: "Average Process Time",
+      argumentValue: data.map(([voucherSeries, minutes, vechile]) => ({
+        argument: voucherSeries,
         value: convertMinToHours(minutes / vechile),
       })),
     };

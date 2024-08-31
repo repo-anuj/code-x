@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 
 import { useProfile } from "../Components/Hooks/UserHooks";
 
-import { logoutUser } from "../slices/ERPLogin/auth/login/thunk";
+import { logoutLicenseUser } from "../slices/ERPLogin/auth/login/thunk";
 
 const AuthProtected = (props) => {
   const dispatch = useDispatch();
@@ -14,13 +14,15 @@ const AuthProtected = (props) => {
     if (userProfile && !loading && token) {
       setAuthorization(token);
     } else if (!userProfile && loading && !token) {
-      dispatch(logoutUser());
+      dispatch(logoutLicenseUser());
     }
   }, [token, userProfile, loading, dispatch]);
 
   if (!userProfile && loading && !token) {
     return (
-      <Navigate to={{ pathname: "/LicenseValidation", state: { from: props.location } }} />
+      <Navigate
+        to={{ pathname: "/LicenseValidation", state: { from: props.location } }}
+      />
     );
   }
 
@@ -31,8 +33,13 @@ const AccessRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={props => {
-        return (<> <Component {...props} /> </>);
+      render={(props) => {
+        return (
+          <>
+            {" "}
+            <Component {...props} />{" "}
+          </>
+        );
       }}
     />
   );

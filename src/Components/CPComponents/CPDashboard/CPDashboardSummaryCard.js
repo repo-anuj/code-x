@@ -30,7 +30,7 @@ const CPDashboardSummaryCard = ({ data, cardType, onCardClick }) => {
   //   return "";
   // }
   const handleButtonClick = () => {
-    onCardClick(cardType, data.voucherType);
+    onCardClick(cardType, data.voucherSeries);
   };
 
   const formatter = new Intl.NumberFormat("en-US", {
@@ -56,7 +56,7 @@ const CPDashboardSummaryCard = ({ data, cardType, onCardClick }) => {
                   className="card-title mb-0 flex-grow-1"
                   onClick={handleButtonClick}
                 >
-                  {data.voucherType}
+                  {data.voucherSeries}
                 </h4>
               </div>
             </CardHeader>

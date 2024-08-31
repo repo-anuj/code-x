@@ -26,6 +26,9 @@ import VoucherNumRegisterReducer from "./ERPReportings/VoucherRegister/reducer";
 //Users
 import UserNotificationsReducer from "./UserNotifications/reducer";
 
+//Masters
+import MastersRegisterReducer from "./ERPMasters/Register/reducer";
+
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   ERPLogin: ERPLoginReducer,
@@ -41,6 +44,7 @@ const rootReducer = combineReducers({
   VoucherNumPDF: VoucherNumPDFReducer,
   VoucherRegister: VoucherNumRegisterReducer,
   UserNotifications: UserNotificationsReducer,
+  MasterRegister: MastersRegisterReducer,
 });
 
 export default rootReducer;

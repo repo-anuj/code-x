@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Modal, ModalBody } from "reactstrap";
 import FeatherIcon from "feather-icons-react";
-import CPSubmitButton from "../../Components/CPComponents/CPButtons/CPSubmitButton";
 
 const NotificationModal = ({ isOpen, toggle, notification }) => {
   const [loading, setLoading] = useState(false);
@@ -61,11 +60,11 @@ const NotificationModal = ({ isOpen, toggle, notification }) => {
           </tbody>
         </table>
         <div className="mt-3 pt-2">
-          <CPSubmitButton
+          {/* <CPSubmitButton
             onSave={handleApproved}
             loading={loading}
             saveSuccess={approvedSuccess}
-          />
+          /> */}
         </div>
       </ModalBody>
     </Modal>

@@ -17,7 +17,7 @@ const CPDashboardDataTile = ({ individualData, onCardClick }) => {
     }
   }
   const handleButtonClick = () => {
-    onCardClick("status", individualData.voucherType);
+    onCardClick("status", individualData.voucherSeries);
   };
 
   return (
@@ -34,7 +34,7 @@ const CPDashboardDataTile = ({ individualData, onCardClick }) => {
           className="card-title mb-0 flex-grow-1"
           onClick={handleButtonClick}
         >
-          {individualData.voucherType}
+          {individualData.voucherSeries}
         </h4>
       </CardHeader>
       <CardHeader className="p-0 border-0 bg-light-subtle">

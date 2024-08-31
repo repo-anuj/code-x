@@ -52,22 +52,18 @@ const CPVoucherRegisterAccordian = ({ data, groupBy }) => {
         setActiveIndex(null);
       } else {
         setActiveIndex(index);
-        setTimeout(() => {
-          if (accordionRefs.current[index]) {
-            accordionRefs.current[index].scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        }, 0);
       }
     };
 
     return (
-      <div>
-        <Accordion
+      <div style={{ marginLeft: "-24px", marginRight: "-24px" }}>
+        {/* <Accordion
           className="lefticon-accordion custom-accordionwithicon accordion-border-box"
           id="accordionlefticon"
+        > */}
+        <Accordion
+          className="custom-accordionwithicon accordion-fill-primary accordion-border-box"
+          id="accordionFill"
         >
           {distinctValues.map((value, index) => (
             <AccordionItem
@@ -75,29 +71,30 @@ const CPVoucherRegisterAccordian = ({ data, groupBy }) => {
               ref={(el) => (accordionRefs.current[index] = el)}
               style={{ width: "100%" }}
             >
-              <h2 className="accordion-header" id={`accordion-header-${index}`}>
+              <h3 className="accordion-header" id={`accordion-header-${index}`}>
                 <button
                   className={classnames("accordion-button", {
                     collapsed: activeIndex !== index,
                   })}
                   type="button"
                   onClick={() => toggleAccordion(index)}
-                  style={{ cursor: "pointer" }}
+                  // style={{ cursor: "pointer" }}
                 >
                   {value}
                 </button>
-              </h2>
+              </h3>
 
               <Collapse isOpen={activeIndex === index}>
                 <div
                   className="accordion-content"
                   style={{
-                    backgroundColor: "#F2F2F7",
+                    backgroundColor: "#ebebeb",
                     border: "1px solid #ccc",
-                    width: "100%", // Fixed width for the content
-                    maxHeight: "700px", // Fixed height for the content
+                    maxHeight: "615px", // Fixed height for the content
                     overflowY: "auto", // Scrollbar if content exceeds maxHeight
                     boxSizing: "border-box",
+                    paddingLeft: "15px",
+                    paddingRight: "15px",
                   }}
                 >
                   {data

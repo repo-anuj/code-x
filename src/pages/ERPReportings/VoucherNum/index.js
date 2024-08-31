@@ -65,7 +65,10 @@ const EcommerceOrderDetail = (props) => {
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title={data.voucherType} pageTitle={data.voucherNumber} />
+          <BreadCrumb
+            title={data.voucherSeries}
+            pageTitle={data.voucherNumber}
+          />
 
           <Row>
             <Col xl={9}>

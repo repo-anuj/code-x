@@ -123,7 +123,7 @@ const CPVoucherNumDisplayCard = ({ voucher }) => {
               </div>
             </div>
             <div className="flex-grow-1">
-              <p className="text-muted">{voucher.voucherType}</p>
+              <p className="text-muted">{voucher.voucherSeries}</p>
               <div className="d-flex gap-4 mb-3">
                 <div>
                   <i className="ri-map-pin-2-line text-primary me-1 align-bottom"></i>

@@ -58,7 +58,7 @@ const WBDashboard = () => {
   const showRegister = (key, filters) => {
     console.log(filters);
     navigate("/VoucherRegister?GroupBy=" + key + "&title=" + filters, {
-      state: data.filter((item) => item.voucherType === filters),
+      state: data.filter((item) => item.voucherSeries === filters),
     });
   };
 

@@ -17,6 +17,10 @@ import GateDashboard from "../pages/Dashboards/GateDashboard";
 import VoucherNum from "../pages/ERPReportings/VoucherNum";
 import VoucherRegister from "../pages/ERPReportings/VoucherRegister";
 
+//Master
+import MasterRegister from "../pages/ERPMasters/MasterRegister";
+import MasterForm from "../pages/ERPMasters/MasterTemplateForIndividualPages";
+
 const authProtectedRoutes = [
   {
     path: "/",
@@ -28,6 +32,8 @@ const authProtectedRoutes = [
   { path: "/Dashboards-SG", component: <GateDashboard /> },
   { path: "/VoucherNum", component: <VoucherNum /> },
   { path: "/VoucherRegister", component: <VoucherRegister /> },
+  { path: "/MasterRegister", component: <MasterRegister /> },
+  { path: "/MasterForm", component: <MasterForm /> },
   { path: "*", component: <Navigate to="/LicenseValidation" /> },
 ];
 

@@ -37,6 +37,8 @@ export const ERP_POST_REPORT_PDF = (data) =>
 //USERS
 export const ERP_POST_USER_NOTIFICATIONS = (data) =>
   api.create(url.GET_USER_NOTIFICATIONS, data);
-
 export const ERP_GET_USER_NOTIFICATIONS = (data) =>
   api.get(url.GET_USER_NOTIFICATIONS, data);
+
+//Masters
+export const ERP_GET_MASTER_REGISTER = (masterURL) => api.get(masterURL);

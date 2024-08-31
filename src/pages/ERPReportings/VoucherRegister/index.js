@@ -43,7 +43,6 @@ const VoucherRegister = ({ dashboardData }) => {
     //     GET_WBDashboard({
     //       FromDate: moment(newRange[0]).format("yyyy-MM-DD"),
     //       ToDate: moment(newRange[1]).format("yyyy-MM-DD"),
-    //       VoucherTypeID: "16acad1d-52b9-481c-b90c-4d80534a3d8a",
     //     })
     //   );
     // }
@@ -70,11 +69,7 @@ const VoucherRegister = ({ dashboardData }) => {
             onClickSetFilter={onClick}
             onClickDownload={onDownload}
           />
-          <Row
-          // style={{ position: "absolute", width: "103vw", left: 0, right: 0 }}
-          >
-            <CPVoucherRegisterAccordian data={data} groupBy={groupBy} />
-          </Row>
+          <CPVoucherRegisterAccordian data={data} groupBy={groupBy} />
         </Container>
       </div>
     </React.Fragment>

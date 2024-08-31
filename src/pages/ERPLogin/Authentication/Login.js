@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {Card,CardBody,Col,Container,Input,Label,Row,Button,Form,FormFeedback,Alert,Spinner,} from "reactstrap"; // Used for UI Components
+import {
+  Card,
+  CardBody,
+  Col,
+  Container,
+  Input,
+  Label,
+  Row,
+  Button,
+  Form,
+  FormFeedback,
+  Alert,
+  Spinner,
+} from "reactstrap"; // Used for UI Components
 import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 
 // redux
@@ -14,7 +27,10 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 
 // actions
-import { POST_Login} from "../../../slices/ERPLogin/auth/login/thunk"; // Used for API Logics
+import {
+  logoutLicenseUser,
+  POST_Login,
+} from "../../../slices/ERPLogin/auth/login/thunk"; // Used for API Logics
 
 import infinity3 from "../../../assets/INFINITY.png";
 import clientLogo from "../../../assets/client.png";
@@ -24,18 +40,22 @@ infinity.register();
 
 const Login = (props) => {
   const dispatch = useDispatch(); // Used for API connection
-   const data = useSelector((state) => state.ERPLogin.data);
-   const loading = useSelector((state) => state.ERPLogin.loading);
-   const error = useSelector((state) => state.ERPLogin.error);
-   const success = useSelector((state) => state.ERPLogin.success);
-   const navigate = useNavigate(); // Initialize useNavigate
-   
+  const data = useSelector((state) => state.ERPLogin.data);
+  const loading = useSelector((state) => state.ERPLogin.loading);
+  const error = useSelector((state) => state.ERPLogin.error);
+  const success = useSelector((state) => state.ERPLogin.success);
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const [showPassword, setShowPassword] = useState(false); //Set Show Password
   const [userLogin, setUserLogin] = useState([]); //Data is sent to userLogin Variable
   const [autoSubmitted, setAutoSubmitted] = useState(false); // Track auto submission
 
-  const companyCode = JSON.parse(localStorage.getItem("selectedCompany"))?.companyCode;
-  const companyName = JSON.parse(localStorage.getItem("selectedCompany"))?.companyName;
+  const companyCode = JSON.parse(
+    localStorage.getItem("selectedCompany")
+  )?.companyCode;
+  const companyName = JSON.parse(
+    localStorage.getItem("selectedCompany")
+  )?.companyName;
 
   useEffect(() => {
     // Check if email and password are stored in cookies
@@ -48,13 +68,13 @@ const Login = (props) => {
       // Automatically submit the form after 2 seconds if not already auto-submitted
       if (!autoSubmitted) {
         setAutoSubmitted(true);
-        setTimeout(() => {validation.handleSubmit();}, 500); // Delay of 2 seconds
+        setTimeout(() => {
+          validation.handleSubmit();
+        }, 500); // Delay of 2 seconds
       }
     }
   }, []);
 
-
-  
   const validation = useFormik({
     // enableReinitialize : use this flag when initial values needs to be changed
     enableReinitialize: true,
@@ -62,46 +82,44 @@ const Login = (props) => {
     initialValues: {
       email: userLogin.email || "" || "",
       password: userLogin.password || "" || "",
-      company:userLogin.companyCode || "" || "",
+      company: userLogin.companyCode || "" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      values.company= companyCode;
-        dispatch(POST_Login(values));
+      values.company = companyCode;
+      dispatch(POST_Login(values));
     },
   });
 
-  
   useEffect(() => {
     if (success) {
       navigate("/Dashboards-ERP");
     }
-}, [success, navigate]);
+  }, [success, navigate]);
 
-  
   document.title = "Infinity-X | CODEPLAYERS Business System Private Limited";
   return (
     <React.Fragment>
       <ParticlesAuth>
         <div className="auth-page-content">
-        {(loading) && (
-  <div className="loader-overlay">
-    <div className="loader-container">
-      <l-infinity
-        size="55"
-        stroke="4"
-        stroke-length="0.15"
-        bg-opacity="0.1"
-        speed="1.3"
-        color="white"
-      ></l-infinity>
-      <p className="validating-message">Validating the User...</p>
-    </div>
-  </div>
-)}
+          {loading && (
+            <div className="loader-overlay">
+              <div className="loader-container">
+                <l-infinity
+                  size="55"
+                  stroke="4"
+                  stroke-length="0.15"
+                  bg-opacity="0.1"
+                  speed="1.3"
+                  color="white"
+                ></l-infinity>
+                <p className="validating-message">Validating the User...</p>
+              </div>
+            </div>
+          )}
           <Container style={{ marginBottom: "-5%" }}>
             <Row>
               <Col lg={12}>
@@ -116,13 +134,29 @@ const Login = (props) => {
             <Row className="justify-content-center">
               <Col md={8} lg={6} xl={5}>
                 <Card className="mt-4">
-                <CardBody className="p-4" style={{ marginBottom: '-3.5rem' }}>
-                <div className="text-center mt-2">
-  <h5 className="text-primary">{companyName}</h5>
-  <p className="text-muted">Company Code: {companyCode}</p>
-</div>
+                  <CardBody className="p-4" style={{ marginBottom: "-3.5rem" }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <div></div>{" "}
+                      <i
+                        style={{
+                          fontSize: "24px", // Increased size
+                          cursor: "pointer",
+                        }}
+                        className="ri-logout-box-line text-muted"
+                        onClick={logoutLicenseUser}
+                      ></i>
+                    </div>
+                    <div className="text-center mt-2">
+                      <h5 className="text-primary">{companyName}</h5>
+                      <p className="text-muted">Company Code: {companyCode}</p>
+                    </div>
 
-                    {error && (<Alert color="danger"> {error} </Alert>)}
+                    {error && <Alert color="danger"> {error} </Alert>}
                     <div className="p-2 mt-4">
                       <Form
                         onSubmit={(e) => {
@@ -242,7 +276,11 @@ const Login = (props) => {
                                 alt="infinityLogo"
                                 height="60"
                                 width="212"
-                                style={{  '@media (max-width: 767px)': { marginTop: '0.5rem' } }}
+                                style={{
+                                  "@media (max-width: 767px)": {
+                                    marginTop: "0.5rem",
+                                  },
+                                }}
                               />
                             </div>
 
@@ -258,28 +296,28 @@ const Login = (props) => {
           </Container>
           <style jsx>{`
             .loader-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #092537;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-  }
-  .loader-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .validating-message {
-    margin-top: 15px;
-    color: white;
-    font-size: 1.2rem;
-    font-weight: bold;
-  }
+              position: fixed;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              background-color: #092537;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              z-index: 9999;
+            }
+            .loader-container {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .validating-message {
+              margin-top: 15px;
+              color: white;
+              font-size: 1.2rem;
+              font-weight: bold;
+            }
           `}</style>
         </div>
       </ParticlesAuth>
