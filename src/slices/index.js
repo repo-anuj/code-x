@@ -29,6 +29,9 @@ import UserNotificationsReducer from "./UserNotifications/reducer";
 //Masters
 import MastersRegisterReducer from "./ERPMasters/Register/reducer";
 
+//TRANSACTIONS
+import WeighBridgeDataReducer from "./ERPTransactions/WeighBridge/reducer";
+
 const rootReducer = combineReducers({
   Layout: LayoutReducer,
   ERPLogin: ERPLoginReducer,
@@ -45,6 +48,7 @@ const rootReducer = combineReducers({
   VoucherRegister: VoucherNumRegisterReducer,
   UserNotifications: UserNotificationsReducer,
   MasterRegister: MastersRegisterReducer,
+  WeighBridgeData: WeighBridgeDataReducer,
 });
 
 export default rootReducer;

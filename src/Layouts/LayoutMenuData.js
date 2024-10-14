@@ -163,17 +163,17 @@ const Navdata = () => {
                 {
                   id: "FnA.Masters.Accounting.Account-Group",
                   label: "Account Group",
-                  link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountGroup",
+                  link: "/MasterRegister?FormID=FnA.Masters.Accounting.AccountGroup",
                 },
                 {
                   id: "FnA.Masters.Accounting.Area",
                   label: "Area",
-                  link: "/MastersRegister?formID=FnA.Masters.Accounting.Area",
+                  link: "/MasterRegister?FormID=FnA.Masters.Accounting.Area",
                 },
                 {
                   id: "FnA.Masters.Accounting.Account-Ledger",
                   label: "Account Ledger",
-                  link: "/MastersRegister?formID=FnA.Masters.Accounting.AccountLedger",
+                  link: "/MasterRegister?FormID=FnA.Masters.Accounting.AccountLedger",
                 },
               ],
             },
@@ -222,7 +222,7 @@ const Navdata = () => {
         {
           id: "RM.Dashboard",
           label: "Dashboard",
-          link: "/dashboard-RM",
+          link: "/dashboards-RM",
           parentId: "RM",
         },
         {

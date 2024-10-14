@@ -36,3 +36,15 @@
     transform: rotate(360deg);
   }
 }
+
+
+@font-face {
+  font-family: 'CalculatorFont';
+  src: url('/path-to-your-font-file/font-name.ttf') format('truetype');
+  /* Add other formats if available */
+}
+
+.calculator-font {
+  font-family: 'CalculatorFont', sans-serif;
+  font-size: 2em; /* Adjust size as needed */
+}

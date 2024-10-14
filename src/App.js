@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 
 //import Scss
-import './assets/scss/themes.scss';
+import "./assets/scss/themes.scss";
 
 //imoprt Route
-import Route from './Routes';
+import Route from "./Routes";
 
 function App() {
   return (

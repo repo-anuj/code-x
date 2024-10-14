@@ -41,4 +41,12 @@ export const ERP_GET_USER_NOTIFICATIONS = (data) =>
   api.get(url.GET_USER_NOTIFICATIONS, data);
 
 //Masters
+export const ERP_POST_MASTER_REGISTER = (masterURL, data) => api.create(masterURL, data);
 export const ERP_GET_MASTER_REGISTER = (masterURL) => api.get(masterURL);
+export const ERP_PATCH_MASTER_REGISTER = (masterURL, data) => api.update(masterURL, data);
+
+//Transactions
+export const ERP_POST_INTEGRATIONDATA = (data) =>
+  api.create(url.GET_ERP_TRANSACTION_INTEGRATIONDATA, data);
+
+

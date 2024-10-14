@@ -18,3 +18,6 @@ export const POST_REPORT_PDF = "/api/InfinityX/ReportDownload";
 
 //User
 export const GET_USER_NOTIFICATIONS = "/api/InfinityX/UserNotifications";
+
+export const GET_ERP_TRANSACTION_INTEGRATIONDATA =
+  "/api/InfinityX/IntegrationData";

@@ -19,3 +19,6 @@ export * from "./ERPReportings/VoucherRegister/thunk";
 
 // Masters
 export * from "./ERPMasters/Register/thunk";
+
+//WeighBridge
+export * from "./ERPTransactions/WeighBridge/thunk";

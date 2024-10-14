@@ -1,5 +1,6 @@
 import React from "react";
 import FeatherIcon from "feather-icons-react";
+import Icon from "../../../assets/cpicons/Artboard 2.svg"
 
 const IconsForVoucherType = (voucherType) => {
   switch (voucherType) {
@@ -32,7 +33,8 @@ const IconsForVoucherType = (voucherType) => {
     // Add more cases as needed
     default:
       return (
-        <FeatherIcon icon="file-text" className="icon-dual-secondary icon-sm" />
+        // <FeatherIcon icon="file-text" className="icon-dual-secondary icon-sm" />
+        <img src={Icon} height={25} width={25}/>
       );
   }
 };

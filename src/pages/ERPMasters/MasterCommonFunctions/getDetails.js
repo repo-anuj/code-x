@@ -15,7 +15,7 @@ export function GetDetails(formID, requestMode) {
     if (requestMode === "title") {
       return "Area";
     } else if (requestMode === "saveURL") {
-      return "/api/odata/MstAcArea";
+        return "/api/odata/MstAcArea";
     }
   }
 }
