@@ -1,26 +1,14 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 
-//API5
-import LicenseValidation from "../pages/API5/LicenseValidation/LicenseValidation";
-import CompanySelection from "../pages/API5/CompanySelection/CompanySelection";
-
+//query register
+import QueryRegister from "./../pages/Dashboards/Register/QueryRegister"
 //ERP Login
 import Login from "../pages/ERPLogin/Authentication/Login";
 import Logout from "../pages/ERPLogin/Authentication/Logout";
 
 //Dashboards
 import ERPDashboard from "../pages/Dashboards/ERPDashboard";
-import WBDashboard from "../pages/Dashboards/WBDashboard";
-import GateDashboard from "../pages/Dashboards/GateDashboard";
-//VoucherNum
-import VoucherNum from "../pages/ERPReportings/VoucherNum";
-import VoucherRegister from "../pages/ERPReportings/VoucherRegister";
-
-//Master
-import MasterRegister from "../pages/ERPMasters/MasterRegister";
-import MasterForm from "../pages/ERPMasters/MasterTemplateForIndividualPages";
-
 //landing
 import OnePage from "../pages/Landing/OnePage";
 import Services_all from "../pages/Landing/OnePage/Services_all";
@@ -49,8 +37,7 @@ import RitikaAgrawal from "../pages/Landing/OnePage/RitikaAgrawal";
 //UtkarshAgrawal
 import UtkarshAgrawal from "../pages/Landing/OnePage/UtkarshAgrawal";
 
-//Transactions
-import WBEntry from "../pages/ERPTransactions/WeighBridge";
+
 
 //Integration
 import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
@@ -59,24 +46,23 @@ import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
 import CareerPage from "../pages/Landing/OnePage/CareerPage";
 
 const authProtectedRoutes = [
+  
   {
-    path: "/",
-    exact: true,
-    component: <Navigate to="/LicenseValidation" />,
+    path: "/queryRegister",
+    component: <QueryRegister />
   },
   { path: "/Dashboards-ERP", component: <ERPDashboard /> },
-  { path: "/Dashboards-WB", component: <WBDashboard /> },
-  { path: "/Dashboards-SG", component: <GateDashboard /> },
-  { path: "/VoucherNum", component: <VoucherNum /> },
-  { path: "/VoucherRegister", component: <VoucherRegister /> },
-  { path: "/MasterRegister", component: <MasterRegister /> },
-  { path: "/MasterForm", component: <MasterForm /> },
-  { path: "/Transactions-WB", component: <WBEntry /> },
-  { path: "*", component: <Navigate to="/LicenseValidation" /> },
+  
 ];
 
 const publicRoutes = [
   // Authentication Page
+  {
+    path: "/",
+    exact: true,
+    component: <Navigate to="/landing" />,
+  },
+  { path: "*", component: <Navigate to="/landing" /> },
   { path: "/ERPLogout", component: <Logout /> },
   { path: "/landing", component: <OnePage /> },
   { path: "/UtkarshAgrawal", component: <UtkarshAgrawal /> },
@@ -90,9 +76,7 @@ const publicRoutes = [
   { path: "/Services_all", component: <Services_all /> },
   { path: "/IntegrationPage", component: <IntegrationPage /> },
   { path: "/CareerPage", component: <CareerPage /> },
-  { path: "/ERPLogin", component: <Login /> },
-  { path: "/LicenseValidation", component: <LicenseValidation /> },
-  { path: "/CompanySelection", component: <CompanySelection /> },
+  { path: "/ERPLogin", component: <Login /> }
 ];
 
 export { authProtectedRoutes, publicRoutes };

@@ -50,13 +50,6 @@ const Login = (props) => {
   const [userLogin, setUserLogin] = useState([]); //Data is sent to userLogin Variable
   const [autoSubmitted, setAutoSubmitted] = useState(false); // Track auto submission
 
-  const companyCode = JSON.parse(
-    localStorage.getItem("selectedCompany")
-  )?.companyCode;
-  const companyName = JSON.parse(
-    localStorage.getItem("selectedCompany")
-  )?.companyName;
-
   useEffect(() => {
     // Check if email and password are stored in cookies
     const email = localStorage.getItem("email2");
@@ -66,12 +59,12 @@ const Login = (props) => {
       setUserLogin({ email, password });
 
       // Automatically submit the form after 2 seconds if not already auto-submitted
-      if (!autoSubmitted) {
-        setAutoSubmitted(true);
-        setTimeout(() => {
-          validation.handleSubmit();
-        }, 500); // Delay of 2 seconds
-      }
+      // if (!autoSubmitted) {
+      //   setAutoSubmitted(true);
+      //   setTimeout(() => {
+      //     validation.handleSubmit();
+      //   }, 500); // Delay of 2 seconds
+      // }
     }
   }, []);
 
@@ -82,14 +75,12 @@ const Login = (props) => {
     initialValues: {
       email: userLogin.email || "" || "",
       password: userLogin.password || "" || "",
-      company: userLogin.companyCode || "" || "",
     },
     validationSchema: Yup.object({
       email: Yup.string().required("Please Enter Your Email"),
       password: Yup.string().required("Please Enter Your Password"),
     }),
     onSubmit: (values) => {
-      values.company = companyCode;
       dispatch(POST_Login(values));
     },
   });
@@ -125,7 +116,7 @@ const Login = (props) => {
               <Col lg={12}>
                 <div className="text-center mt-sm-5 mb-4 text-white-50">
                   <div>
-                    <img src={clientLogo} alt="" height="50" width="212" />
+                    {/* <img src={clientLogo} alt="" height="50" width="212" /> */}
                   </div>
                 </div>
               </Col>
@@ -135,25 +126,9 @@ const Login = (props) => {
               <Col md={8} lg={6} xl={5}>
                 <Card className="mt-4">
                   <CardBody className="p-4" style={{ marginBottom: "-3.5rem" }}>
-                    <div
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <div></div>{" "}
-                      <i
-                        style={{
-                          fontSize: "24px", // Increased size
-                          cursor: "pointer",
-                        }}
-                        className="ri-logout-box-line text-muted"
-                        onClick={logoutLicenseUser}
-                      ></i>
-                    </div>
                     <div className="text-center mt-2">
-                      <h5 className="text-primary">{companyName}</h5>
-                      <p className="text-muted">Company Code: {companyCode}</p>
+                      {/* <h5 className="text-primary">{companyName}</h5> */}
+                      {/* <p className="text-muted">Company Code: {companyCode}</p> */}
                     </div>
 
                     {error && <Alert color="danger"> {error} </Alert>}

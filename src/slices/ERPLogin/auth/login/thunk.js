@@ -1,14 +1,13 @@
-import { ERP_POST_Login } from "../../../../helpers/fakebackend_helper";
+import { API5_POST_LicenseValidation } from "../../../../helpers/fakebackend_helper";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const POST_Login = createAsyncThunk(
   "login/post",
   async (user, thunkAPI) => {
     try {
-      const response = ERP_POST_Login({
+      const response = API5_POST_LicenseValidation({
         Username: user.email,
         password: user.password,
-        CompanyCode: user.company,
       });
       const data = await response;
       localStorage.setItem("authUser2", JSON.stringify(data));
@@ -25,7 +24,7 @@ export const POST_Login = createAsyncThunk(
 export const logoutLicenseUser = async () => {
   try {
     await removeLocalStorageItemsForLogout();
-    window.location.href = "/LicenseValidation";
+    window.location.href = "/ERPLogin";
     // dispatch(logoutUserSuccess(true));
   } catch (error) {
     //dispatch(error);

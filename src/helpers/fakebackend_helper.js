@@ -16,7 +16,7 @@ export const ERP_POST_Login = (data) => api.create(url.POST_ERP_Login, data);
 
 // ERP Main Dashboard
 export const ERP_GET_MainDashboard = (data) =>
-  api.create(url.GET_ERP_MAIN_DASHBOARD, data);
+  api.get(url.GET_ERP_MAIN_DASHBOARD, data);
 export const ERP_GET_WBDashboard = (data) =>
   api.create(url.GET_ERP_WB_DASHBOARD, data);
 export const ERP_GET_GateDashboard = (data) =>
