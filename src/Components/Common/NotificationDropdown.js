@@ -119,69 +119,74 @@ const NotificationDropdown = () => {
 
           <TabContent activeTab={activeTab}>
             <TabPane tabId="1" className="py-2 ps-2">
-              <SimpleBar style={{ maxHeight: "300px" }} className="pe-2">
-                {data.map((notification) => (
-                  <div
-                    key={notification.NotificationID}
-                    className="text-reset notification-item d-block dropdown-item"
-                  >
-                    <div className="d-flex">
-                      <img
-                        src={avatar3}
-                        className="me-3 rounded-circle avatar-xs"
-                        alt="user-pic"
-                      />
+              {data==null?(<div>
+                <p>No data available</p>
+              </div>):(
+                  <SimpleBar style={{ maxHeight: "300px" }} className="pe-2">
+                    {data.map((notification) => (
                       <div
-                        className="flex-grow-1"
-                        onClick={() => handleItemClick(notification)}
+                        key={notification.NotificationID}
+                        className="text-reset notification-item d-block dropdown-item"
                       >
-                        <Link to="#" className="stretched-link">
-                          <h6 className="mt-0 mb-1 fs-13 fw-semibold">
-                            {notification.notificationTitle}
-                          </h6>
-                        </Link>
-                        <div className="fs-13 text-muted">
-                          <p className="mb-1">
-                            {notification.notificationSubTitle}
-                          </p>
-                        </div>
-                        <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span>{notification.notificationNarration}</span>
-                        </p>
-                        <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span>{notification.notificationFor}</span>
-                        </p>
-                        <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
-                          <span>
-                            <i className="mdi mdi-clock-outline"></i>{" "}
-                            {notification.notificationOn} |{" "}
-                            {notification.Module}
-                          </span>
-                        </p>
-                      </div>
-                      <div className="px-2 fs-15">
-                        <div className="form-check notification-check">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            checked={
-                              !!checkedItems[notification.notificationID]
-                            }
-                            onChange={(event) =>
-                              onChecked(notification.notificationID, event)
-                            }
-                            id={`messages-notification-check${notification.notificationID}`}
+                        <div className="d-flex">
+                          <img
+                            src={avatar3}
+                            className="me-3 rounded-circle avatar-xs"
+                            alt="user-pic"
                           />
-                          <label
-                            className="form-check-label"
-                            htmlFor={`messages-notification-check${notification.notificationID}`}
-                          ></label>
+                          <div
+                            className="flex-grow-1"
+                            onClick={() => handleItemClick(notification)}
+                          >
+                            <Link to="#" className="stretched-link">
+                              <h6 className="mt-0 mb-1 fs-13 fw-semibold">
+                                {notification.notificationTitle}
+                              </h6>
+                            </Link>
+                            <div className="fs-13 text-muted">
+                              <p className="mb-1">
+                                {notification.notificationSubTitle}
+                              </p>
+                            </div>
+                            <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                              <span>{notification.notificationNarration}</span>
+                            </p>
+                            <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                              <span>{notification.notificationFor}</span>
+                            </p>
+                            <p className="mb-0 fs-11 fw-medium text-uppercase text-muted">
+                              <span>
+                                <i className="mdi mdi-clock-outline"></i>{" "}
+                                {notification.notificationOn} |{" "}
+                                {notification.Module}
+                              </span>
+                            </p>
+                          </div>
+                          <div className="px-2 fs-15">
+                            <div className="form-check notification-check">
+                              <input
+                                className="form-check-input"
+                                type="checkbox"
+                                checked={
+                                  !!checkedItems[notification.notificationID]
+                                }
+                                onChange={(event) =>
+                                  onChecked(notification.notificationID, event)
+                                }
+                                id={`messages-notification-check${notification.notificationID}`}
+                              />
+                              <label
+                                className="form-check-label"
+                                htmlFor={`messages-notification-check${notification.notificationID}`}
+                              ></label>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                ))}
-              </SimpleBar>
+                    ))}
+                  </SimpleBar>
+              )};
+              
             </TabPane>
           </TabContent>
         </DropdownMenu>
