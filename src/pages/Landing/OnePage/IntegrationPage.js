@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import "./IntegrationPage.scss";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 // Assume these imports are correctly set up in your project

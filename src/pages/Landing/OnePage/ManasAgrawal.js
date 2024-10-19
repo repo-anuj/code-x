@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import about2 from "../../../assets/images/users/avatar-8.jpg";
 import Footer from "./footer";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import "./TeamMember.scss";
 
 const ManasAgrawal = () => {

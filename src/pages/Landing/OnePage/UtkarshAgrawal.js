@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import about1 from "../../../assets/images/users/avatar-1.jpg";
 import "./About.css";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
 import "./TeamMember.scss";
 

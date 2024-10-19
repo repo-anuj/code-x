@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import about7 from "../../../assets/images/users/avatar-7.png";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 const TeamMember = () => {

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import about5 from "../../../assets/images/users/avatar-4.jpg";
 import Footer from "./footer";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import "./TeamMember.scss";
 
 const TeamMember = () => {

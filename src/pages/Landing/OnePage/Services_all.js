@@ -19,7 +19,7 @@ import InfinityXLogo from "../../../assets/images/landing/features/InfinityX.png
 import atyour from "../../../assets/images/landing/features/atyour.png";
 import MIS from "../../../assets/images/landing/features/misfinal.jpg";
 import "./Services.sass";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 const Services = () => {
