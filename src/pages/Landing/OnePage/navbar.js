@@ -158,7 +158,7 @@ const Navbar = () => {
 
             <div className="">
               <Link
-                to="/login"
+                to="/ERPLogin"
                 className="btn btn-primary"
               >
                 Sign in

@@ -8,7 +8,7 @@ import cert1 from "../../../assets/images/Certificates/CP Completion Certificate
 import cert2 from "../../../assets/images/Certificates/CP Letter of Appreciation.jpg";
 
 import "./Career.sass";
-import Navbar from "./navbar";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 const CareerPage = () => {
