@@ -18,12 +18,15 @@ import CurrentlyActiveQueries from "./CurrentlyActiveQueries.js";
 const ERPDashboard = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.ERPDashboard.data);
+  // const data=null;
   const loading = useSelector((state) => state.ERPDashboard.loading);
   const success = useSelector((state) => state.ERPDashboard.success);
+  const error = useSelector((state) => state.ERPDashboard.error);
+
   const navigate = useNavigate();
-  console.log(data);
-  const dataRecords=data;
-  
+
+  const dataRecords =data==null?[]:( data.record==null?[]:data.record);  // Use optional chaining and fallback to an empty array
+
   const today = new Date();
   const storedRange = JSON.parse(sessionStorage.getItem("selectedRange"));
   const [selectedRange, setSelectedRange] = useState([null, null]);
@@ -54,23 +57,24 @@ const ERPDashboard = () => {
     }
   }, [selectedRange]);
 
-  // Calculate counts based on CurrentStatus
+  // Calculate counts based on CurrentStatus, ensure data is not null
   const countByStatus = {};
-  if (success) {
+  if (success && data && data.record) {
     data.record.forEach((item) => {
       const status = item.CurrentStatus;
       countByStatus[status] = (countByStatus[status] || 0) + 1;
     });
   }
 
-  const totalCount = success ? data.record.length : 0;
+  const totalCount = success && data ? data.record.length : 0;
 
-  // Sort and get the top 10 recent queries based on date
-  const recentQueries = success
+  // Sort and get the top 10 recent queries based on date, ensure data is not null
+  const recentQueries = success && data
     ? [...data.record]
       .sort((a, b) => new Date(b.StatusDateTime) - new Date(a.StatusDateTime))
       .slice(0, 10) // Ensure to take top 10
     : [];
+
   
   return (
     <React.Fragment>
@@ -160,7 +164,7 @@ const ERPDashboard = () => {
           <Row className="mt-3">
             {/* Module Data (Left Column) */}
             <Col xs="12" md="4" style={{ overflow: 'hidden' }}>
-              <div
+              {dataRecords==null?(<h1>loading</h1>):(<div
                 className="module-data"
                 style={{
                    // Consistent height
@@ -169,8 +173,8 @@ const ERPDashboard = () => {
                   overflowX: "hidden" // Prevent horizontal scrolling
                 }}
               >
-                <ModuleData data={dataRecords.record} />
-              </div>
+                <ModuleData data={dataRecords} />
+              </div>)}
             </Col>
 
             {/* Recent Queries (Right Column) */}
@@ -192,7 +196,7 @@ const ERPDashboard = () => {
               </div>
             </Col>
             <Col xs="12" md="4">
-              <div
+              {dataRecords==null?(<h1>loading</h1>):(<div
                 className="active-queries"
                 style={{
                   // Consistent height
@@ -204,9 +208,9 @@ const ERPDashboard = () => {
                 {loading ? (
                   <p className="text-muted">Loading active queries...</p>
                 ) : (
-                  <CurrentlyActiveQueries queries={dataRecords.record} />
+                  <CurrentlyActiveQueries queries={dataRecords} />
                 )}
-              </div>
+              </div>)}
               
             </Col>
           </Row>

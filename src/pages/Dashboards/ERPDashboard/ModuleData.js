@@ -60,7 +60,9 @@ const ModuleData = ({ data }) => {
         });
         return summary;
     };
-
+    if (!data || data.length === 0) {
+        return <p className="text-muted">No data available.</p>;
+    }
     return (
         <React.Fragment>
             <div className="col-xxl-12 overflow-auto">
