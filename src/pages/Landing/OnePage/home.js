@@ -111,53 +111,75 @@ const Home = () => {
                     style={{ width: "100px" }}
                   />
                 </div>
-                <Swiper
-                  spaceBetween={30}
-                  effect={"fade"}
-                  loop={true}
-                  pagination={{
-                    clickable: true,
-                  }}
-                  autoplay={{ delay: 2000, disableOnInteraction: false }}
-                  modules={[EffectFade, Autoplay]}
-                  className="mySwiper"
-                >
-                  <SwiperSlide className="carousel-inner shadow-lg p-2 bg-white rounded">
-                    <img
-                      src={defaultDemo}
-                      className="d-block w-100"
-                      alt="..."
-                      style={{ width: "100%" }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="carousel-inner shadow-lg p-2 bg-white rounded">
-                    <img src={saasDemo} className="d-block w-100" alt="..." />
-                  </SwiperSlide>
-                  <SwiperSlide className="carousel-inner shadow-lg p-2 bg-white rounded">
-                    <img
-                      src={materialDemo}
-                      className="d-block w-120"
-                      alt="..."
-                      style={{ width: "100%" }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="carousel-inner shadow-lg p-2 bg-white rounded">
-                    <img
-                      src={minimalDemo}
-                      className="d-block w-120"
-                      alt="..."
-                      style={{ width: "100%" }}
-                    />
-                  </SwiperSlide>
-                  <SwiperSlide className="carousel-inner shadow-lg p-2 bg-white rounded">
-                    <img
-                      src={modernDemo}
-                      className="d-block w-120"
-                      alt="..."
-                      style={{ width: "100%" }}
-                    />
-                  </SwiperSlide>
-                </Swiper>
+                <div
+  className="mx-auto -mt-12 h-[14rem] w-full max-w-7xl rounded-2xl border-[8px] border-black shadow-xl sm:shadow-[0_0_#0000004d,_0_9px_20px_#0000004a,_0_37px_37px_#00000042,_0_84px_50px_#00000026,_0_149px_60px_#0000000a,_0_233px_65px_#00000003] md:h-[48rem] md:rounded-[30px] md:p-6"
+  style={{
+    borderColor: '#6C6C6C', // Black outer border
+    borderWidth: '8px', // Adjust thickness
+    borderRadius: '20px', // Round corners to match iPad effect
+    boxShadow: 'rgba(0, 0, 0, 0.29) 0px 9px 20px, rgba(0, 0, 0, 0.26) 0px 37px 37px, rgba(0, 0, 0, 0.15) 0px 84px 50px',
+    padding: '6px', // Add padding between the black and gray borders
+    background: '#000' // Gray inner border background
+  }}
+>
+  <div
+    className="h-full w-full overflow-hidden rounded-xl bg-gray-100 md:rounded-2xl md:p-4"
+    style={{
+      border: '4px solid #6C6C6C', // Gray inner border
+      borderRadius: '16px' // Round corners inside the gray border
+    }}
+  >
+    <div className="h-full w-full overflow-hidden rounded-xl">
+                      <Swiper
+                        spaceBetween={30}
+                        effect={"fade"}
+                        loop={true}
+                        pagination={{
+                          clickable: true,
+                        }}
+                        autoplay={{ delay: 2000, disableOnInteraction: false }}
+                        modules={[EffectFade, Autoplay]}
+                        className="mySwiper h-full"
+                      >
+                        <SwiperSlide className="h-full">
+                          <img
+                            src={defaultDemo}
+                            className="d-block w-100 h-full object-cover"
+                            alt="..."
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide className="h-full">
+                          <img
+                            src={saasDemo}
+                            className="d-block w-100 h-full object-cover"
+                            alt="..."
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide className="h-full">
+                          <img
+                            src={materialDemo}
+                            className="d-block w-100 h-full object-cover"
+                            alt="..."
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide className="h-full">
+                          <img
+                            src={minimalDemo}
+                            className="d-block w-100 h-full object-cover"
+                            alt="..."
+                          />
+                        </SwiperSlide>
+                        <SwiperSlide className="h-full">
+                          <img
+                            src={modernDemo}
+                            className="d-block w-100 h-full object-cover"
+                            alt="..."
+                          />
+                        </SwiperSlide>
+                      </Swiper>
+                    </div>
+                  </div>
+                </div>
               </div>
             </Col>
           </Row>

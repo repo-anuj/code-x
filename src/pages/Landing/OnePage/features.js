@@ -1,9 +1,9 @@
 import React from "react";
 
 // Import Images
-import img1 from "../../../assets/images/landing/features/InfinityX.png";
-import img2 from "../../../assets/images/landing/features/infinityERP.png";
-import img3 from "../../../assets/images/landing/features/FleetLOGO.png";
+import img1 from "../../../assets/images/landing/features/img-1.png";
+import img2 from "../../../assets/images/landing/features/img-2.png";
+import img3 from "../../../assets/images/landing/features/img-3.png";
 import logodark from "../../../assets/images/logo-light.png";
 import Services_all from "./Services_all";
 import { Link } from "react-router-dom";

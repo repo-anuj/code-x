@@ -8,14 +8,22 @@ import logodark from "../../../assets/images/logo-light.png";
 import logolight from "../../../assets/images/logo-light.png";
 
 const Navbar = () => {
-  const [isOpenMenu, setisOpenMenu] = useState(false);
-  const [navClass, setnavClass] = useState("");
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const [navClass, setNavClass] = useState("");
 
-  const toggle = () => setisOpenMenu(!isOpenMenu);
+  const toggle = () => setIsOpenMenu(!isOpenMenu);
 
   useEffect(() => {
-    window.addEventListener("scroll", scrollNavigation, true);
-  });
+    const handleScroll = () => {
+      const scrollup = document.documentElement.scrollTop;
+      setNavClass(scrollup > 50 ? "is-sticky" : "");
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const [activeLink, setActiveLink] = useState();
 
@@ -28,32 +36,27 @@ const Navbar = () => {
         if (activeLink && activeLink !== target) {
           activeLink.classList.remove("active");
         }
+        // Close the dropdown menu after clicking a link
+        setIsOpenMenu(false);
       }
     };
+
     const defaultLink = document.querySelector(".navbar li a.active");
     if (defaultLink) {
-      defaultLink?.classList.add("active");
+      defaultLink.classList.add("active");
       setActiveLink(defaultLink);
     }
     const links = document.querySelectorAll(".navbar a");
     links.forEach((link) => {
       link.addEventListener("click", activation);
     });
+
     return () => {
       links.forEach((link) => {
         link.removeEventListener("click", activation);
       });
     };
   }, [activeLink]);
-
-  function scrollNavigation() {
-    var scrollup = document.documentElement.scrollTop;
-    if (scrollup > 50) {
-      setnavClass("is-sticky");
-    } else {
-      setnavClass("");
-    }
-  }
 
   return (
     <React.Fragment>
@@ -83,10 +86,7 @@ const Navbar = () => {
             className="navbar-toggler py-0 fs-20 text-body"
             onClick={toggle}
             type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
+            aria-expanded={isOpenMenu}
             aria-label="Toggle navigation"
           >
             <i className="mdi mdi-menu"></i>
@@ -158,7 +158,7 @@ const Navbar = () => {
 
             <div className="">
               <Link
-                to="/ERPLogin"
+                to="/login"
                 className="btn btn-primary"
               >
                 Sign in
