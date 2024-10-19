@@ -159,7 +159,7 @@ const Navbar = () => {
             <div className="">
               <Link
                 to="/login"
-                className="btn btn-primary btn-link fw-medium text-decoration-none text-body"
+                className="btn btn-primary"
               >
                 Sign in
               </Link>
