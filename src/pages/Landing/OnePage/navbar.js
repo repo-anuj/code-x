@@ -163,9 +163,6 @@ const Navbar = () => {
               >
                 Sign in
               </Link>
-              <Link to="/register" className="btn btn-primary">
-                Sign Up
-              </Link>
             </div>
           </Collapse>
         </Container>
