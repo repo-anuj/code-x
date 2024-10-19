@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import col1 from "../../../assets/images/colleges/1.jpg";
 import col2 from "../../../assets/images/colleges/2.jpg";
@@ -12,6 +12,10 @@ import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 const CareerPage = () => {
+  useEffect(() => {
+    // Scroll to top when the component mounts
+    window.scrollTo(0, 0);
+  }, []); // Empty dependency array ensures this runs once when the component mounts
   const {
     register,
     handleSubmit,
