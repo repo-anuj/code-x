@@ -21,7 +21,7 @@ const AuthProtected = (props) => {
   if (!userProfile && loading && !token) {
     return (
       <Navigate
-        to={{ pathname: "/LicenseValidation", state: { from: props.location } }}
+        to={{ pathname: "/ERPLogin", state: { from: props.location } }}
       />
     );
   }

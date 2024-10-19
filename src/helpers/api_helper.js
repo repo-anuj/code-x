@@ -1,5 +1,4 @@
 import axios from "axios";
-import { api } from "../config";
 //import https from "https";
 // require("https").defaults({ rejectUnauthorized: false });
 
@@ -46,19 +45,17 @@ class APIClient {
    */
 
   get = async (url, params) => {
-    // axios.defaults.baseURL = JSON.parse(
-    //   localStorage.getItem("selectedCompany")
-    // )?.dataExchangeURL;
-
-    axios.defaults.baseURL = api.API_URL;
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
 
     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
     if (token) setAuthorization(token);
 
     const queryString = params
       ? Object.keys(params)
-          .map((key) => key + "=" + encodeURIComponent(params[key]))
-          .join("&")
+        .map((key) => key + "=" + encodeURIComponent(params[key]))
+        .join("&")
       : "";
 
     const response = await axios.get(
@@ -76,8 +73,8 @@ class APIClient {
     )?.subscriberID;
     const queryString = params
       ? `?${Object.keys(params)
-          .map((key) => `${key}=${params[key]}`)
-          .join("&")}`
+        .map((key) => `${key}=${params[key]}`)
+        .join("&")}`
       : "";
 
     const fullUrl = `${url}/${subscriberID}${queryString}`;
@@ -89,10 +86,9 @@ class APIClient {
    * post given data to url
    */
   create = (url, data) => {
-    // axios.defaults.baseURL = JSON.parse(
-    //   localStorage.getItem("selectedCompany")
-    // )?.dataExchangeURL;
-    axios.defaults.baseURL = api.API_URL;
+    axios.defaults.baseURL = JSON.parse(
+      localStorage.getItem("selectedCompany")
+    )?.dataExchangeURL;
 
     const token = JSON.parse(localStorage.getItem("authUser2"))?.token;
     if (token) setAuthorization(token);
@@ -129,8 +125,8 @@ class APIClient {
 
     const queryString = params
       ? Object.keys(params)
-          .map((key) => key + "=" + encodeURIComponent(params[key]))
-          .join("&")
+        .map((key) => key + "=" + encodeURIComponent(params[key]))
+        .join("&")
       : "";
 
     const response = await axios.get(
