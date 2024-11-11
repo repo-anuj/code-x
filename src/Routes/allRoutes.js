@@ -2,10 +2,12 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 
 //query register
-import QueryRegister from "./../pages/Dashboards/Register/QueryRegister"
+import QueryRegister from "./../pages/Dashboards/Register/QueryRegister";
 //ERP Login
 import Login from "../pages/ERPLogin/Authentication/Login";
 import Logout from "../pages/ERPLogin/Authentication/Logout";
+import Registration from "../pages/ERPLogin/jhaki/Registration";
+import UserOnboarding from "../pages/ERPLogin/jhaki/UserOnboarding";
 
 //Dashboards
 import ERPDashboard from "../pages/Dashboards/ERPDashboard";
@@ -37,8 +39,6 @@ import RitikaAgrawal from "../pages/Landing/OnePage/RitikaAgrawal";
 //UtkarshAgrawal
 import UtkarshAgrawal from "../pages/Landing/OnePage/UtkarshAgrawal";
 
-
-
 //Integration
 import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
 
@@ -46,13 +46,11 @@ import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
 import CareerPage from "../pages/Landing/OnePage/CareerPage";
 
 const authProtectedRoutes = [
-  
   {
     path: "/queryRegister",
-    component: <QueryRegister />
+    component: <QueryRegister />,
   },
   { path: "/Dashboards-ERP", component: <ERPDashboard /> },
-  
 ];
 
 const publicRoutes = [
@@ -64,6 +62,9 @@ const publicRoutes = [
   },
   { path: "*", component: <Navigate to="/landing" /> },
   { path: "/ERPLogout", component: <Logout /> },
+  // { path: "/GSTIn", component: <GSTIn /> },
+  { path: "/Registration", component: <Registration /> },
+  { path: "/UserOnboarding", component: <UserOnboarding /> },
   { path: "/landing", component: <OnePage /> },
   { path: "/UtkarshAgrawal", component: <UtkarshAgrawal /> },
   { path: "/ManasAgrawal", component: <ManasAgrawal /> },
@@ -76,7 +77,7 @@ const publicRoutes = [
   { path: "/Services_all", component: <Services_all /> },
   { path: "/IntegrationPage", component: <IntegrationPage /> },
   { path: "/CareerPage", component: <CareerPage /> },
-  { path: "/ERPLogin", component: <Login /> }
+  { path: "/ERPLogin", component: <Login /> },
 ];
 
 export { authProtectedRoutes, publicRoutes };

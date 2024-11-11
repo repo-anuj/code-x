@@ -1,0 +1,332 @@
+.our-product {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  .main-title {
+    text-align: center;
+    font-size: 3rem;
+    color: #3b82f6;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+  samp {
+    font-family: Inter, sans-serif;
+    text-align: center;
+    font-size: 3rem;
+    color: #212529;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #666;
+    margin-bottom: 3rem;
+  }
+
+  .tabs-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+
+    .tab {
+      padding: 0.8rem 2rem;
+      border: 2px solid #2563eb;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      background: none;
+      transition: all 0.3s ease;
+
+      &.active {
+        background-color: #2563eb;
+        color: white;
+      }
+    }
+  }
+
+  .content-container {
+    display: flex;
+    min-height: 500px;
+
+    .product-content {
+      display: flex;
+      width: 100%;
+    }
+
+    .text-content {
+      flex: 1;
+      padding: 2rem;
+
+      h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: #333;
+      }
+
+      p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .features-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 2rem;
+
+        li {
+          padding: 0.5rem 0;
+          display: flex;
+          align-items: center;
+
+          &:before {
+            content: "✓";
+            margin-right: 1rem;
+            color: #2563eb;
+          }
+        }
+      }
+
+      .get-started-btn {
+        background-color: #2563eb;
+        color: white;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 8px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+    }
+
+    .visual-content {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 2rem;
+
+      .card-preview {
+        border-top: 2px solid #005fbf;
+        border-right: 2px solid #005fbf;
+        border-bottom: 9px solid #005fbf;
+        border-left: 2px solid #005fbf;
+        background: white;
+        border-radius: 12px;
+        padding: 1.5rem;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+
+        .card-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          .team {
+            font-weight: 500;
+          }
+
+          .tag {
+            background-color: #ffecec;
+            color: #ff4444;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+          }
+        }
+
+        .card-user {
+          display: flex;
+          align-items: center;
+          margin-bottom: 1rem;
+
+          .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e0e0e0;
+            margin-right: 1rem;
+          }
+
+          .user-info {
+            display: flex;
+            flex-direction: column;
+
+            .name {
+              font-weight: 500;
+            }
+
+            .role {
+              font-size: 0.9rem;
+              color: #666;
+            }
+          }
+        }
+
+        h3 {
+          font-size: 1.2rem;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          color: #666;
+          margin-bottom: 1rem;
+          line-height: 1.5;
+        }
+
+        .card-footer {
+          display: flex;
+          gap: 4px;
+          flex-wrap: wrap;
+
+          .todo {
+            background-color: #fff3dc;
+            color: #ffa500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+          }
+
+          .priority {
+            background-color: #f0f0f0;
+            color: #666;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+          }
+        }
+      }
+    }
+  }
+  @media (max-width: 1024px) {
+    .content-container {
+      flex-direction: column;
+
+      .product-content {
+        flex-direction: column;
+      }
+
+      .visual-content {
+        justify-content: center;
+        margin-top: 2rem;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 2rem 1rem;
+
+    .main-title {
+      font-size: 2.5rem;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .tabs-container {
+      margin-bottom: 2rem;
+
+      .tab {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+      }
+    }
+
+    .content-container {
+      .text-content {
+        padding: 1.5rem;
+
+        h2 {
+          font-size: 1.8rem;
+          margin-bottom: 0.8rem;
+        }
+
+        p {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+        }
+
+        .features-list {
+          margin-bottom: 1.5rem;
+
+          li {
+            padding: 0.4rem 0;
+          }
+        }
+
+        .get-started-btn {
+          padding: 0.8rem 1.5rem;
+          font-size: 0.9rem;
+        }
+      }
+
+      .visual-content {
+        padding: 1.5rem;
+
+        .card-preview {
+          max-width: 350px;
+          padding: 1.2rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .main-title {
+      font-size: 2rem;
+    }
+
+    .tabs-container {
+      flex-wrap: wrap;
+      gap: 0.8rem;
+
+      .tab {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.8rem;
+      }
+    }
+
+    .content-container {
+      .text-content {
+        padding: 1rem;
+
+        h2 {
+          font-size: 1.6rem;
+        }
+
+        p {
+          font-size: 0.9rem;
+        }
+
+        .features-list {
+          li {
+            font-size: 0.9rem;
+          }
+        }
+
+        .get-started-btn {
+          padding: 0.7rem 1.2rem;
+          font-size: 0.8rem;
+        }
+      }
+
+      .visual-content {
+        padding: 1rem;
+
+        .card-preview {
+          max-width: 300px;
+          padding: 1rem;
+        }
+      }
+    }
+  }
+}

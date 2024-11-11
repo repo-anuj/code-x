@@ -120,12 +120,12 @@ const Navbar = () => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#services">
+                <NavLink className="fs-14" href="#features">
                   Features
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#features">
+                <NavLink className="fs-14" href="#services">
                   Services
                 </NavLink>
               </li>
@@ -157,10 +157,7 @@ const Navbar = () => {
             </Scrollspy>
 
             <div className="">
-              <Link
-                to="/ERPLogin"
-                className="btn btn-primary"
-              >
+              <Link to="/ERPLogin" className="btn btn-primary">
                 Sign in
               </Link>
             </div>

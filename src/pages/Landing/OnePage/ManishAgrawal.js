@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import about3 from "../../../assets/images/users/avatar-2.jpg";
 import Navbar from "./NavbarPage";
 import Footer from "./footer";
-import "./TeamMember.scss";
+import "../../../assets/scss/pages/TeamMember.scss";
 
 const ManishAgrawal = () => {
   useEffect(() => {

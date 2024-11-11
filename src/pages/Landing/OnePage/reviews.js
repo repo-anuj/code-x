@@ -6,7 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import img from "../../../assets/images/landing/testimonials-3.jpg";
-import "./Reviews.scss"; // Import the Sass file
+import "../../../assets/scss/pages/Reviews.scss"; // Import the Sass file
 
 const Reviews = () => {
   const testimonials = [

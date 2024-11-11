@@ -1,338 +1,175 @@
 import React, { useState } from "react";
-import { Col, Container, Row, Collapse } from "reactstrap";
-import classnames from "classnames";
+import {
+  Container,
+  Row,
+  Col,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane,
+  Collapse,
+} from "reactstrap";
+import { Plus, Minus } from "lucide-react";
+import "./FAQ.css";
 
-const Faqs = () => {
-  const [activeAccordion, setActiveAccordion] = useState(null);
-  const [activeAccordion1, setActiveAccordio1] = useState(null);
+const FAQ = () => {
+  const [activeTab, setActiveTab] = useState("1");
+  const [openAccordion, setOpenAccordion] = useState(null);
 
-  const toggleAccordion = (index) => {
-    setActiveAccordion(activeAccordion === index ? null : index);
+  const toggleTab = (tab) => {
+    if (activeTab !== tab) {
+      setActiveTab(tab);
+      setOpenAccordion(null);
+    }
   };
-  const toggleAccordion1 = (index) => {
-    setActiveAccordio1(activeAccordion1 === index ? null : index);
+
+  const toggleAccordion = (id) => {
+    setOpenAccordion(openAccordion === id ? null : id);
   };
+
+  const generalQuestions = [
+    {
+      id: "g1",
+      question: "What is ERP and how can it benefit my business?",
+      answer:
+        "ERP (Enterprise Resource Planning) is a comprehensive software system that integrates and automates various business processes, such as accounting, inventory management, supply chain, and human resources, into a single platform. By implementing an ERP system, businesses can benefit from increased efficiency, improved data accuracy, better decision-making, and enhanced collaboration across different departments.",
+    },
+    {
+      id: "g2",
+      question: "How long does it typically take to implement an ERP system?",
+      answer:
+        "The implementation timeline can vary depending on the size and complexity of your organization, the ERP system being implemented, and the scope of the project. On average, a successful ERP implementation can take 6 to 12 months, with larger enterprises potentially requiring 12 to 18 months.",
+    },
+    {
+      id: "g3",
+      question: "How long does it typically take to implement an ERP system?",
+      answer:
+        "The implementation timeline can vary depending on the size and complexity of your organization, the ERP system being implemented, and the scope of the project. On average, a successful ERP implementation can take 6 to 12 months, with larger enterprises potentially requiring 12 to 18 months.",
+    },
+    {
+      id: "g4",
+      question: "How long does it typically take to implement an ERP system?",
+      answer:
+        "The implementation timeline can vary depending on the size and complexity of your organization, the ERP system being implemented, and the scope of the project. On average, a successful ERP implementation can take 6 to 12 months, with larger enterprises potentially requiring 12 to 18 months.",
+    },
+  ];
+
+  const securityQuestions = [
+    {
+      id: "s1",
+      question: "How secure is your ERP system?",
+      answer:
+        "Our ERP system employs industry-standard security protocols including end-to-end encryption, regular security audits, and multi-factor authentication. We comply with all major security standards and regularly update our security measures.",
+    },
+    {
+      id: "s2",
+      question: "What measures are in place to protect sensitive data?",
+      answer:
+        "We implement multiple layers of security including data encryption at rest and in transit, regular backups, access controls, and audit logging. All data is stored in secure, certified data centers with redundant systems.",
+    },
+    {
+      id: "s3",
+      question: "What measures are in place to protect sensitive data?",
+      answer:
+        "We implement multiple layers of security including data encryption at rest and in transit, regular backups, access controls, and audit logging. All data is stored in secure, certified data centers with redundant systems.",
+    },
+    {
+      id: "s4",
+      question: "What measures are in place to protect sensitive data?",
+      answer:
+        "We implement multiple layers of security including data encryption at rest and in transit, regular backups, access controls, and audit logging. All data is stored in secure, certified data centers with redundant systems.",
+    },
+  ];
 
   return (
-    <React.Fragment>
-      <section className="section">
-        <Container>
-          <Row className="justify-content-center">
-            <Col lg={8}>
-              <div className="text-center mb-5">
-                <h2 className="mb-3 fw-bold">Frequently Asked Questions</h2>
-                <p className="text-muted">
-                  Here are some of the most frequently asked questions about our
-                  ERP solutions.
-                </p>
-              </div>
-            </Col>
-          </Row>
+    <div className="faq-section py-5">
+      <Container>
+        <Row className="justify-content-center mb-5">
+          <Col lg={8} className="text-center">
+            <h2 className="display-4 mb-4 fw-bolder text-blue-600">FAQ</h2>
+            <p className="lead text-muted">
+              Find answers to common questions about our ERP solutions
+            </p>
+          </Col>
+        </Row>
 
-          <Row className="g-lg-5 g-4">
-            <Col lg={6}>
-              <div className="d-flex align-items-center mb-2">
-                <div className="flex-shrink-0 me-1">
-                  <i className="ri-question-line fs-24 align-middle text-success me-1"></i>
-                </div>
-                <div className="flex-grow-1">
-                  <h5 className="mb-0 fw-semibold">General Questions</h5>
-                </div>
-              </div>
+        <Row className="justify-content-center">
+          <Col lg={8}>
+            <Nav tabs className="faq-tabs mb-4 justify-content-center">
+              <NavItem>
+                <NavLink
+                  className={`tab-link ${activeTab === "1" ? "active" : ""}`}
+                  onClick={() => toggleTab("1")}
+                >
+                  General Questions
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={`tab-link ${activeTab === "2" ? "active" : ""}`}
+                  onClick={() => toggleTab("2")}
+                >
+                  Security & Privacy
+                </NavLink>
+              </NavItem>
+            </Nav>
 
-              <div
-                className="accordion custom-accordionwithicon custom-accordion-border accordion-border-box"
-                id="genques-accordion"
-              >
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingOne">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion !== 0,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion(0)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      What is ERP and how can it benefit my business?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion === 0}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      ERP (Enterprise Resource Planning) is a comprehensive
-                      software system that integrates and automates various
-                      business processes, such as accounting, inventory
-                      management, supply chain, and human resources, into a
-                      single platform. By implementing an ERP system, businesses
-                      can benefit from increased efficiency, improved data
-                      accuracy, better decision-making, and enhanced
-                      collaboration across different departments.
+            <TabContent activeTab={activeTab}>
+              <TabPane tabId="1" className="fade-slide">
+                <div className="accordion-wrapper">
+                  {generalQuestions.map((item) => (
+                    <div key={item.id} className="faq-item mb-3">
+                      <div
+                        className={`faq-question ${
+                          openAccordion === item.id ? "active" : ""
+                        }`}
+                        onClick={() => toggleAccordion(item.id)}
+                      >
+                        <span>{item.question}</span>
+                        {openAccordion === item.id ? (
+                          <Minus className="icon" size={20} />
+                        ) : (
+                          <Plus className="icon" size={20} />
+                        )}
+                      </div>
+                      <Collapse isOpen={openAccordion === item.id}>
+                        <div className="faq-answer p-3">{item.answer}</div>
+                      </Collapse>
                     </div>
-                  </Collapse>
+                  ))}
                 </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingTwo">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion !== 1,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion(1)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How long does it typically take to implement an ERP
-                      system?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion === 1}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      The implementation timeline can vary depending on the size
-                      and complexity of your organization, the ERP system being
-                      implemented, and the scope of the project. On average, a
-                      successful ERP implementation can take 6 to 12 months,
-                      with larger enterprises potentially requiring 12 to 18
-                      months. Our experienced team works closely with you to
-                      ensure a smooth and timely implementation process.
+              </TabPane>
+              <TabPane tabId="2" className="fade-slide">
+                <div className="accordion-wrapper">
+                  {securityQuestions.map((item) => (
+                    <div key={item.id} className="faq-item mb-3">
+                      <div
+                        className={`faq-question ${
+                          openAccordion === item.id ? "active" : ""
+                        }`}
+                        onClick={() => toggleAccordion(item.id)}
+                      >
+                        <span>{item.question}</span>
+                        {openAccordion === item.id ? (
+                          <Minus className="icon" size={20} />
+                        ) : (
+                          <Plus className="icon" size={20} />
+                        )}
+                      </div>
+                      <Collapse isOpen={openAccordion === item.id}>
+                        <div className="faq-answer p-3">{item.answer}</div>
+                      </Collapse>
                     </div>
-                  </Collapse>
+                  ))}
                 </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingThree">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion !== 2,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion(2)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How much does an ERP system typically cost?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion === 2}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      The cost of an ERP system can vary widely depending on the
-                      size of your business, the specific features and
-                      functionality required, and the deployment model (on-
-                      premise or cloud-based). Generally, the cost can range
-                      from a few thousand dollars for small businesses to
-                      hundreds of thousands or millions for large enterprises.
-                      We offer flexible pricing options to fit your budget and
-                      needs.
-                    </div>
-                  </Collapse>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingFour">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion !== 3,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion(3)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How do I know if my business is ready for an ERP system?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion === 3}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      There are a few key signs that your business may be ready
-                      for an ERP system:
-                      <ul>
-                        <li>
-                          Your business has outgrown its current manual or
-                          disparate systems, leading to inefficiencies and
-                          difficulties in data management.
-                        </li>
-                        <li>
-                          You need better visibility and control over your
-                          business operations, such as inventory, finances, and
-                          supply chain.
-                        </li>
-                        <li>
-                          You want to improve collaboration and information
-                          sharing across different departments.
-                        </li>
-                        <li>
-                          You're looking to streamline and automate your
-                          business processes.
-                        </li>
-                      </ul>
-                      Our team can help you assess your readiness and
-                      requirements to determine the best ERP solution for your
-                      business.
-                    </div>
-                  </Collapse>
-                </div>
-              </div>
-            </Col>
-            <Col lg={6}>
-              <div className="d-flex align-items-center mb-2">
-                <div className="flex-shrink-0 me-1">
-                  <i className="ri-question-line fs-24 align-middle text-success me-1"></i>
-                </div>
-                <div className="flex-grow-1">
-                  <h5 className="mb-0 fw-semibold">General Questions</h5>
-                </div>
-              </div>
-
-              <div
-                className="accordion custom-accordionwithicon custom-accordion-border accordion-border-box"
-                id="genques-accordion"
-              >
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingOne">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion1 !== 0,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion1(0)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      What is ERP and how can it benefit my business?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion1 === 0}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      ERP (Enterprise Resource Planning) is a comprehensive
-                      software system that integrates and automates various
-                      business processes, such as accounting, inventory
-                      management, supply chain, and human resources, into a
-                      single platform. By implementing an ERP system, businesses
-                      can benefit from increased efficiency, improved data
-                      accuracy, better decision-making, and enhanced
-                      collaboration across different departments.
-                    </div>
-                  </Collapse>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingTwo">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion1 !== 1,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion1(1)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How long does it typically take to implement an ERP
-                      system?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion1 === 1}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      The implementation timeline can vary depending on the size
-                      and complexity of your organization, the ERP system being
-                      implemented, and the scope of the project. On average, a
-                      successful ERP implementation can take 6 to 12 months,
-                      with larger enterprises potentially requiring 12 to 18
-                      months. Our experienced team works closely with you to
-                      ensure a smooth and timely implementation process.
-                    </div>
-                  </Collapse>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingThree">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion1 !== 2,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion1(2)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How much does an ERP system typically cost?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion1 === 2}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      The cost of an ERP system can vary widely depending on the
-                      size of your business, the specific features and
-                      functionality required, and the deployment model (on-
-                      premise or cloud-based). Generally, the cost can range
-                      from a few thousand dollars for small businesses to
-                      hundreds of thousands or millions for large enterprises.
-                      We offer flexible pricing options to fit your budget and
-                      needs.
-                    </div>
-                  </Collapse>
-                </div>
-                <div className="accordion-item">
-                  <h2 className="accordion-header" id="genques-headingFour">
-                    <button
-                      className={classnames("accordion-button", "fw-medium", {
-                        collapsed: activeAccordion !== 3,
-                      })}
-                      type="button"
-                      onClick={() => toggleAccordion1(3)}
-                      style={{ cursor: "pointer" }}
-                    >
-                      How do I know if my business is ready for an ERP system?
-                    </button>
-                  </h2>
-                  <Collapse
-                    isOpen={activeAccordion1 === 3}
-                    className="accordion-collapse"
-                  >
-                    <div className="accordion-body ff-secondary">
-                      There are a few key signs that your business may be ready
-                      for an ERP system:
-                      <ul>
-                        <li>
-                          Your business has outgrown its current manual or
-                          disparate systems, leading to inefficiencies and
-                          difficulties in data management.
-                        </li>
-                        <li>
-                          You need better visibility and control over your
-                          business operations, such as inventory, finances, and
-                          supply chain.
-                        </li>
-                        <li>
-                          You want to improve collaboration and information
-                          sharing across different departments.
-                        </li>
-                        <li>
-                          You're looking to streamline and automate your
-                          business processes.
-                        </li>
-                      </ul>
-                      Our team can help you assess your readiness and
-                      requirements to determine the best ERP solution for your
-                      business.
-                    </div>
-                  </Collapse>
-                </div>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-    </React.Fragment>
+              </TabPane>
+            </TabContent>
+          </Col>
+        </Row>
+      </Container>
+    </div>
   );
 };
 
-export default Faqs;
+export default FAQ;

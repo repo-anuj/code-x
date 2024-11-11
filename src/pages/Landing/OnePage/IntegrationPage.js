@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
-import "./IntegrationPage.scss";
+import "../../../assets/scss/pages/IntegrationPage.scss";
 import Navbar from "./NavbarPage";
 import Footer from "./footer";
 

@@ -1,0 +1,144 @@
+$purple-primary: #5046e6;
+$text-primary: #333333;
+$highlight-color: #8a2be2;
+$shadow-color: rgba(0, 0, 0, 0.1);
+
+.industries-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+
+    h2 {
+      font-size: 2.5rem;
+      color: #212529;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+
+      .dot {
+        color: #3b82f6;
+        // $purple-primary
+      }
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: $text-primary;
+      font-family: "YourSecondaryFont", sans-serif; // Use a different font
+      margin-bottom: 1.5rem;
+    }
+
+    .purple-line {
+      height: 3px;
+      background: #3b82f6;
+      margin: 0 auto;
+      width: 100px;
+      animation: lineShine 1.5s ease-out;
+    }
+  }
+
+  .industries-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: 2rem;
+  }
+
+  .industry-card {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #005fbf;
+    box-shadow: 0 4px 15px $shadow-color;
+    transition: transform 0.3s ease;
+    text-align: left;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    .description {
+      color: $text-primary;
+      line-height: 1.6;
+      font-size: 1.1rem;
+      margin: 1rem 0;
+
+      .highlight {
+        color: $highlight-color;
+        font-weight: bold;
+      }
+    }
+
+    .learn-more {
+      padding: 0.5rem 1rem;
+      color: #fff;
+      background-color: #2563eb; // Fallback color
+      border: none;
+      border-radius: 5px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.3s;
+
+      &:hover {
+        background-color: darken($purple-primary, 10%);
+      }
+    }
+  }
+  @media (max-width: 1200px) {
+    padding: 4rem 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .section-header {
+      h2 {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+      }
+    }
+
+    .industries-content {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+
+    .industry-card {
+      padding: 1.5rem;
+
+      .description {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .section-header {
+      h2 {
+        font-size: 1.8rem;
+      }
+
+      .subtitle {
+        font-size: 0.8rem;
+      }
+    }
+
+    .industries-content {
+      grid-template-columns: 1fr;
+    }
+
+    .industry-card {
+      padding: 1.2rem;
+
+      .description {
+        font-size: 0.9rem;
+      }
+
+      .learn-more {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}

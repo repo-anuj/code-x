@@ -1,19 +1,22 @@
 import React from "react";
 import { Col, Container, Form, Row } from "reactstrap";
+import "./contact.scss";
 
 const Contact = () => {
   return (
     <React.Fragment>
-      <section className="section" id="contact">
+      <section className="section contact-section" id="contact">
         <Container>
           <Row className="justify-content-center">
             <Col lg={8}>
               <div className="text-center mb-5">
-                <h3 className="mb-3 fw-semibold">Get In Touch</h3>
-                <p className="text-muted mb-4 ff-secondary">
+                <h3 className="mb-3 fw-semibold heading-animate">
+                  Get In Touch
+                </h3>
+                <p className="text-muted mb-4 ff-secondary subtext-animate">
                   We thrive when coming up with innovative ideas but also
                   understand that a smart concept should be supported with
-                  faucibus sapien odio measurable results.
+                  measurable results.
                 </p>
               </div>
             </Col>
@@ -21,26 +24,35 @@ const Contact = () => {
 
           <Row className="gy-4">
             <Col lg={4}>
-              <div>
-                <div className="mt-4">
-                  <h5 className="fs-13 text-muted text-uppercase">
-                    Headquarters:
-                  </h5>
-                  <div className="ff-secondary fw-semibold">
-                    C 24-25, Infinity Tower, Sector-5, Devendra Nagar,  Raipur,
-                    <br />
-                    CG. 492001.
-                  </div>
+              <div className="address-card">
+                <h5 className="fs-13 text-muted text-uppercase">
+                  Headquarters:
+                </h5>
+                <div className="address-text">
+                  C 24-25, Infinity Tower, Sector-5, Devendra Nagar, Raipur,
+                  <br />
+                  CG. 492001.
+                </div>
+              </div>
+              <br />
+              <div className="address-card">
+                <h5 className="fs-13 text-muted text-uppercase">
+                  Headquarters:
+                </h5>
+                <div className="address-text">
+                  C 24-25, Infinity Tower, Sector-5, Devendra Nagar, Raipur,
+                  <br />
+                  CG. 492001.
                 </div>
               </div>
             </Col>
 
             <Col lg={8}>
-              <div>
+              <div className="contact-form">
                 <Form>
                   <Row>
                     <Col lg={6}>
-                      <div className="mb-4">
+                      <div className="mb-4 input-container">
                         <label htmlFor="name" className="form-label fs-13">
                           Name
                         </label>
@@ -48,13 +60,13 @@ const Contact = () => {
                           name="name"
                           id="name"
                           type="text"
-                          className="form-control bg-light border-light"
+                          className="form-control input-field"
                           placeholder="Your name*"
                         />
                       </div>
                     </Col>
                     <Col lg={6}>
-                      <div className="mb-4">
+                      <div className="mb-4 input-container">
                         <label htmlFor="email" className="form-label fs-13">
                           Email
                         </label>
@@ -62,7 +74,7 @@ const Contact = () => {
                           name="email"
                           id="email"
                           type="email"
-                          className="form-control bg-light border-light"
+                          className="form-control input-field"
                           placeholder="Your email*"
                         />
                       </div>
@@ -70,13 +82,13 @@ const Contact = () => {
                   </Row>
                   <Row>
                     <Col lg={12}>
-                      <div className="mb-4">
+                      <div className="mb-4 input-container">
                         <label htmlFor="subject" className="form-label fs-13">
                           Subject
                         </label>
                         <input
                           type="text"
-                          className="form-control bg-light border-light"
+                          className="form-control input-field"
                           id="subject"
                           name="subject"
                           placeholder="Your Subject.."
@@ -86,7 +98,7 @@ const Contact = () => {
                   </Row>
                   <Row>
                     <Col lg={12}>
-                      <div className="mb-3">
+                      <div className="mb-3 input-container">
                         <label htmlFor="comments" className="form-label fs-13">
                           Message
                         </label>
@@ -94,7 +106,7 @@ const Contact = () => {
                           name="comments"
                           id="comments"
                           rows="3"
-                          className="form-control bg-light border-light"
+                          className="form-control input-field"
                           placeholder="Your message..."
                         ></textarea>
                       </div>

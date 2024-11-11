@@ -1,0 +1,136 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap");
+
+.differentiators {
+  padding: 4rem 6rem;
+  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  min-height: 100vh;
+
+  .header-content {
+    max-width: 800px;
+    margin-bottom: 4rem;
+    margin-left: 4rem;
+
+    h1 {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #212529;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+    samp {
+      font-family: "Montserrat", sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: #3b82f6;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    p {
+      font-family: "Roboto", sans-serif;
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .underline {
+      width: 160px;
+      height: 4px;
+      background: #4a90e2;
+      border-radius: 2px;
+    }
+  }
+
+  .cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    .card {
+      position: relative;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      border-top: 2px solid #005fbf;
+      border-right: 2px solid #005fbf;
+      border-bottom: 5px solid #005fbf;
+      border-left: 2px solid #005fbf;
+      padding: 2rem;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+
+        .background-icon {
+          transform: translate(10%, -10%) rotate(10deg);
+          opacity: 0.15;
+        }
+      }
+
+      .card-content {
+        position: relative;
+        z-index: 2;
+
+        .icon-wrapper {
+          margin-bottom: 1.5rem;
+
+          .card-icon {
+            font-size: 2rem;
+            color: #4a90e2;
+          }
+        }
+
+        h3 {
+          font-family: "Montserrat", sans-serif;
+          font-size: 1.5rem;
+          font-weight: 600;
+          color: #333;
+          margin-bottom: 1rem;
+        }
+
+        p {
+          font-family: "Roboto", sans-serif;
+          font-size: 1rem;
+          color: #666;
+          line-height: 1.5;
+        }
+      }
+
+      .background-icon {
+        position: absolute;
+        bottom: -50px;
+        right: -50px;
+        font-size: 8rem;
+        opacity: 0.1;
+        transform: translate(0, 0) rotate(0deg);
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .differentiators {
+    padding: 2rem;
+
+    .header-content {
+      margin-left: 0;
+      h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    .cards-container {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+}

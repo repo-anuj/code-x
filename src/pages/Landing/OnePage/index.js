@@ -2,18 +2,19 @@ import React from "react";
 
 import Navbar from "./navbar";
 import Home from "./home";
-import Client from "./client";
 import Services from "./services";
-import Features from "./features";
-import Plans from "./plans";
+// import Features from "./features";
 import Faqs from "./faq";
-import Reviews from "./reviews";
-import Counter from "./counter";
-import WorkProcess from "./workProcess";
-import Team from "./team";
 import Contact from "./contact";
 import Cta from "./cta";
 import Footer from "./footer";
+import IndustriesSection from "./IndustriesSection";
+import WhatMakesUsDifferent from "./WhatMakesUsDifferent";
+import Achievement from "./Achievement";
+import OurProduct from "./OurProduct";
+import TestimonialSection from "./TestimonialSection";
+import Features from "./NewFeatures";
+import HeroSection from "./herosection/HeroSection";
 
 const Index = () => {
   document.title = " Landing | CodePlayers - ERP Software Development Company";
@@ -45,16 +46,23 @@ const Index = () => {
     <React.Fragment>
       <div className="layout-wrapper landing">
         <Navbar />
-        <Home />
-        <Client />
-        <Services />
+        <HeroSection />
+        {/* <Home /> */}
+        <WhatMakesUsDifferent />
+        <IndustriesSection />
+        <OurProduct />
+        <Achievement />
         <Features />
-        <Plans />
+        <TestimonialSection />
+        {/* <Features /> */}
+        {/* <Client /> */}
         <Faqs />
+        {/* <Services /> */}
+        {/* <Plans />
         <Reviews />
         <Counter />
         <WorkProcess />
-        <Team />
+        <Team /> */}
         <Contact />
         <Cta />
         <Footer />
