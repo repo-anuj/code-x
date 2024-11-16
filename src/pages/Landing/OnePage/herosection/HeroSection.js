@@ -97,8 +97,11 @@ const HeroSection = ({ src }) => {
           transition={{ duration: 0.5 }}
         >
           <h1>
-            Create <span className="highlight-blue">Stunning</span> Websites
-            <br /> With <span className="highlight-purple">Modern</span> Tech
+            Elevate Your <span className="highlight-blue"> Business</span>
+            <br /> With <span className="highlight-purple">
+              Modern ERP
+            </span>{" "}
+            Solutions
           </h1>
 
           <motion.h2
@@ -106,7 +109,7 @@ const HeroSection = ({ src }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            Transform your ideas into reality with our cutting-edge solutions
+            From Ideas to Integration: Making Your Vision a Reality
           </motion.h2>
 
           <motion.div

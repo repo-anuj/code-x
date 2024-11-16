@@ -8,7 +8,7 @@ import "./MacbookScroll.scss";
 
 const MacbookScroll = ({ src, showGradient, title }) => {
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
+  const { scrollY, scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
@@ -23,18 +23,26 @@ const MacbookScroll = ({ src, showGradient, title }) => {
 
   const scaleX = useTransform(
     scrollYProgress,
-    [0, 0.3],
-    [1.2, isMobile ? 1 : 1.5]
+    [0, 0.2, 0.8, 1],
+    [1.2, 1.5, 1.5, 1.2]
   );
   const scaleY = useTransform(
     scrollYProgress,
-    [0, 0.3],
-    [0.6, isMobile ? 1 : 1.5]
+    [0, 0.2, 0.8, 1],
+    [0.6, 1.5, 1.5, 0.6]
   );
-  const translate = useTransform(scrollYProgress, [0, 1], [0, 1500]);
+  const translate = useTransform(scrollY, [0, 1500], [0, 1500]);
   const rotate = useTransform(scrollYProgress, [0.1, 0.12, 0.3], [-28, -28, 0]);
-  const textTransform = useTransform(scrollYProgress, [0, 0.3], [0, 100]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const textTransform = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [0, 100, 100, 0]
+  );
+  const textOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.2, 0.8, 1],
+    [1, 1, 0, 0]
+  );
 
   return (
     <div ref={ref} className="macbook-scroll">

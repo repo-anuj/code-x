@@ -1,4 +1,5 @@
 import React from "react";
+import { useEffect } from "react";
 
 import Navbar from "./navbar";
 import Home from "./home";
@@ -14,13 +15,41 @@ import Achievement from "./Achievement";
 import OurProduct from "./OurProduct";
 import TestimonialSection from "./TestimonialSection";
 import Features from "./NewFeatures";
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
 import HeroSection from "./herosection/HeroSection";
+import { changeLayoutMode } from "../../../slices/thunks";
 
 const Index = () => {
   document.title = " Landing | CodePlayers - ERP Software Development Company";
 
+  const dispatch = useDispatch();
+  const selectLayoutState = (state) => state.Layout;
+  const selectLayoutProperties = createSelector(
+    selectLayoutState,
+    (layout) => ({
+      layoutModeType: layout.layoutModeType,
+    })
+  );
+  const { layoutModeType } = useSelector(selectLayoutProperties);
+
   window.onscroll = function () {
     scrollFunction();
+  };
+
+  useEffect(() => {
+    if (layoutModeType) {
+      window.dispatchEvent(new Event("resize"));
+      dispatch(changeLayoutMode(layoutModeType));
+    }
+  }, [layoutModeType, dispatch]);
+  /*
+call dark/light mode
+*/
+  const onChangeLayoutMode = (value) => {
+    if (changeLayoutMode) {
+      dispatch(changeLayoutMode(value));
+    }
   };
 
   const scrollFunction = () => {
@@ -45,7 +74,10 @@ const Index = () => {
   return (
     <React.Fragment>
       <div className="layout-wrapper landing">
-        <Navbar />
+        <Navbar
+          onChangeLayoutMode={onChangeLayoutMode}
+          layoutModeType={layoutModeType}
+        />
         <HeroSection />
         {/* <Home /> */}
         <WhatMakesUsDifferent />

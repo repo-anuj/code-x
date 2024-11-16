@@ -158,44 +158,46 @@ const Features = () => {
   ];
 
   return (
-    <div className="features-container">
-      <motion.div
-        className="features-header"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        viewport={{ once: true }}
-      >
-        <h1>
-          Features That <samp>Empower Your Business</samp>
-        </h1>
-        <p>Discover how our ERP solution can transform your operations</p>
-      </motion.div>
+    <div className="body">
+      <div className="features-container">
+        <motion.div
+          className="features-header"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          viewport={{ once: true }}
+        >
+          <h1>
+            Features That <samp>Empower Your Business</samp>
+          </h1>
+          <p>Discover how our ERP solution can transform your operations</p>
+        </motion.div>
 
-      <motion.div
-        className="features-grid"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        viewport={{ once: true }}
-      >
-        <IntegrationCard />
-        {features.map((feature, index) => (
-          <FeatureCard key={index} {...feature} />
-        ))}
-      </motion.div>
+        <motion.div
+          className="features-grid"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <IntegrationCard />
+          {features.map((feature, index) => (
+            <FeatureCard key={index} {...feature} />
+          ))}
+        </motion.div>
 
-      <motion.button
-        className="get-started-btn"
-        whileInView={{ opacity: 1, scale: 1 }}
-        initial={{ opacity: 0, scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-        viewport={{ once: true }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        GET STARTED • NO CC REQUIRED
-      </motion.button>
+        <motion.button
+          className="get-started-btn"
+          whileInView={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.3 }}
+          viewport={{ once: true }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          GET STARTED • NO CC REQUIRED
+        </motion.button>
+      </div>
     </div>
   );
 };

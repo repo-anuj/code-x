@@ -1,5 +1,5 @@
 .faq-section {
-    background-color: #fff;
+  background: #e8e9f8;
   }
   
   .faq-tabs {
@@ -101,3 +101,110 @@
       opacity: 1;
     }
   }
+  [data-bs-theme="dark"] .faq-section {
+    background: #1e1e2f;
+  
+    h2 {
+      color: #a8d8ff;
+    }
+  
+    .faq-tabs {
+      gap: 1rem;
+      border: none;
+    }
+  
+    .tab-link {
+      padding: 0.75rem 1.5rem !important;
+      color: #e4e4e7 !important;
+      border-radius: 8px !important;
+      border: 1px solid #44475a;
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: #5d48da;
+        color: #ffffff !important;
+      }
+  
+      &.active {
+        background-color: #4b38b3 !important;
+        color: #ffffff !important;
+        font-weight: 500;
+      }
+    }
+  
+    .fade-slide {
+      animation: fadeSlide 0.3s ease-in-out;
+    }
+  
+    @keyframes fadeSlide {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  
+    .faq-item {
+      border: 1px solid #44475a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+  
+    .faq-question {
+      background-color: #29293d;
+      padding: 1rem 1.5rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+  
+      &:hover {
+        background-color: #363649;
+      }
+  
+      &.active {
+        background-color: #363649;
+        border-bottom: 1px solid #44475a;
+      }
+  
+      span {
+        font-weight: 500;
+        color: #e4e4e7;
+      }
+    }
+  
+    .faq-answer {
+      background-color: #29293d;
+      color: #a1a1b5;
+      line-height: 1.6;
+    }
+  
+    .icon {
+      color: #a1a1b5;
+      transition: transform 0.3s ease;
+  
+      &.active {
+        transform: rotate(180deg);
+      }
+    }
+  
+    .accordion-wrapper {
+      animation: fadeIn 0.3s ease-in-out;
+    }
+  
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+  

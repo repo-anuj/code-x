@@ -3,11 +3,12 @@ import { Collapse, Container, NavbarToggler, NavLink } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
 import CareerPage from "./CareerPage";
+import LightDark from "../../../Components/Common/LightDark";
 // Import Images
 import logodark from "../../../assets/images/logo-light.png";
 import logolight from "../../../assets/images/logo-light.png";
 
-const Navbar = () => {
+const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [navClass, setNavClass] = useState("");
 
@@ -111,7 +112,7 @@ const Navbar = () => {
               ]}
               currentClassName="active"
               className="navbar-nav mx-auto mt-2 mt-lg-0"
-              style={{ color: "#4b38b3" }}
+              style={{ color: "#9f7aea" }}
               id="navbar-example"
             >
               <li className="nav-item">
@@ -155,7 +156,10 @@ const Navbar = () => {
                 </Link>
               </li>
             </Scrollspy>
-
+            <LightDark
+              layoutMode={layoutModeType}
+              onChangeLayoutMode={onChangeLayoutMode}
+            />
             <div className="">
               <Link to="/ERPLogin" className="btn btn-primary">
                 Sign in

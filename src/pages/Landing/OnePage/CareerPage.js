@@ -7,7 +7,7 @@ import col4 from "../../../assets/images/colleges/4.png";
 import cert1 from "../../../assets/images/Certificates/CP Completion Certificate.jpg";
 import cert2 from "../../../assets/images/Certificates/CP Letter of Appreciation.jpg";
 
-import "../../../assets/scss/pages/Career.sass";
+import "../../../assets/scss/pages/Career.scss";
 import Navbar from "./NavbarPage";
 import Footer from "./footer";
 

@@ -49,13 +49,13 @@ const OurProduct = () => {
 
   const tabVariants = {
     inactive: {
-      backgroundColor: "#fff",
-      color: "#000",
+      backgroundColor: "transparent",
+      color: "#b0b0b0", // Light gray text for inactive tabs in dark mode
       scale: 1,
     },
     active: {
-      backgroundColor: "#4b38b3",
-      color: "#fff",
+      backgroundColor: "#4a90e2", // Blue background for active tab in dark mode
+      color: "#ffffff", // White text for active tab
       scale: 1.05,
     },
   };
@@ -104,113 +104,115 @@ const OurProduct = () => {
   }, [hasAnimated]);
 
   return (
-    <div className="our-product" id="services" ref={sectionRef}>
-      <AnimatePresence>
-        {hasAnimated && (
-          <>
-            <motion.h1
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="main-title"
-            >
-              <samp>What Our</samp> Product Does
-            </motion.h1>
+    <div className="body">
+      <div className="our-product" id="services" ref={sectionRef}>
+        <AnimatePresence>
+          {hasAnimated && (
+            <>
+              <motion.h1
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="main-title"
+              >
+                <samp>What Our</samp> Product Does
+              </motion.h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="subtitle"
-            >
-              It should be very clear who your product is for and what problem
-              it solves for them.
-            </motion.p>
+              <motion.p
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="subtitle"
+              >
+                It should be very clear who your product is for and what problem
+                it solves for them.
+              </motion.p>
 
-            <div className="tabs-container">
-              {Object.keys(products).map((tab) => (
-                <motion.button
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  variants={tabVariants}
-                  animate={activeTab === tab ? "active" : "inactive"}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className={`tab ${activeTab === tab ? "active" : ""}`}
-                >
-                  {tab}
-                </motion.button>
-              ))}
-            </div>
+              <div className="tabs-container">
+                {Object.keys(products).map((tab) => (
+                  <motion.button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    variants={tabVariants}
+                    animate={activeTab === tab ? "active" : "inactive"}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`tab ${activeTab === tab ? "active" : ""}`}
+                  >
+                    {tab}
+                  </motion.button>
+                ))}
+              </div>
 
-            <div className="content-container">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={activeTab}
-                  variants={contentVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit="exit"
-                  className="product-content"
-                >
-                  <div className="text-content">
-                    <h2>{products[activeTab].title}</h2>
-                    <p>{products[activeTab].description}</p>
-                    <ul className="features-list">
-                      {products[activeTab].features.map((feature, index) => (
-                        <motion.li
-                          key={feature}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                        >
-                          {feature}
-                        </motion.li>
-                      ))}
-                    </ul>
-                    <motion.button
-                      className="get-started-btn"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                    >
-                      GET STARTED
-                    </motion.button>
-                  </div>
-                  <div className="visual-content">
-                    <div className="card-preview">
-                      <div className="card-header">
-                        <span className="team">SEO Team</span>
-                        <span className="tag">Bugs</span>
-                      </div>
-                      <div className="card-user">
-                        <div className="user-info">
-                          <img
-                            src={infinityERP}
-                            className="img-fluid"
-                            alt="avatar"
-                          />
+              <div className="content-container">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={activeTab}
+                    variants={contentVariants}
+                    initial="hidden"
+                    animate="visible"
+                    exit="exit"
+                    className="product-content"
+                  >
+                    <div className="text-content">
+                      <h2>{products[activeTab].title}</h2>
+                      <p>{products[activeTab].description}</p>
+                      <ul className="features-list">
+                        {products[activeTab].features.map((feature, index) => (
+                          <motion.li
+                            key={feature}
+                            initial={{ opacity: 0, x: -20 }}
+                            animate={{ opacity: 1, x: 0 }}
+                            transition={{ delay: index * 0.1 }}
+                          >
+                            {feature}
+                          </motion.li>
+                        ))}
+                      </ul>
+                      <motion.button
+                        className="get-started-btn"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        GET STARTED
+                      </motion.button>
+                    </div>
+                    <div className="visual-content">
+                      <div className="card-preview">
+                        <div className="card-header">
+                          <span className="team">SEO Team</span>
+                          <span className="tag">Bugs</span>
+                        </div>
+                        <div className="card-user">
+                          <div className="user-info">
+                            <img
+                              src={infinityERP}
+                              className="img-fluid"
+                              alt="avatar"
+                            />
+                          </div>
+                        </div>
+                        <h3>Bot crawlers causing latency issues</h3>
+                        <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing
+                          elit. Sed incidunt iste molestiae distinctio assumenda
+                          quos consectetur.
+                        </p>
+                        <div className="card-footer">
+                          <span className="priority">Steel</span>
+                          <span className="priority">Theater</span>
+                          <span className="priority">Automobile</span>
+                          <span className="priority">Medium</span>
                         </div>
                       </div>
-                      <h3>Bot crawlers causing latency issues</h3>
-                      <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Sed incidunt iste molestiae distinctio assumenda quos
-                        consectetur.
-                      </p>
-                      <div className="card-footer">
-                        <span className="priority">Steel</span>
-                        <span className="priority">Theater</span>
-                        <span className="priority">Automobile</span>
-                        <span className="priority">Medium</span>
-                      </div>
                     </div>
-                  </div>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </>
-        )}
-      </AnimatePresence>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+            </>
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 };

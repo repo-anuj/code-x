@@ -1,3 +1,6 @@
+.body {
+  background: #e8e9f8;
+}
 .features-container {
   max-width: 1200px;
   margin: 0 auto;
@@ -10,14 +13,14 @@
     h1 {
       text-align: center;
       font-size: 3rem;
-      color: #212529;
+      color: #000000;
       font-weight: bold;
     }
     samp {
       font-family: Inter, sans-serif;
       text-align: center;
       font-size: 3rem;
-      color: #005fbf;
+      color: #2b24a6;
       font-weight: bold;
     }
 
@@ -43,24 +46,22 @@
   }
 
   .feature-title {
-    color: #0b0b0b;
+    color: #000000;
     font-weight: 700;
     margin-top: 3px;
   }
 
   .feature-card {
-    background: white;
+    background: transparent;
     border-radius: 10px;
-    border-top: 2px solid #005fbf;
-    border-right: 2px solid #005fbf;
-    border-bottom: 5px solid #005fbf;
-    border-left: 2px solid #005fbf;
+    border: 2px solid #2b24a6;
+    border-bottom: 5px solid #2b24a6;
     padding: 1.5rem;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
 
     .feature-icon {
-      color: #4a90e2;
+      color: #2b24a6;
     }
 
     &.integration-card {
@@ -143,7 +144,7 @@
     .learn-more {
       background: none;
       border: none;
-      color: #007bff;
+      color: #e7a73f;
       font-weight: 500;
       cursor: pointer;
       padding: 0;
@@ -158,7 +159,7 @@
     display: block;
     margin: 2rem auto;
     padding: 1rem 2rem;
-    background: #007bff;
+    background: #f29f16;
     color: white;
     border: none;
     border-radius: 5px;
@@ -167,7 +168,71 @@
     transition: all 0.3s ease;
 
     &:hover {
-      background: #0056b3;
+      background: #f29f16;
     }
+  }
+}
+[data-bs-theme="dark"] .features-container {
+  .features-header {
+    h1 {
+      color: #fff; // Heading color in dark mode
+    }
+
+    samp {
+      color: #4f90ff; // Adjusted color for standout text in dark mode
+    }
+
+    p {
+      color: rgba(255, 255, 255, 0.8); // Subtle paragraph color
+    }
+  }
+
+  .features-grid {
+    .feature-card {
+      .feature-icon {
+        color: #4f90ff; // Icon color in dark mode
+      }
+
+      h4 {
+        color: #fff; // Card title color in dark mode
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7); // Subtle card description color
+      }
+
+      .learn-more {
+        color: #ffd700; // Highlighted link color for "Learn More"
+        &:hover {
+          color: #ffea00; // Slight color change on hover
+        }
+      }
+    }
+
+    .integration-card {
+      h3 {
+        color: #fff; // Heading color for integration cards
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.7); // Paragraph text color
+      }
+    }
+  }
+
+  .icon-wrapper {
+    background: rgba(255, 255, 255, 0.1); // Subtle background for icons
+    svg {
+      color: #fff; // Icon color
+    }
+  }
+}
+
+.get-started-btn {
+  background: #f29f16; // Button background
+  color: #000; // Button text color in dark mode
+
+  &:hover {
+    background: #ffa834; // Slightly lighter shade on hover
   }
 }

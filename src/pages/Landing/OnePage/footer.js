@@ -77,16 +77,22 @@ const Footer = () => {
                   <div className="text-muted mt-3">
                     <ul className="list-unstyled ff-secondary footer-list">
                       <li>
-                        <Link to="/contact">Contact Us</Link>
+                        <Link to="/Privacy">Privacy</Link>
                       </li>
                       <li>
-                        <Link to="/support">Customer Support</Link>
+                        <Link to="/terms-conditions">T.O.C</Link>
                       </li>
                       <li>
-                        <Link to="/documentation">Documentation</Link>
+                        <Link to="/FeedBack">FeedBack</Link>
                       </li>
                       <li>
-                        <Link to="/training">Training Resources</Link>
+                        <Link to="/cookies">Cookies</Link>
+                      </li>
+                      <li>
+                        <Link to="/legal">L.D</Link>
+                      </li>
+                      <li>
+                        <Link to="/EVLA">E.V.L.A</Link>
                       </li>
                     </ul>
                   </div>

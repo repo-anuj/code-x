@@ -2,7 +2,7 @@
 
 .differentiators {
   padding: 4rem 6rem;
-  background: linear-gradient(135deg, #ffffff 0%, #ffffff 100%);
+  background: #e8e9f8;
   min-height: 100vh;
 
   .header-content {
@@ -112,6 +112,79 @@
         transform: translate(0, 0) rotate(0deg);
         transition: transform 0.3s ease, opacity 0.3s ease;
         z-index: 1;
+      }
+    }
+  }
+}
+/* Dark Mode Styling */
+[data-bs-theme="dark"] {
+  .differentiators {
+    background: #121212; /* Black background */
+    color: #ffffff; /* White text color */
+
+    .header-content {
+      max-width: 800px;
+      margin-bottom: 4rem;
+      margin-left: 4rem;
+
+      h1 {
+        color: #ffffff; /* Change headings to white */
+      }
+
+      p {
+        color: #b0b0b0; /* Light grey text for paragraphs */
+      }
+
+      .underline {
+        background: #4a90e2; /* Blue underline stays the same */
+      }
+    }
+
+    .cards-container {
+      .card {
+        background: transparent; /* Transparent card background */
+        // backdrop-filter: blur(10px);
+        border-color: #4a90e2; /* Keeping the blue border on hover */
+      }
+
+      .card-content {
+        .icon-wrapper .card-icon {
+          color: #4a90e2; /* Blue color for icons */
+        }
+
+        h3 {
+          color: #ffffff; /* Heading text inside cards should be white */
+        }
+
+        p {
+          color: #b0b0b0; /* Light grey text for card paragraphs */
+        }
+      }
+
+      .background-icon {
+        color: #4a90e2; /* Background icon color */
+        opacity: 0.1; /* Keep icon opacity low */
+      }
+    }
+  }
+}
+
+/* For better readability on smaller screens in dark mode */
+@media (max-width: 768px) {
+  [data-bs-theme="dark"] {
+    .differentiators {
+      padding: 2rem;
+
+      .header-content {
+        margin-left: 0;
+        h1 {
+          font-size: 1.8rem;
+        }
+      }
+
+      .cards-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
       }
     }
   }

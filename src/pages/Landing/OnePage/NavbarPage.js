@@ -32,16 +32,29 @@ const Navbar = () => {
   };
 
   const getNavLinkClass = (section) => {
-    return `nav-link fs-14 ${activeSection === section ? 'active' : ''}`;
+    return `nav-link fs-14 ${activeSection === section ? "active" : ""}`;
   };
 
   return (
     <React.Fragment>
-      <nav className={`navbar navbar-expand-lg navbar-landing fixed-top ${navClass}`} id="navbar">
+      <nav
+        className={`navbar navbar-expand-lg navbar-landing fixed-top ${navClass}`}
+        id="navbar"
+      >
         <Container>
           <Link className="navbar-brand" to="/Landing">
-            <img src={logodark} className="card-logo card-logo-dark" alt="logo dark" height="20" />
-            <img src={logolight} className="card-logo card-logo-light" alt="logo light" height="20" />
+            <img
+              src={logodark}
+              className="card-logo card-logo-dark"
+              alt="logo dark"
+              height="20"
+            />
+            <img
+              src={logolight}
+              className="card-logo card-logo-light"
+              alt="logo light"
+              height="20"
+            />
           </Link>
 
           <NavbarToggler
@@ -54,40 +67,72 @@ const Navbar = () => {
             <i className="mdi mdi-menu"></i>
           </NavbarToggler>
 
-          <Collapse isOpen={isOpenMenu} className="navbar-collapse" id="navbarSupportedContent">
+          <Collapse
+            isOpen={isOpenMenu}
+            className="navbar-collapse"
+            id="navbarSupportedContent"
+          >
             <ul className="navbar-nav mx-auto mt-2 mt-lg-0">
               <li className="nav-item">
-                <a className={getNavLinkClass('hero')} href="/Landing#hero" onClick={(e) => handleNavClick(e, '/Landing', '#hero')}>
+                <a
+                  className={getNavLinkClass("hero")}
+                  href="/Landing#hero"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#hero")}
+                >
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('services')} href="/Landing#services" onClick={(e) => handleNavClick(e, '/Landing', '#services')}>
+                <a
+                  className={getNavLinkClass("services")}
+                  href="/Landing#services"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#services")}
+                >
                   Features
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('features')} href="/Landing#features" onClick={(e) => handleNavClick(e, '/Landing', '#features')}>
+                <a
+                  className={getNavLinkClass("features")}
+                  href="/Landing#features"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#features")}
+                >
                   Services
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('plans')} href="/Landing#plans" onClick={(e) => handleNavClick(e, '/Landing', '#plans')}>
+                <a
+                  className={getNavLinkClass("plans")}
+                  href="/Landing#plans"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#plans")}
+                >
                   Plans
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('reviews')} href="/Landing#reviews" onClick={(e) => handleNavClick(e, '/Landing', '#reviews')}>
+                <a
+                  className={getNavLinkClass("reviews")}
+                  href="/Landing#reviews"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#reviews")}
+                >
                   Reviews
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('team')} href="/Landing#team" onClick={(e) => handleNavClick(e, '/Landing', '#team')}>
+                <a
+                  className={getNavLinkClass("team")}
+                  href="/Landing#team"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#team")}
+                >
                   Team
                 </a>
               </li>
               <li className="nav-item">
-                <a className={getNavLinkClass('contact')} href="/Landing#contact" onClick={(e) => handleNavClick(e, '/Landing', '#contact')}>
+                <a
+                  className={getNavLinkClass("contact")}
+                  href="/Landing#contact"
+                  onClick={(e) => handleNavClick(e, "/Landing", "#contact")}
+                >
                   Contact
                 </a>
               </li>

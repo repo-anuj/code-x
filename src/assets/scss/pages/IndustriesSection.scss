@@ -1,6 +1,6 @@
 $purple-primary: #5046e6;
 $text-primary: #333333;
-$highlight-color: #8a2be2;
+$highlight-color: #2b24a6;
 $shadow-color: rgba(0, 0, 0, 0.1);
 
 .industries-section {
@@ -19,7 +19,7 @@ $shadow-color: rgba(0, 0, 0, 0.1);
       font-weight: 700;
 
       .dot {
-        color: #3b82f6;
+        color: #2b24a6;
         // $purple-primary
       }
     }
@@ -33,7 +33,7 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 
     .purple-line {
       height: 3px;
-      background: #3b82f6;
+      background: #2b24a6;
       margin: 0 auto;
       width: 100px;
       animation: lineShine 1.5s ease-out;
@@ -50,7 +50,7 @@ $shadow-color: rgba(0, 0, 0, 0.1);
     background: #ffffff;
     padding: 2rem;
     border-radius: 10px;
-    border: 1px solid #005fbf;
+    border: 1px solid #2b24a6;
     box-shadow: 0 4px 15px $shadow-color;
     transition: transform 0.3s ease;
     text-align: left;
@@ -138,6 +138,135 @@ $shadow-color: rgba(0, 0, 0, 0.1);
 
       .learn-more {
         font-size: 0.8rem;
+      }
+    }
+  }
+}
+/* Dark Mode Styling */
+[data-bs-theme="dark"] {
+  .industries-section {
+    color: #ffffff; /* White text color */
+
+    .section-header {
+      margin-bottom: 3rem;
+
+      h2 {
+        color: #ffffff; /* Heading color change to white */
+      }
+
+      .dot {
+        color: $purple-primary; /* Keep the purple color for the dot */
+      }
+
+      .subtitle {
+        color: #b0b0b0; /* Lighter text color for subtitles */
+      }
+
+      .purple-line {
+        background: #4a90e2; /* Lighter purple line in dark mode */
+      }
+    }
+
+    .industries-content {
+      .industry-card {
+        background: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); /* Transparent background for cards */
+        border: 1px solid #4a90e2; /* Lighter border color */
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Darker shadow for dark mode */
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .industry-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Deeper shadow on hover */
+      }
+
+      .description {
+        color: #b0b0b0; /* Light gray description text */
+      }
+
+      .highlight {
+        color: $highlight-color; /* Keep highlight color */
+        font-weight: bold;
+      }
+
+      .learn-more {
+        color: #ffffff; /* White text on button */
+        background-color: #4a90e2; /* Lighter button background */
+        transition: background-color 0.3s ease;
+
+        &:hover {
+          background-color: darken(
+            $purple-primary,
+            10%
+          ); /* Darken the button on hover */
+        }
+      }
+    }
+  }
+
+  /* For responsive design in dark mode */
+  @media (max-width: 1200px) {
+    .industries-section {
+      padding: 4rem 1rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .industries-section {
+      .section-header {
+        h2 {
+          font-size: 2rem;
+        }
+
+        .subtitle {
+          font-size: 0.9rem;
+        }
+      }
+
+      .industries-content {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+
+      .industry-card {
+        padding: 1.5rem;
+        .description {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .industries-section {
+      .section-header {
+        h2 {
+          font-size: 1.8rem;
+        }
+
+        .subtitle {
+          font-size: 0.8rem;
+        }
+      }
+
+      .industries-content {
+        grid-template-columns: 1fr;
+      }
+
+      .industry-card {
+        padding: 1.2rem;
+
+        .description {
+          font-size: 0.9rem;
+        }
+
+        .learn-more {
+          font-size: 0.8rem;
+        }
       }
     }
   }

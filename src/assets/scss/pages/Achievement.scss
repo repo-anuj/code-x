@@ -162,37 +162,49 @@
     }
   }
 }
+[data-bs-theme="dark"] .achievements-container {
+  color: #fff; // Default text color for dark mode
 
-@media (max-width: 768px) {
-  .achievements-container {
-    padding: 2rem 1rem;
+  .header {
+    .title {
+      color: #fff; // Heading color in dark mode
 
-    .header {
-      .title {
-        font-size: 2rem;
+      span {
+        color: #3b82f6; // Keep the highlighted span color consistent
       }
     }
+  }
 
-    .cards-section {
-      height: 240px;
+  .cards-section {
+    .achievement-card {
+      background: black; // Transparent card background
+      border: 1px solid rgba(255, 255, 255, 0.2); // Subtle border for cards
+      color: #fff; // Text color for the card content
 
-      .achievement-card {
-        max-width: 500px;
-        height: 220px;
+      .card-stripe {
+        background: rgba(255, 255, 255, 0.2); // Lighter stripe for contrast
+      }
 
-        .card-content {
-          padding: 1.2rem 1.2rem 1.2rem 0;
-
-          .card-header {
-            h2 {
-              font-size: 1.4rem;
-            }
+      .card-content {
+        .card-header {
+          h2 {
+            color: #fff; // Card heading color in dark mode
           }
 
-          p {
-            font-size: 0.9rem;
+          .icon-container {
+            background: rgba(255, 255, 255, 0.2); // Transparent icon background
+            color: #fff; // Icon color in dark mode
+            border-color: rgba(255, 255, 255, 0.3); // Border for dark mode
           }
         }
+
+        p {
+          color: rgba(255, 255, 255, 0.8); // Subtle text color for paragraphs
+        }
+      }
+
+      &:hover {
+        box-shadow: 0 8px 25px rgba(255, 255, 255, 0.3); // Softer glow on hover
       }
     }
   }
