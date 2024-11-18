@@ -1,8 +1,9 @@
-// IndustriesSection.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 import BoxReveal from "./BoxReveal";
 import "../../../assets/scss/pages/IndustriesSection.scss";
+import Services from "./Services_all";
 
 const industries = [
   {
@@ -13,7 +14,7 @@ const industries = [
       "Our ERP solutions streamline processes for steel manufacturing and processing, enhancing efficiency and reducing costs. Optimize your production lines with automation that meets industry standards.",
     additionalInfo:
       "Access real-time data, control inventory, and improve quality assurance with our comprehensive ERP solutions.",
-    link: "/industries/steel",
+    link: "/Services_all",
   },
   {
     id: 2,
@@ -23,7 +24,7 @@ const industries = [
       "Transform restaurant operations with POS systems, inventory tracking, and customer management tools. Our solution is built to handle high demand and streamline kitchen-to-table services.",
     additionalInfo:
       "Achieve customer satisfaction through efficient order management and loyalty programs, integrated seamlessly into one platform.",
-    link: "/industries/restaurants",
+    link: "/Services_all",
   },
   {
     id: 3,
@@ -33,27 +34,27 @@ const industries = [
       "Empower educational institutions with digital solutions, such as learning management, administrative tools, and engagement platforms.",
     additionalInfo:
       "Support student success and streamline administrative workflows, making data management simpler and more secure.",
-    link: "/industries/education",
+    link: "/Services_all",
   },
   {
     id: 4,
-    title: "Vendor Management",
-    subtitle: "Automate with Infinity ERP",
+    title: "Supplier Management",
+    subtitle: "Streamline with Infinity ERP",
     description:
-      "Enhance vendor relationships with robust procurement and management tools. Our solutions bring transparency and efficiency to your vendor network.",
+      "Build stronger supplier relationships with easy-to-use procurement and management tools. Our solutions improve transparency and efficiency across your supply chain.",
     additionalInfo:
-      "Gain control over supply chain logistics, manage contracts, and reduce operational costs.",
-    link: "/industries/vendor-management",
+      "Take control of logistics, manage contracts more effectively, and lower operational costs.",
+    link: "/Services_all",
   },
   {
     id: 5,
-    title: "Healthcare",
-    subtitle: "Automate with Infinity ERP",
+    title: "Hospital Management",
+    subtitle: "Simplify with Infinity ERP",
     description:
-      "Integrate advanced healthcare solutions like patient management, medical records, and administration systems into one streamlined interface.",
+      "Combine key healthcare functions like patient care, medical records, and administration into one easy-to-use system.",
     additionalInfo:
-      "Enhance patient outcomes and operational efficiency with a centralized healthcare management system.",
-    link: "/industries/healthcare",
+      "Improve patient care and boost efficiency with a unified healthcare management platform.",
+    link: "/Services_all",
   },
   {
     id: 6,
@@ -63,7 +64,27 @@ const industries = [
       "Optimize retail operations with our ERP solutions, from inventory tracking to sales analytics, ensuring seamless customer experiences.",
     additionalInfo:
       "Gain insights with real-time sales data, customer loyalty tracking, and efficient inventory management.",
-    link: "/industries/retail",
+    link: "/Services_all",
+  },
+  {
+    id: 7,
+    title: "Mall & Theater Management",
+    subtitle: "Streamline Operations with Infinity ERP",
+    description:
+      "Easily manage mall and theater operations, from tenant leasing to ticket sales and customer services, all in one platform.",
+    additionalInfo:
+      "Improve customer experience, optimize space usage, and boost revenue with a unified management solution.",
+    link: "/Services_all",
+  },
+  {
+    id: 8,
+    title: "Solvent Extraction Plant Management",
+    subtitle: "Optimize with Infinity ERP",
+    description:
+      "Streamline the operations of your solvent extraction plant, from raw material handling to extraction processes and quality control, all in one system.",
+    additionalInfo:
+      "Enhance production efficiency, maintain high-quality standards, and reduce operational costs with an integrated plant management solution.",
+    link: "/Services_all",
   },
 ];
 
@@ -100,7 +121,10 @@ const IndustriesSection = () => {
                 <span className="highlight">Infinity ERP</span>
               )}
             </p>
-            <button className="learn-more">Learn More</button>
+            {/* Use Link component to navigate to the industry-specific page */}
+            <Link to={industry.link}>
+              <button className="learn-more">Learn More</button>
+            </Link>
           </motion.div>
         ))}
       </div>

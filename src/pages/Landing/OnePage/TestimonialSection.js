@@ -252,16 +252,54 @@ const testimonials = {
 const TestimonialSection = () => {
   const [selectedIndustry, setSelectedIndustry] = useState("steel");
   const [currentTestimonialIndex, setCurrentTestimonialIndex] = useState(0);
+  const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
+  // Function to get next industry
+  const getNextIndustry = (currentIndustry) => {
+    const currentIndex = industries.findIndex(
+      (ind) => ind.id === currentIndustry
+    );
+    const nextIndex = (currentIndex + 1) % industries.length;
+    return industries[nextIndex].id;
+  };
+
+  // Effect for testimonial rotation
   useEffect(() => {
+    if (!isAutoScrolling) return;
+
     const interval = setInterval(() => {
-      setCurrentTestimonialIndex(
-        (prevIndex) => (prevIndex + 1) % testimonials[selectedIndustry].length
-      );
+      const currentIndustryTestimonials = testimonials[selectedIndustry];
+
+      if (currentTestimonialIndex === currentIndustryTestimonials.length - 1) {
+        // Last testimonial in current industry, move to next industry
+        setSelectedIndustry(getNextIndustry(selectedIndustry));
+        setCurrentTestimonialIndex(0);
+      } else {
+        // Move to next testimonial in current industry
+        setCurrentTestimonialIndex(currentTestimonialIndex + 1);
+      }
     }, 3000);
 
     return () => clearInterval(interval);
-  }, [selectedIndustry]);
+  }, [selectedIndustry, currentTestimonialIndex, isAutoScrolling]);
+
+  // Handle manual industry selection
+  const handleIndustryClick = (industryId) => {
+    setIsAutoScrolling(false); // Pause auto-scrolling when user interacts
+    setSelectedIndustry(industryId);
+    setCurrentTestimonialIndex(0);
+  };
+
+  // Resume auto-scrolling after user inactivity
+  useEffect(() => {
+    if (!isAutoScrolling) {
+      const timeout = setTimeout(() => {
+        setIsAutoScrolling(true);
+      }, 10000); // Resume after 10 seconds of inactivity
+
+      return () => clearTimeout(timeout);
+    }
+  }, [isAutoScrolling]);
 
   return (
     <div className="testimonial-section" id="reviews">
@@ -280,16 +318,20 @@ const TestimonialSection = () => {
       <div className="testimonial-content">
         <div className="industry-buttons">
           {industries.map((industry) => (
-            <button
+            <motion.button
               key={industry.id}
-              onClick={() => setSelectedIndustry(industry.id)}
+              onClick={() => handleIndustryClick(industry.id)}
               className={`industry-button ${
                 selectedIndustry === industry.id ? "active" : ""
               }`}
+              animate={{
+                scale: selectedIndustry === industry.id ? 1.05 : 1,
+                transition: { duration: 0.2 },
+              }}
             >
               <BsCheckCircle />
               <span>{industry.label}</span>
-            </button>
+            </motion.button>
           ))}
         </div>
 

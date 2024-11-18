@@ -139,9 +139,9 @@ const Features = () => {
     },
     {
       icon: FaCloud,
-      title: "Cloud-Based Accessibility",
+      title: "Real-Time Collaboration",
       description:
-        "Access your ERP solution anytime, anywhere, from any device.",
+        "Enhance team collaboration with real-time updates, shared dashboards, and seamless communication.",
     },
     {
       icon: FaExpandArrowsAlt,

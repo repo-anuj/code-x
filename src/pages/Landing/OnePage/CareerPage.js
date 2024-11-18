@@ -1,305 +1,469 @@
-import React, { useEffect } from "react";
+// App.jsx
+import React from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+import "../../../assets/scss/pages/Career.scss";
+import Navbar from "./NavbarPage";
 import col1 from "../../../assets/images/colleges/1.jpg";
 import col2 from "../../../assets/images/colleges/2.jpg";
-import col3 from "../../../assets/images/colleges/3.jpg";
+import col3 from "../../../assets/images/colleges/3.png";
 import col4 from "../../../assets/images/colleges/4.png";
 import cert1 from "../../../assets/images/Certificates/CP Completion Certificate.jpg";
 import cert2 from "../../../assets/images/Certificates/CP Letter of Appreciation.jpg";
-
-import "../../../assets/scss/pages/Career.scss";
-import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
+const Modal = ({ isOpen, onClose, children }) => (
+  <AnimatePresence>
+    {isOpen && (
+      <motion.div
+        className="modal-overlay"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        onClick={onClose}
+      >
+        <motion.div
+          className="modal-content"
+          initial={{ scale: 0.5, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          exit={{ scale: 0.5, opacity: 0 }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          {children}
+          <button className="modal-close" onClick={onClose}>
+            ×
+          </button>
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
+const InstitutionCard = ({ name, description, imageUrl }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="institution-card"
+      whileHover={{ y: -10 }}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+    >
+      <motion.div className="image-container">
+        <img src={imageUrl} alt={name} />
+        <motion.div
+          className="overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isHovered ? 1 : 0 }}
+        >
+          <span>View Details</span>
+        </motion.div>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <h3>{name}</h3>
+        <p>{description}</p>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const CertificateCard = ({ imageUrl, title }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  return (
+    <>
+      <motion.div
+        className="certificate-card"
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+        onClick={() => setIsModalOpen(true)}
+      >
+        <div className="certificate-image">
+          <img src={imageUrl} alt={title} />
+          <div className="view-overlay">
+            <span>Click to view full image</span>
+          </div>
+        </div>
+        <h4>{title}</h4>
+      </motion.div>
+
+      <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+        <img
+          src={imageUrl}
+          alt={title}
+          style={{ width: "100%", height: "auto", maxHeight: "80vh" }}
+        />
+        <h3>{title}</h3>
+      </Modal>
+    </>
+  );
+};
+
 const CareerPage = () => {
-  useEffect(() => {
-    // Scroll to top when the component mounts
-    window.scrollTo(0, 0);
-  }, []); // Empty dependency array ensures this runs once when the component mounts
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    setIsSubmitting(true);
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      console.log(data); // You can replace this with your API call
+      setSubmitSuccess(true);
+      reset(); // Reset form fields after submit
+    } catch (error) {
+      console.error(error); // Handle the error
+    }
+    setIsSubmitting(false);
   };
+
+  const [mounted, setMounted] = useState(false); // For particle effect mount state
+
+  useEffect(() => {
+    setMounted(true);
+    initParticles();
+
+    // Cleanup the event listener on unmount
+    const handleResize = debounce(() => {
+      const canvas = document.getElementById("particle-canvas");
+      if (canvas) {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+    }, 200); // Debounce with a 200ms delay
+
+    window.addEventListener("resize", handleResize);
+
+    // Cleanup function to remove the event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const initParticles = () => {
+    const canvas = document.getElementById("particle-canvas");
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    const particles = [];
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2;
+        this.speedX = Math.random() * 1 - 0.5;
+        this.speedY = Math.random() * 1 - 0.5;
+      }
+
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+
+        if (this.x > canvas.width) this.x = 0;
+        if (this.x < 0) this.x = canvas.width;
+        if (this.y > canvas.height) this.y = 0;
+        if (this.y < 0) this.y = canvas.height;
+      }
+
+      draw() {
+        ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    const createParticles = () => {
+      for (let i = 0; i < 100; i++) {
+        particles.push(new Particle());
+      }
+    };
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach((particle) => {
+        particle.update();
+        particle.draw();
+      });
+      requestAnimationFrame(animate);
+    };
+
+    createParticles();
+    animate();
+  };
+
+  // Debounce function for resize handling
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  }
+
+  const institutions = [
+    {
+      name: "O P Jindal University, Raigarh",
+      description: "Partnered for educational and professional growth.",
+      imageUrl: col4,
+    },
+    {
+      name: "ITM University, Raipur",
+      description: "Partnered for educational and professional growth.",
+      imageUrl: col1,
+    },
+    {
+      name: "Bhilai Institute of Technology, Durg",
+      description: "Partnered for educational and professional growth.",
+      imageUrl: col2,
+    },
+    {
+      name: "ICFAI, Raipur",
+      description: "Partnered for educational and professional growth.",
+      imageUrl: col3,
+    },
+  ];
 
   return (
     <div>
-      <div className="job-application-container">
-        <Navbar />
-        <section
-          id="internships-and-colleges"
-          className="internships-and-colleges section"
-        >
-          <div className="container section-title">
-            <h2>Shape Your Future with Us</h2>
-            <h3>Join our team and help us innovate for tomorrow</h3>
-            <p>
-              We proudly collaborate with leading institutions to offer
-              enriching internship experiences.
-            </p>
-          </div>
-          <div className="container">
-            <div className="row gy-4">
-              {[
-                { name: "O P Jindal University, Raigarh", img: col4 },
-                { name: "ITM University, Raipur", img: col1 },
-                { name: "Bhilai Institute of Technology, Durg", img: col2 },
-                { name: "IFHE, HYD", img: col3 },
-              ].map(({ name, img }, index) => (
-                <div className="col-lg-6" key={name}>
-                  <div className="college-item d-flex align-items-center">
-                    <img
-                      src={img}
-                      className="college-img img-fluid"
-                      alt={name}
-                    />
-                    <div>
-                      <h4>{name}</h4>
-                      <p>Partnered for educational and professional growth.</p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+      <Navbar />
+      {/* Particle canvas */}
+      <canvas id="particle-canvas" className="particle-canvas" />
 
-          <div className="container">
-            <div className="container section-title">
-              <h2>Completion Certificate & Letter of Appreciation</h2>
-            </div>
-            <div className="d-flex flex-column gy-4">
-              {[
-                { title: "Completion Certificate", img: cert1 },
-                { title: "Letter of Appreciation", img: cert2 },
-              ].map(({ title, img }, index) => (
-                <div className="certificate-item mb-4" key={title}>
-                  <img src={img} className="img-fluid mb-2" alt={title} />
-                </div>
-              ))}
-            </div>
+      <div className="career-page">
+        <motion.section
+          className="hero"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
+          <div className="hero-content">
+            <motion.h1
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.2 }}
+            >
+              Begin Your Journey
+            </motion.h1>
+            <motion.h2
+              initial={{ y: 30, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ delay: 0.4 }}
+            >
+              Shape the Future with Us
+            </motion.h2>
+            <motion.div
+              className="hero-decoration"
+              animate={{
+                rotate: [0, 360],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
+          </div>
+        </motion.section>
+
+        {/* The rest of your sections */}
+        <section className="institutions">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Partner Institutions
+          </motion.h2>
+          <div className="institutions-grid">
+            {institutions.map((institution, index) => (
+              <InstitutionCard key={index} {...institution} />
+            ))}
           </div>
         </section>
 
-        <div className="container section-title text-center">
-          <h2>Feel Free To Apply</h2>
-          <p>Join our team and help us shape the future.</p>
-        </div>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="job-application-form"
-        >
-          {/* Form fields */}
-          <div className="form-group">
-            <label htmlFor="position" className="label">
-              Position*
-            </label>
-            <select
-              {...register("position", { required: "Position is required" })}
-              className="form-control"
-            >
-              <option value="">--Select--</option>
-              <option value="Developer">Developer</option>
-              <option value="Designer">Designer</option>
-            </select>
-            {errors.position && <p>{errors.position.message}</p>}
+        <section className="certificates">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Recognition & Achievements
+          </motion.h2>
+          <div className="certificates-grid">
+            <CertificateCard imageUrl={cert1} title="Completion Certificate" />
+            <CertificateCard imageUrl={cert2} title="Letter of Appreciation" />
           </div>
-          <div className="form-group">
-            <label htmlFor="experience" className="label">
-              Experience (yrs)*
-            </label>
-            <select {...register("experience")} className="form-control">
-              <option value="">--Select--</option>
-              <option value="1-2">1-2</option>
-              <option value="3-5">3-5</option>
-            </select>
-            {errors.experience && <p>{errors.experience.message}</p>}
-          </div>
+        </section>
 
-          <div className="form-group">
-            <label htmlFor="name" className="label">
-              Name*
-            </label>
-            <input type="text" {...register("name")} className="form-control" />
-            {errors.name && <p>{errors.name.message}</p>}
-          </div>
+        <section className="application-form">
+          <motion.div
+            className="form-container"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2>Apply Now</h2>
+            <h3>Take the First Step Towards Your Future</h3>
 
-          <div className="form-group">
-            <label htmlFor="mobile" className="label">
-              Mobile No.*
-            </label>
-            <input
-              type="text"
-              {...register("mobile")}
-              className="form-control"
-            />
-            {errors.mobile && <p>{errors.mobile.message}</p>}
-          </div>
+            {submitSuccess && (
+              <motion.div
+                className="success-message"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+              >
+                Application submitted successfully! We'll contact you soon.
+              </motion.div>
+            )}
 
-          <div className="form-group">
-            <label htmlFor="email" className="label">
-              Email Id.*
-            </label>
-            <input
-              type="text"
-              {...register("email")}
-              className="form-control"
-            />
-            {errors.email && <p>{errors.email.message}</p>}
-          </div>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="form-group">
+                <input
+                  {...register("name", {
+                    required: "Name is required",
+                    minLength: {
+                      value: 2,
+                      message: "Name must be at least 2 characters",
+                    },
+                  })}
+                  placeholder="Full Name"
+                />
+                {errors.name && (
+                  <span className="error">{errors.name.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="gender" className="label">
-              Gender*
-            </label>
-            <div style={{ marginTop: "10px" }}>
-              {" "}
-              {/* Added margin-top for spacing */}
-              <input type="radio" value="Male" {...register("gender")} /> Male
-              <span style={{ margin: "0 10px" }}></span>{" "}
-              {/* Added spacing between radio buttons */}
-              <input type="radio" value="Female" {...register("gender")} />{" "}
-              Female
-            </div>
-            {errors.gender && <p>{errors.gender.message}</p>}
-          </div>
+              <div className="form-group">
+                <input
+                  {...register("email", {
+                    required: "Email is required",
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: "Invalid email address",
+                    },
+                  })}
+                  placeholder="Email Address"
+                />
+                {errors.email && (
+                  <span className="error">{errors.email.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="dateOfBirth" className="label">
-              Date of Birth*
-            </label>
-            <input
-              type="date"
-              {...register("dateOfBirth")}
-              className="form-control"
-            />
-            {errors.dateOfBirth && <p>{errors.dateOfBirth.message}</p>}
-          </div>
+              <div className="form-group">
+                <select
+                  {...register("position", {
+                    required: "Please select a position",
+                  })}
+                >
+                  <option value="">Select Position</option>
+                  <option value="intern">Intern</option>
+                  <option value="junior">Junior Developer</option>
+                  <option value="senior">Senior Developer</option>
+                </select>
+                {errors.position && (
+                  <span className="error">{errors.position.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="company" className="label">
-              Company*
-            </label>
-            <input
-              type="text"
-              {...register("company")}
-              className="form-control"
-            />
-            {errors.company && <p>{errors.company.message}</p>}
-          </div>
+              <div className="form-group">
+                <input
+                  {...register("phone", {
+                    required: "Phone number is required",
+                    pattern: {
+                      value: /^[0-9]{10}$/,
+                      message: "Please enter a valid 10-digit phone number",
+                    },
+                  })}
+                  placeholder="Phone Number"
+                />
+                {errors.phone && (
+                  <span className="error">{errors.phone.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="ctc" className="label">
-              CTC (in Lacs)*
-            </label>
-            <input type="text" {...register("ctc")} className="form-control" />
-            {errors.ctc && <p>{errors.ctc.message}</p>}
-          </div>
+              <div className="form-group">
+                <label>Upload CV</label>
+                <input
+                  type="file"
+                  {...register("cv", {
+                    required: "CV is required",
+                  })}
+                  accept=".pdf,.doc,.docx"
+                />
+                {errors.cv && (
+                  <span className="error">{errors.cv.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="noticePeriod" className="label">
-              Notice Period*
-            </label>
-            <select {...register("noticePeriod")} className="form-control">
-              <option value="">--Select--</option>
-              <option value="Immediate">Immediate</option>
-              <option value="1 Month">1 Month</option>
-              <option value="2 Months">2 Months</option>
-              <option value="3 Months">3 Months</option>
-            </select>
-            {errors.noticePeriod && <p>{errors.noticePeriod.message}</p>}
-          </div>
+              <div className="form-group">
+                <label>Upload Resume</label>
+                <input
+                  type="file"
+                  {...register("resume", {
+                    required: "Resume is required",
+                  })}
+                  accept=".pdf,.doc,.docx"
+                />
+                {errors.resume && (
+                  <span className="error">{errors.resume.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="primeExp" className="label">
-              Prime Experience In*
-            </label>
-            <input
-              type="text"
-              {...register("primeExp")}
-              className="form-control"
-            />
-            {errors.primeExp && <p>{errors.primeExp.message}</p>}
-          </div>
+              <div className="form-group">
+                <textarea
+                  {...register("coverLetter", {
+                    required: "Cover letter is required",
+                    minLength: {
+                      value: 100,
+                      message: "Cover letter must be at least 100 characters",
+                    },
+                  })}
+                  placeholder="Cover Letter"
+                  rows="4"
+                />
+                {errors.coverLetter && (
+                  <span className="error">{errors.coverLetter.message}</span>
+                )}
+              </div>
 
-          <div className="form-group">
-            <label htmlFor="currentCity" className="label">
-              Current City*
-            </label>
-            <input
-              type="text"
-              {...register("currentCity")}
-              className="form-control"
-            />
-            {errors.currentCity && <p>{errors.currentCity.message}</p>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="address" className="label">
-              Address*
-            </label>
-            <textarea
-              {...register("address")}
-              className="form-control"
-            ></textarea>
-            {errors.address && <p>{errors.address.message}</p>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="qualification" className="label">
-              Qualification*
-            </label>
-            <input
-              type="text"
-              {...register("qualification")}
-              className="form-control"
-            />
-            {errors.qualification && <p>{errors.qualification.message}</p>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="cv" className="label">
-              Attach CV*
-            </label>
-            <input type="file" {...register("cv")} className="form-control" />
-            {errors.cv && <p>{errors.cv.message}</p>}
-          </div>
-
-          <div className="form-group">
-            <input type="checkbox" {...register("terms")} />
-            <label htmlFor="terms" className="label">
-              {" "}
-              I accept the Terms & Conditions*
-            </label>
-            {errors.terms && <p>{errors.terms.message}</p>}
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="captcha" className="label">
-              What is 1 + 0?*
-            </label>
-            <input
-              type="text"
-              {...register("captcha")}
-              className="form-control"
-            />
-            {errors.captcha && <p>{errors.captcha.message}</p>}
-          </div>
-
-          {/* Add other form fields here, similar to the position field above */}
-
-          <div className="btn-container">
-            <button type="submit" className="btn-getstarted">
-              Submit
-            </button>
-          </div>
-        </form>
+              <motion.button
+                type="submit"
+                className={`submit-button ${isSubmitting ? "submitting" : ""}`}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? "Submitting..." : "Submit Application"}
+              </motion.button>
+            </form>
+          </motion.div>
+        </section>
       </div>
       <Footer />
     </div>
   );
 };
+
 export default CareerPage;

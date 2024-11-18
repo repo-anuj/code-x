@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import "./OurProduct.scss";
 import infinityERP from "../../../assets/images/landing/features/infinityERP.png";
+import infinityFleet from "../../../assets/images/landing/features/FleetLOGO.png";
+import infinityX from "../../../assets/images/landing/features/InfinityX.png";
 
 const products = {
   "Infinity X": {
@@ -17,6 +19,15 @@ const products = {
       "Retail and Wholesale Traders",
       "FMCG",
     ],
+    card: {
+      team: "InfinityX Team",
+      tag: "POS",
+      image: infinityX, // Replace with actual image path
+      cardTitle: "Smart POS System Implementation",
+      cardDescription:
+        "Streamline your restaurant operations with our integrated POS system. Handle orders, inventory, and customer management seamlessly.",
+      tags: ["Restaurant", "POS", "Inventory", "CRM"],
+    },
   },
   "Infinity Fleet": {
     title: "Efficient Fleet Management Solutions",
@@ -27,6 +38,15 @@ const products = {
       "Vehicle Maintenance Management",
       "Driver Management",
     ],
+    card: {
+      team: "Fleet Team",
+      tag: "Logistics",
+      image: infinityFleet, // Replace with actual image path
+      cardTitle: "Real-time Fleet Tracking System",
+      cardDescription:
+        "Monitor your entire fleet in real-time. Track vehicle locations, maintenance schedules, and driver performance all in one place.",
+      tags: ["GPS", "Maintenance", "Analytics", "Fleet"],
+    },
   },
   "Infinity ERP": {
     title: "Comprehensive Enterprise Resource Planning",
@@ -39,6 +59,15 @@ const products = {
       "Property Management System",
       "School Management System",
     ],
+    card: {
+      team: "ERP Team",
+      tag: "Enterprise",
+      image: infinityERP, // Replace with actual image path
+      cardTitle: "Integrated ERP Dashboard",
+      cardDescription:
+        "Unified platform for managing all your business operations. From inventory to finance, everything at your fingertips.",
+      tags: ["Steel", "Logistics", "Education", "Property"],
+    },
   },
 };
 
@@ -50,12 +79,12 @@ const OurProduct = () => {
   const tabVariants = {
     inactive: {
       backgroundColor: "transparent",
-      color: "#b0b0b0", // Light gray text for inactive tabs in dark mode
+      color: "#b0b0b0",
       scale: 1,
     },
     active: {
-      backgroundColor: "#4a90e2", // Blue background for active tab in dark mode
-      color: "#ffffff", // White text for active tab
+      backgroundColor: "#4a90e2",
+      color: "#ffffff",
       scale: 1.05,
     },
   };
@@ -178,33 +207,39 @@ const OurProduct = () => {
                       </motion.button>
                     </div>
                     <div className="visual-content">
-                      <div className="card-preview">
+                      <motion.div
+                        className="card-preview"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.3 }}
+                      >
                         <div className="card-header">
-                          <span className="team">SEO Team</span>
-                          <span className="tag">Bugs</span>
+                          <span className="team">
+                            {products[activeTab].card.team}
+                          </span>
+                          <span className="tag">
+                            {products[activeTab].card.tag}
+                          </span>
                         </div>
                         <div className="card-user">
                           <div className="user-info">
                             <img
-                              src={infinityERP}
+                              src={products[activeTab].card.image}
                               className="img-fluid"
-                              alt="avatar"
+                              alt={`${activeTab} preview`}
                             />
                           </div>
                         </div>
-                        <h3>Bot crawlers causing latency issues</h3>
-                        <p>
-                          Lorem ipsum dolor sit amet consectetur adipisicing
-                          elit. Sed incidunt iste molestiae distinctio assumenda
-                          quos consectetur.
-                        </p>
+                        <h3>{products[activeTab].card.cardTitle}</h3>
+                        <p>{products[activeTab].card.cardDescription}</p>
                         <div className="card-footer">
-                          <span className="priority">Steel</span>
-                          <span className="priority">Theater</span>
-                          <span className="priority">Automobile</span>
-                          <span className="priority">Medium</span>
+                          {products[activeTab].card.tags.map((tag, index) => (
+                            <span key={index} className="priority">
+                              {tag}
+                            </span>
+                          ))}
                         </div>
-                      </div>
+                      </motion.div>
                     </div>
                   </motion.div>
                 </AnimatePresence>

@@ -40,7 +40,7 @@ const Home = () => {
   };
 
   return (
-    <div className="home" id="home">
+    <div className="home" id="hero">
       {/* Geometric Pattern Background */}
       <div className="geometric-background">
         <div className="pattern-grid">

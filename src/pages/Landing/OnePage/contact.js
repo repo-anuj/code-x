@@ -26,7 +26,7 @@ const Contact = () => {
             <Col lg={4}>
               <div className="address-card">
                 <h5 className="fs-13 text-muted text-uppercase">
-                  Headquarters:
+                  Raipur Office:
                 </h5>
                 <div className="address-text">
                   C 24-25, Infinity Tower, Sector-5, Devendra Nagar, Raipur,
@@ -37,7 +37,7 @@ const Contact = () => {
               <br />
               <div className="address-card">
                 <h5 className="fs-13 text-muted text-uppercase">
-                  Headquarters:
+                  Raighar Office:
                 </h5>
                 <div className="address-text">
                   C 24-25, Infinity Tower, Sector-5, Devendra Nagar, Raipur,
