@@ -46,10 +46,10 @@
 .navbar-landing {
   padding: 10px 0px;
   transition: all 0.5s ease;
-  @media (max-width: 991.98px) {
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.7px);
+  @media (max-width: 1400.98px) {
+    background: rgba(0, 0, 0, 0.8); // Use rgba for opacity
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(13.7px);
     -webkit-backdrop-filter: blur(5.7px);
     padding: 10px 8px;
   }
@@ -79,9 +79,9 @@
 
   &.is-sticky {
     /* From https://css.glass */
-    background: rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5.7px);
+    background: rgba(0, 0, 0, 0.8); // Use rgba for opacity
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(13.7px);
     -webkit-backdrop-filter: blur(5.7px);
   }
 }
