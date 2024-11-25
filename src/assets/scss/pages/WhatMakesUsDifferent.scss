@@ -2,7 +2,7 @@
 
 .differentiators {
   padding: 4rem 6rem;
-  background: #e8e9f8;
+  background: #ffffff;
   min-height: 100vh;
 
   .header-content {
@@ -14,7 +14,7 @@
       font-family: "Montserrat", sans-serif;
       font-size: 2rem;
       font-weight: 700;
-      color: #212529;
+      color: #000000;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
@@ -22,7 +22,7 @@
       font-family: "Montserrat", sans-serif;
       font-size: 2rem;
       font-weight: 700;
-      color: #3b82f6;
+      color: #f39f1d;
       margin-bottom: 1.5rem;
       line-height: 1.2;
     }
@@ -30,7 +30,7 @@
     p {
       font-family: "Roboto", sans-serif;
       font-size: 1.1rem;
-      color: #666;
+      color: #696969;
       line-height: 1.6;
       margin-bottom: 1.5rem;
     }
@@ -38,7 +38,7 @@
     .underline {
       width: 160px;
       height: 4px;
-      background: #4a90e2;
+      background: #f39f1d;
       border-radius: 2px;
     }
   }
@@ -52,27 +52,11 @@
 
     .card {
       position: relative;
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-      border-radius: 15px;
-      border-top: 2px solid #005fbf;
-      border-right: 2px solid #005fbf;
-      border-bottom: 5px solid #005fbf;
-      border-left: 2px solid #005fbf;
+      background: rgb(255, 255, 255);
       padding: 2rem;
+      box-shadow: none;
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-
-        .background-icon {
-          transform: translate(10%, -10%) rotate(10deg);
-          opacity: 0.15;
-        }
-      }
 
       .card-content {
         position: relative;
@@ -83,7 +67,7 @@
 
           .card-icon {
             font-size: 2rem;
-            color: #4a90e2;
+            color: #f39f1d;
           }
         }
 
@@ -91,27 +75,16 @@
           font-family: "Montserrat", sans-serif;
           font-size: 1.5rem;
           font-weight: 600;
-          color: #333;
+          color: #000000;
           margin-bottom: 1rem;
         }
 
         p {
           font-family: "Roboto", sans-serif;
           font-size: 1rem;
-          color: #666;
+          color: #696969;
           line-height: 1.5;
         }
-      }
-
-      .background-icon {
-        position: absolute;
-        bottom: -50px;
-        right: -50px;
-        font-size: 8rem;
-        opacity: 0.1;
-        transform: translate(0, 0) rotate(0deg);
-        transition: transform 0.3s ease, opacity 0.3s ease;
-        z-index: 1;
       }
     }
   }
@@ -132,24 +105,22 @@
       }
 
       p {
-        color: #b0b0b0; /* Light grey text for paragraphs */
+        color: #696969; /* Light grey text for paragraphs */
       }
 
       .underline {
-        background: #4a90e2; /* Blue underline stays the same */
+        background: #f39f1d; /* Blue underline stays the same */
       }
     }
 
     .cards-container {
       .card {
         background: transparent; /* Transparent card background */
-        // backdrop-filter: blur(10px);
-        border-color: #4a90e2; /* Keeping the blue border on hover */
       }
 
       .card-content {
         .icon-wrapper .card-icon {
-          color: #4a90e2; /* Blue color for icons */
+          color: #f39f1d; /* Blue color for icons */
         }
 
         h3 {
@@ -157,13 +128,8 @@
         }
 
         p {
-          color: #b0b0b0; /* Light grey text for card paragraphs */
+          color: #696969; /* Light grey text for card paragraphs */
         }
-      }
-
-      .background-icon {
-        color: #4a90e2; /* Background icon color */
-        opacity: 0.1; /* Keep icon opacity low */
       }
     }
   }

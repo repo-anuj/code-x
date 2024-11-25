@@ -86,7 +86,7 @@ const HeroSection = ({ src }) => {
   }
 
   return (
-    <div className={`hero-section ${mounted ? "mounted" : ""}`}>
+    <div className={`hero-section ${mounted ? "mounted" : ""}`} id="hero">
       <canvas id="particle-canvas" className="particle-canvas" />
 
       <div className="content-wrapper">

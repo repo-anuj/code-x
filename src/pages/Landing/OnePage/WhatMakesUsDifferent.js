@@ -17,42 +17,36 @@ const Differentiators = () => {
       title: "Innovation at Core",
       description:
         "We don't just follow trends - we set them. Our dedicated R&D team constantly pushes the boundaries of what's possible.",
-      bgIcon: "★",
     },
     {
       icon: <FaUsers className="card-icon" />,
       title: "Client-Centric Approach",
       description:
         "Every solution is tailored to your specific needs. We believe in partnerships, not just projects.",
-      bgIcon: "👥",
     },
     {
       icon: <FaBolt className="card-icon" />,
       title: "24/7 Expert Support",
       description:
         "Round-the-clock dedicated support team ensuring your operations run smoothly without interruption.",
-      bgIcon: "⚡",
     },
     {
       icon: <FaChartLine className="card-icon" />,
       title: "Proven Track Record",
       description:
         "15+ years of excellence with 500+ successful projects across diverse industries.",
-      bgIcon: "📈",
     },
     {
       icon: <FaRocket className="card-icon" />,
       title: "Future-Ready Solutions",
       description:
         "Our solutions are built with scalability in mind, growing alongside your business.",
-      bgIcon: "🚀",
     },
     {
       icon: <FaPiggyBank className="card-icon" />,
       title: "Cost-Effective Excellence",
       description:
         "Premium solutions that provide exceptional value without breaking your budget.",
-      bgIcon: "💰",
     },
   ];
 
@@ -96,7 +90,6 @@ const Differentiators = () => {
               <h3>{card.title}</h3>
               <p>{card.description}</p>
             </div>
-            <div className="background-icon">{card.bgIcon}</div>
           </motion.div>
         ))}
       </div>

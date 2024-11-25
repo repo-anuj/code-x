@@ -11,62 +11,7 @@ import {
   FaExpandArrowsAlt,
   FaPiggyBank,
 } from "react-icons/fa";
-
-// Import images
-import Paytm from "../../../assets/images/clients/client-1.png";
-import Mobikwik from "../../../assets/images/clients/client-2.png";
-import payumoney from "../../../assets/images/clients/client-3.png";
-import Phonepay from "../../../assets/images/clients/client-4.png";
-import ezetap from "../../../assets/images/clients/client-5.png";
-import ccavenue from "../../../assets/images/clients/client-6.png";
 import "./NewFeature.scss";
-
-const IntegrationGrid = () => (
-  <div className="integration-grid">
-    <motion.div
-      className="integration-item github"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={Paytm} alt="Paytm" className="img-fluid" />
-    </motion.div>
-    <motion.div
-      className="integration-item lightning"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={ezetap} alt="Ezetap" className="img-fluid" />
-    </motion.div>
-    <motion.div
-      className="integration-item circle"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={ccavenue} alt="CCAvenue" className="img-fluid" />
-    </motion.div>
-    <motion.div
-      className="integration-item atlas"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={Mobikwik} alt="Mobikwik" />
-    </motion.div>
-    <motion.div
-      className="integration-item square"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={Phonepay} alt="Phonepay" className="img-fluid" />
-    </motion.div>
-    <motion.div
-      className="integration-item triangle"
-      whileInView={{ opacity: 1 }}
-      initial={{ opacity: 0 }}
-    >
-      <img src={payumoney} alt="PayUMoney" className="img-fluid" />
-    </motion.div>
-  </div>
-);
 
 const IntegrationCard = () => (
   <motion.div
@@ -75,14 +20,7 @@ const IntegrationCard = () => (
     initial={{ opacity: 0, y: 20 }}
     transition={{ duration: 0.3 }}
     viewport={{ once: true }}
-  >
-    <h3>Integrate with everything</h3>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus cum
-      earum facilis sint ducimus nulla magnam eveniet a reprehenderi veniam.
-    </p>
-    <IntegrationGrid />
-  </motion.div>
+  ></motion.div>
 );
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
@@ -185,7 +123,6 @@ const Features = () => {
             <FeatureCard key={index} {...feature} />
           ))}
         </motion.div>
-
         <motion.button
           className="get-started-btn"
           whileInView={{ opacity: 1, scale: 1 }}

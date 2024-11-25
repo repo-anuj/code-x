@@ -1,11 +1,15 @@
-.body {
-  background: #e8e9f8;
-}
 .features-container {
-  max-width: 1200px;
+  max-width: 1600px;
+  background: #f9f9f9;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 6rem;
 
+  @media (max-width: 1024px) {
+    padding: 0px;
+  }
+  @media (max-width: 768px) {
+    padding: 0px;
+  }
   .features-header {
     text-align: center;
     margin-bottom: 3rem;
@@ -20,13 +24,13 @@
       font-family: Inter, sans-serif;
       text-align: center;
       font-size: 3rem;
-      color: #2b24a6;
+      color: #f39f1d;
       font-weight: bold;
     }
 
     p {
       font-size: 1.1rem;
-      color: #666;
+      color: #696969;
     }
   }
 
@@ -53,15 +57,10 @@
 
   .feature-card {
     background: transparent;
-    border-radius: 10px;
-    border: 2px solid #2b24a6;
-    border-bottom: 5px solid #2b24a6;
     padding: 1.5rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
 
     .feature-icon {
-      color: #2b24a6;
+      color: #f39f1d;
     }
 
     &.integration-card {
@@ -75,7 +74,7 @@
       }
 
       p {
-        color: #666;
+        color: #696969;
         margin-bottom: 1.5rem;
         line-height: 1.5;
       }
@@ -123,7 +122,7 @@
       margin-bottom: 1rem;
 
       svg {
-        color: #333;
+        color: #f39f1d;
       }
     }
 
@@ -136,7 +135,7 @@
     }
 
     p {
-      color: #666;
+      color: #696969;
       margin-bottom: 1rem;
       line-height: 1.5;
     }
@@ -153,6 +152,11 @@
         text-decoration: underline;
       }
     }
+  }
+  .Flipcard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 0.25fr);
+    gap: 1.5rem;
   }
 
   .get-started-btn {
@@ -173,13 +177,14 @@
   }
 }
 [data-bs-theme="dark"] .features-container {
+  background: #000000;
   .features-header {
     h1 {
       color: #fff; // Heading color in dark mode
     }
 
     samp {
-      color: #4f90ff; // Adjusted color for standout text in dark mode
+      color: #f39f1d; // Adjusted color for standout text in dark mode
     }
 
     p {
@@ -190,7 +195,7 @@
   .features-grid {
     .feature-card {
       .feature-icon {
-        color: #4f90ff; // Icon color in dark mode
+        color: #f39f1d; // Icon color in dark mode
       }
 
       h4 {
@@ -202,9 +207,9 @@
       }
 
       .learn-more {
-        color: #ffd700; // Highlighted link color for "Learn More"
+        color: #f39f1d; // Highlighted link color for "Learn More"
         &:hover {
-          color: #ffea00; // Slight color change on hover
+          color: #f39f1d; // Slight color change on hover
         }
       }
     }

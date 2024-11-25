@@ -7,11 +7,11 @@ import Services from "./services";
 // import Features from "./features";
 import Faqs from "./faq";
 import Contact from "./contact";
-import Cta from "./cta";
+// import Cta from "./cta";
 import Footer from "./footer";
 import IndustriesSection from "./IndustriesSection";
 import WhatMakesUsDifferent from "./WhatMakesUsDifferent";
-import Achievement from "./Achievement";
+// import Achievement from "./Achievement";
 import OurProduct from "./OurProduct";
 import TestimonialSection from "./TestimonialSection";
 import Features from "./NewFeatures";
@@ -83,7 +83,7 @@ call dark/light mode
         <WhatMakesUsDifferent />
         <IndustriesSection />
         <OurProduct />
-        <Achievement />
+        {/* <Achievement /> */}
         <Features />
         <TestimonialSection />
         {/* <Features /> */}
@@ -96,7 +96,7 @@ call dark/light mode
         <WorkProcess />
         <Team /> */}
         <Contact />
-        <Cta />
+        {/* <Cta /> */}
         <Footer />
         <button
           onClick={() => toTop()}

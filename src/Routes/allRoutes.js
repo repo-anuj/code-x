@@ -41,6 +41,8 @@ import UtkarshAgrawal from "../pages/Landing/OnePage/UtkarshAgrawal";
 
 //Integration
 import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
+//footer things
+import PrivacyPolicy from "../pages/Landing/OnePage/footer/PrivacyPolicy";
 
 //career
 import CareerPage from "../pages/Landing/OnePage/CareerPage";
@@ -74,6 +76,7 @@ const publicRoutes = [
   { path: "/ArpitAgrawal", component: <ArpitAgrawal /> },
   { path: "/IleshThakkar", component: <IleshThakkar /> },
   { path: "/RitikaAgrawal", component: <RitikaAgrawal /> },
+  { path: "/PrivacyPolicy", component: <PrivacyPolicy /> },
   { path: "/Services_all", component: <Services_all /> },
   { path: "/IntegrationPage", component: <IntegrationPage /> },
   { path: "/CareerPage", component: <CareerPage /> },
