@@ -43,9 +43,29 @@ import UtkarshAgrawal from "../pages/Landing/OnePage/UtkarshAgrawal";
 import IntegrationPage from "../pages/Landing/OnePage/IntegrationPage";
 //footer things
 import PrivacyPolicy from "../pages/Landing/OnePage/footer/PrivacyPolicy";
+import TermsOfService from "../pages/Landing/OnePage/footer/TermsOfService";
+import FeedBack from "../pages/Landing/OnePage/footer/FeedBack";
+import Cookies from "../pages/Landing/OnePage/footer/Cookies";
+import LegalDisclosure from "../pages/Landing/OnePage/footer/LegalDisclosure";
+import EULA from "../pages/Landing/OnePage/footer/EULA";
 
 //career
 import CareerPage from "../pages/Landing/OnePage/CareerPage";
+import AboutUs from "../pages/Landing/OnePage/AboutUs";
+//BlogsPage
+import BlogsPage from "../pages/Landing/OnePage/Blogs/BlogsPage";
+import Blog_1 from "../pages/Landing/OnePage/Blogs/blog_1";
+import Blog_2 from "../pages/Landing/OnePage/Blogs/blog_2";
+import Blog_3 from "../pages/Landing/OnePage/Blogs/blog_3";
+import Blog_4 from "../pages/Landing/OnePage/Blogs/blog_4";
+import Blog_5 from "../pages/Landing/OnePage/Blogs/blog_5";
+//CaseStudies
+import CaseStudiesPage from "../pages/Landing/OnePage/CaseStudy/CaseStudyPage";
+import Case_1 from "../pages/Landing/OnePage/CaseStudy/Case1";
+import Case_2 from "../pages/Landing/OnePage/CaseStudy/Case2";
+import Case_3 from "../pages/Landing/OnePage/CaseStudy/Case3";
+import Case_4 from "../pages/Landing/OnePage/CaseStudy/Case_4";
+import Case_5 from "../pages/Landing/OnePage/CaseStudy/Case5";
 
 const authProtectedRoutes = [
   {
@@ -77,9 +97,28 @@ const publicRoutes = [
   { path: "/IleshThakkar", component: <IleshThakkar /> },
   { path: "/RitikaAgrawal", component: <RitikaAgrawal /> },
   { path: "/PrivacyPolicy", component: <PrivacyPolicy /> },
+  { path: "/TermsOfService", component: <TermsOfService /> },
+  { path: "/FeedBack", component: <FeedBack /> },
+  { path: "/Cookies", component: <Cookies /> },
+  { path: "/LegalDisclosure", component: <LegalDisclosure /> },
+  { path: "/EULA", component: <EULA /> },
   { path: "/Services_all", component: <Services_all /> },
   { path: "/IntegrationPage", component: <IntegrationPage /> },
   { path: "/CareerPage", component: <CareerPage /> },
+  { path: "/AboutUs", component: <AboutUs /> },
+  { path: "/BlogsPage", component: <BlogsPage /> },
+  { path: "/Blog_1", component: <Blog_1 /> },
+  { path: "/Blog_2", component: <Blog_2 /> },
+  { path: "/Blog_3", component: <Blog_3 /> },
+  { path: "/Blog_4", component: <Blog_4 /> },
+  { path: "/Blog_5", component: <Blog_5 /> },
+  //CaseStudies
+  { path: "/CaseStudiesPage", component: <CaseStudiesPage /> },
+  { path: "/Case_1", component: <Case_1 /> },
+  { path: "/Case_2", component: <Case_2 /> },
+  { path: "/Case_3", component: <Case_3 /> },
+  { path: "/Case_4", component: <Case_4 /> },
+  { path: "/Case_5", component: <Case_5 /> },
   { path: "/ERPLogin", component: <Login /> },
 ];
 

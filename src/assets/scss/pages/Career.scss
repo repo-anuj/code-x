@@ -9,8 +9,9 @@ $success-color: #22c55e;
 $error-color: #ef4444;
 $text-color: #1f2937;
 $light-text: #6b7280;
-$background-color: #050505;
+$background-color: #ffffff;
 $card-background: #ffffff;
+$view-color: #ffffff;
 $border-radius: 12px;
 $transition-duration: 0.3s;
 
@@ -130,12 +131,11 @@ $transition-duration: 0.3s;
     height: 120px;
     margin: 0 auto 1.5rem;
     border-radius: 50%;
-    overflow: hidden;
 
     img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
       transition: transform $transition-duration ease;
     }
 
@@ -145,7 +145,7 @@ $transition-duration: 0.3s;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba($primary-color, 0.8);
+      background: rgba($view-color, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -231,7 +231,7 @@ $transition-duration: 0.3s;
     img {
       width: 100%;
       height: 180px;
-      object-fit: cover;
+      object-fit: containe;
     }
 
     .view-overlay {
@@ -454,5 +454,171 @@ $transition-duration: 0.3s;
       padding: 1.5rem;
       margin: 0 1rem;
     }
+  }
+}
+/* Dark Mode Styling */
+[data-bs-theme="dark"] {
+  // Dark Mode Color Variables
+  $dark-primary-color: #7c3aed;
+  $dark-secondary-color: #6366f1;
+  $dark-accent-color: #a855f7;
+  $dark-success-color: #22c55e;
+  $dark-error-color: #ef4444;
+  $dark-text-color: #f9fafb;
+  $dark-light-text: #9ca3af;
+  $dark-background-color: #111827;
+  $dark-card-background: #1f2937;
+
+  background-color: $dark-background-color;
+  color: $dark-text-color;
+
+  .career-page {
+    background: $dark-background-color;
+  }
+
+  // Hero Section
+  .hero {
+    h1 {
+      background: linear-gradient(
+        135deg,
+        $dark-primary-color,
+        $dark-accent-color
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    h2 {
+      color: $dark-light-text;
+    }
+
+    .hero-decoration {
+      background: linear-gradient(
+        135deg,
+        rgba($dark-primary-color, 0.1),
+        rgba($dark-accent-color, 0.1)
+      );
+    }
+  }
+
+  // Institutions Section
+  .institutions {
+    h2 {
+      background: linear-gradient(
+        135deg,
+        $dark-primary-color,
+        $dark-accent-color
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .institution-card {
+    background: $dark-card-background;
+    border-color: rgba(0, 0, 0, 0);
+
+    h3 {
+      color: $dark-text-color;
+    }
+
+    p {
+      color: $dark-light-text;
+    }
+
+    .image-container .overlay {
+      background: rgba($dark-primary-color, 0.8);
+    }
+  }
+
+  // Certificates Section
+  .certificates {
+    h2 {
+      background: linear-gradient(
+        135deg,
+        $dark-primary-color,
+        $dark-accent-color
+      );
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+
+  .certificate-card {
+    background: $dark-card-background;
+    border-color: rgba(39, 140, 255, 0.5);
+
+    h4 {
+      color: $dark-text-color;
+    }
+
+    .certificate-image .view-overlay {
+      background: rgba($dark-primary-color, 0.8);
+    }
+  }
+
+  // Modal
+  .modal-overlay {
+    .modal-content {
+      background: $dark-card-background;
+      h3 {
+        color: $dark-text-color;
+      }
+    }
+
+    .modal-close {
+      color: $dark-text-color;
+    }
+  }
+
+  // Application Form
+  .application-form {
+    background: linear-gradient(
+      135deg,
+      rgba($dark-primary-color, 0.05),
+      rgba($dark-accent-color, 0.05)
+    );
+
+    .form-container {
+      background: $dark-card-background;
+      h2 {
+        color: $dark-text-color;
+      }
+
+      h3 {
+        color: $dark-light-text;
+      }
+    }
+
+    .form-group {
+      input,
+      select,
+      textarea {
+        background-color: $dark-background-color;
+        border-color: #374151;
+        color: $dark-text-color;
+
+        &:focus {
+          border-color: $dark-primary-color;
+          box-shadow: 0 0 0 3px rgba($dark-primary-color, 0.2);
+        }
+
+        &::placeholder {
+          color: $dark-light-text;
+        }
+      }
+
+      label {
+        color: $dark-text-color;
+      }
+    }
+  }
+
+  .submit-button {
+    background: linear-gradient(
+      135deg,
+      $dark-primary-color,
+      $dark-accent-color
+    );
   }
 }

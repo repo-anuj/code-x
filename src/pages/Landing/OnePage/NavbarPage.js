@@ -2,11 +2,12 @@ import React, { useState, useEffect } from "react";
 import { Collapse, Container, NavbarToggler } from "reactstrap";
 import { Link } from "react-router-dom";
 import { useScrollNavigation } from "../../../utils/NavigationUtils";
+import LightDark from "../../../Components/Common/LightDark";
 // Import Images
 import logodark from "../../../assets/images/logo-light.png";
 import logolight from "../../../assets/images/logo-light.png";
 
-const Navbar = () => {
+const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
   const [isOpenMenu, setIsOpenMenu] = useState(false);
   const [navClass, setNavClass] = useState("");
   const { navigateAndScroll, activeSection } = useScrollNavigation();
@@ -38,7 +39,7 @@ const Navbar = () => {
   return (
     <React.Fragment>
       <nav
-        className={`navbar navbar-expand-lg navbar-landing fixed-top ${navClass}`}
+        className={`navbar navbar-expand-lg navbar-landing2 fixed-top ${navClass}`}
         id="navbar"
       >
         <Container>
@@ -102,29 +103,11 @@ const Navbar = () => {
               </li>
               <li className="nav-item">
                 <a
-                  className={getNavLinkClass("plans")}
-                  href="/Landing#plans"
-                  onClick={(e) => handleNavClick(e, "/Landing", "#plans")}
-                >
-                  Plans
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
                   className={getNavLinkClass("reviews")}
                   href="/Landing#reviews"
                   onClick={(e) => handleNavClick(e, "/Landing", "#reviews")}
                 >
                   Reviews
-                </a>
-              </li>
-              <li className="nav-item">
-                <a
-                  className={getNavLinkClass("team")}
-                  href="/Landing#team"
-                  onClick={(e) => handleNavClick(e, "/Landing", "#team")}
-                >
-                  Team
                 </a>
               </li>
               <li className="nav-item">
@@ -137,12 +120,20 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
+                <Link to="/AboutUs" className="nav-link fs-14">
+                  About Us
+                </Link>
+              </li>
+              <li className="nav-item">
                 <Link to="/CareerPage" className="nav-link fs-14">
                   Career
                 </Link>
               </li>
             </ul>
-
+            <LightDark
+              layoutMode={layoutModeType}
+              onChangeLayoutMode={onChangeLayoutMode}
+            />
             <div className="">
               <Link to="/ERPLogin" className="btn btn-primary">
                 Sign in

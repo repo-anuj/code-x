@@ -2,13 +2,14 @@ import React, { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import "./OurProduct.scss";
 import infinityERP from "../../../assets/images/landing/features/mockuper5.png";
-import infinityFleet from "../../../assets/images/landing/features/mockuper4.png";
+import infinityFleet from "../../../assets/images/landing/features/mockuper3.png";
 import infinityX from "../../../assets/images/landing/features/mockuper2.png";
 
-import CEO from "../../../assets/images/landing/features/CEO.png"; // Replace with actual paths
-import Finance from "../../../assets/images/landing/features/Finance App 1.png";
-import Multitaking from "../../../assets/images/landing/features/Multitaking.png";
-const backgroundIllustrations = [CEO, Finance, Multitaking];
+import CEO from "../../../assets/images/landing/features/CEO.png";
+import FinanceApp from "../../../assets/images/landing/features/Finance App 1.png";
+import Multitasking from "../../../assets/images/landing/features/Multitaking.png";
+
+const backgroundIllustrations = [CEO, FinanceApp, Multitasking];
 
 const OurProduct = () => {
   const containerRef = useRef(null);

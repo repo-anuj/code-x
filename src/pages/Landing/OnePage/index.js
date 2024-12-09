@@ -79,24 +79,13 @@ call dark/light mode
           layoutModeType={layoutModeType}
         />
         <HeroSection />
-        {/* <Home /> */}
         <WhatMakesUsDifferent />
         <IndustriesSection />
         <OurProduct />
-        {/* <Achievement /> */}
         <Features />
         <TestimonialSection />
-        {/* <Features /> */}
-        {/* <Client /> */}
         <Faqs />
-        {/* <Services /> */}
-        {/* <Plans />
-        <Reviews />
-        <Counter />
-        <WorkProcess />
-        <Team /> */}
         <Contact />
-        {/* <Cta /> */}
         <Footer />
         <button
           onClick={() => toTop()}

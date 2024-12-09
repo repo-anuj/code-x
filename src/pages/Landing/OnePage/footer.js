@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Col, Container, Row } from "reactstrap";
-
 // Import Images
 import logolight from "../../../assets/images/logo-light.png";
 
@@ -58,41 +57,41 @@ const Footer = () => {
                         <Link to="/about-us">About Us</Link>
                       </li>
                       <li>
-                        <Link to="/case-studies">Case Studies</Link>
+                        <Link to="/CaseStudiesPage">Case Studies</Link>
                       </li>
                       <li>
                         <Link to="/partners">Partners</Link>
                       </li>
                       <li>
-                        <Link to="/careers">Careers</Link>
+                        <Link to="/CareerPage">Careers</Link>
                       </li>
                       <li>
-                        <Link to="/blog">Blog</Link>
+                        <Link to="/BlogsPage">Blog</Link>
                       </li>
                     </ul>
                   </div>
                 </Col>
                 <Col sm={4} className="mt-4">
-                  <h5 className="text-white mb-0">Support</h5>
+                  <h5 className="text-white mb-0">Legal</h5>
                   <div className="text-muted mt-3">
                     <ul className="list-unstyled ff-secondary footer-list">
                       <li>
-                        <Link to="/Privacy">Privacy</Link>
+                        <Link to="/PrivacyPolicy">Privacy</Link>
                       </li>
                       <li>
-                        <Link to="/terms-conditions">T.O.C</Link>
+                        <Link to="/TermsOfService">T.O.S</Link>
                       </li>
                       <li>
                         <Link to="/FeedBack">FeedBack</Link>
                       </li>
                       <li>
-                        <Link to="/cookies">Cookies</Link>
+                        <Link to="/Cookies">Cookies</Link>
                       </li>
                       <li>
-                        <Link to="/legal">L.D</Link>
+                        <Link to="/LegalDisclosure">L.D</Link>
                       </li>
                       <li>
-                        <Link to="/EVLA">E.V.L.A</Link>
+                        <Link to="/EULA">E.U.L.A</Link>
                       </li>
                     </ul>
                   </div>

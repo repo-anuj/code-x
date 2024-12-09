@@ -1,8 +1,57 @@
-import React from "react";
+import React, { useState } from "react";
 import { Col, Container, Form, Row } from "reactstrap";
+import emailjs from "@emailjs/browser";
 import "./contact.scss";
 
 const Contact = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    comments: "",
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Replace these with your actual EmailJS credentials
+      const result = await emailjs.send(
+        "service_fedq014",
+        "template_k6l4miy",
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          subject: formData.subject,
+          message: formData.comments,
+        },
+        "r_SucAvoFwjMMo3Z8"
+      );
+
+      console.log("Email sent successfully:", result.text);
+      alert("Message sent successfully!");
+
+      // Reset form after successful submission
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        comments: "",
+      });
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      alert("Failed to send message. Please try again.");
+    }
+  };
+
   return (
     <React.Fragment>
       <section className="section contact-section" id="contact">
@@ -46,10 +95,9 @@ const Contact = () => {
                 </div>
               </div>
             </Col>
-
             <Col lg={8}>
               <div className="contact-form">
-                <Form>
+                <Form onSubmit={handleSubmit}>
                   <Row>
                     <Col lg={6}>
                       <div className="mb-4 input-container">
@@ -62,6 +110,9 @@ const Contact = () => {
                           type="text"
                           className="form-control input-field"
                           placeholder="Your name*"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                     </Col>
@@ -76,6 +127,9 @@ const Contact = () => {
                           type="email"
                           className="form-control input-field"
                           placeholder="Your email*"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                     </Col>
@@ -92,6 +146,9 @@ const Contact = () => {
                           id="subject"
                           name="subject"
                           placeholder="Your Subject.."
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
                         />
                       </div>
                     </Col>
@@ -108,10 +165,14 @@ const Contact = () => {
                           rows="3"
                           className="form-control input-field"
                           placeholder="Your message..."
+                          value={formData.comments}
+                          onChange={handleChange}
+                          required
                         ></textarea>
                       </div>
                     </Col>
                   </Row>
+                  {/* [Other input fields remain similar, added value and onChange] */}
                   <Row>
                     <Col lg={12} className="text-end">
                       <input

@@ -4,16 +4,20 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { AnimatePresence } from "framer-motion";
 import { useForm } from "react-hook-form";
+import emailjs from "@emailjs/browser";
 import { useEffect } from "react";
-import "../../../assets/scss/pages/Career.scss";
-import Navbar from "./NavbarPage";
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { changeLayoutMode } from "../../../slices/thunks";
 import col1 from "../../../assets/images/colleges/1.jpg";
 import col2 from "../../../assets/images/colleges/2.jpg";
-import col3 from "../../../assets/images/colleges/3.png";
+import col3 from "../../../assets/images/colleges/3.jpg";
 import col4 from "../../../assets/images/colleges/4.png";
 import cert1 from "../../../assets/images/Certificates/CP Completion Certificate.jpg";
 import cert2 from "../../../assets/images/Certificates/CP Letter of Appreciation.jpg";
+import Navbar from "./NavbarPage";
 import Footer from "./footer";
+import "../../../assets/scss/pages/Career.scss";
 
 const Modal = ({ isOpen, onClose, children }) => (
   <AnimatePresence>
@@ -59,7 +63,7 @@ const InstitutionCard = ({ name, description, imageUrl }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: isHovered ? 1 : 0 }}
         >
-          <span>View Details</span>
+          {/* <span>View Details</span> */}
         </motion.div>
       </motion.div>
       <motion.div
@@ -107,6 +111,30 @@ const CertificateCard = ({ imageUrl, title }) => {
 };
 
 const CareerPage = () => {
+  const dispatch = useDispatch();
+  const selectLayoutState = (state) => state.Layout;
+  const selectLayoutProperties = createSelector(
+    selectLayoutState,
+    (layout) => ({
+      layoutModeType: layout.layoutModeType,
+    })
+  );
+  const { layoutModeType } = useSelector(selectLayoutProperties);
+
+  useEffect(() => {
+    if (layoutModeType) {
+      window.dispatchEvent(new Event("resize"));
+      dispatch(changeLayoutMode(layoutModeType));
+    }
+  }, [layoutModeType, dispatch]);
+  /*
+call dark/light mode
+*/
+  const onChangeLayoutMode = (value) => {
+    if (changeLayoutMode) {
+      dispatch(changeLayoutMode(value));
+    }
+  };
   useEffect(() => {
     // Scroll to top when the component mounts
     window.scrollTo(0, 0);
@@ -119,19 +147,68 @@ const CareerPage = () => {
   } = useForm();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+
+  useEffect(() => {
+    // Initialize EmailJS with your public key
+    emailjs.init("r_SucAvoFwjMMo3Z8"); // Replace with your actual public key
+  }, []);
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
+    setSubmitError(null);
     try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      console.log(data); // You can replace this with your API call
+      // Prepare file uploads
+      const cvFile = data.cv[0];
+      const resumeFile = data.resume[0];
+
+      // Convert files to base64
+      const cvBase64 = await fileToBase64(cvFile);
+      const resumeBase64 = await fileToBase64(resumeFile);
+
+      // Send email using EmailJS
+      const result = await emailjs.send(
+        "service_fedq014", // Replace with your service ID
+        "template_jwbiih6", // Replace with your template ID
+        {
+          from_name: data.name,
+          from_email: data.email,
+          subject: `Job Application - ${data.position}`,
+          message: `
+            Name: ${data.name}
+            Email: ${data.email}
+            Position: ${data.position}
+            Phone: ${data.phone}
+
+            Cover Letter:
+            ${data.coverLetter}
+          `,
+          cv: cvBase64,
+          cv_name: cvFile.name,
+          resume: resumeBase64,
+          resume_name: resumeFile.name,
+        }
+      );
+
+      console.log("Email sent successfully:", result);
       setSubmitSuccess(true);
-      reset(); // Reset form fields after submit
+      reset(); // Reset form fields
     } catch (error) {
-      console.error(error); // Handle the error
+      console.error("Submission failed:", error);
+      setSubmitError("Failed to submit application. Please try again.");
+    } finally {
+      setIsSubmitting(false);
     }
-    setIsSubmitting(false);
+  };
+
+  // Helper function to convert file to base64
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result.split(",")[1]);
+      reader.onerror = (error) => reject(error);
+    });
   };
 
   const [mounted, setMounted] = useState(false); // For particle effect mount state
@@ -251,7 +328,10 @@ const CareerPage = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar
+        onChangeLayoutMode={onChangeLayoutMode}
+        layoutModeType={layoutModeType}
+      />
       {/* Particle canvas */}
       <canvas id="particle-canvas" className="particle-canvas" />
 

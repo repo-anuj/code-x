@@ -1,4 +1,7 @@
 import React, { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "reselect";
+import { changeLayoutMode } from "../../../slices/thunks";
 import rest from "../../../assets/images/landing/features/rest.jpg";
 import hotel from "../../../assets/images/landing/features/hotel.jpg";
 import school from "../../../assets/images/landing/features/school.jpg";
@@ -23,6 +26,30 @@ import Navbar from "./NavbarPage";
 import Footer from "./footer";
 
 const Services = () => {
+  const dispatch = useDispatch();
+  const selectLayoutState = (state) => state.Layout;
+  const selectLayoutProperties = createSelector(
+    selectLayoutState,
+    (layout) => ({
+      layoutModeType: layout.layoutModeType,
+    })
+  );
+  const { layoutModeType } = useSelector(selectLayoutProperties);
+
+  useEffect(() => {
+    if (layoutModeType) {
+      window.dispatchEvent(new Event("resize"));
+      dispatch(changeLayoutMode(layoutModeType));
+    }
+  }, [layoutModeType, dispatch]);
+  /*
+call dark/light mode
+*/
+  const onChangeLayoutMode = (value) => {
+    if (changeLayoutMode) {
+      dispatch(changeLayoutMode(value));
+    }
+  };
   useEffect(() => {
     // Scroll to top when the component mounts
     window.scrollTo(0, 0);
@@ -138,7 +165,10 @@ const Services = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar
+        onChangeLayoutMode={onChangeLayoutMode}
+        layoutModeType={layoutModeType}
+      />
       <section id="services-details" className="services-details section">
         <div className="container">
           <div className="container section-title text-center">

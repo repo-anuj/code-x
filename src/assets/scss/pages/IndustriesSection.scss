@@ -57,6 +57,7 @@ $text-dark: #111827;
   // Container
   &__container {
     position: relative;
+    height: 500px;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
@@ -96,7 +97,7 @@ $text-dark: #111827;
   // Wheel
   &__wheel {
     position: relative;
-    height: 80vh;
+    height: 165vh;
     @include flex-center;
   }
 
@@ -130,7 +131,7 @@ $text-dark: #111827;
     &-icon {
       width: 3rem;
       height: 3rem;
-      margin-bottom: 1rem;
+      margin-bottom: 1px;
       border-radius: 0.5rem;
       background: rgba(255, 255, 255, 0.1);
       @include flex-center;
@@ -143,7 +144,7 @@ $text-dark: #111827;
     }
 
     &-title {
-      font-size: 1.25rem;
+      font-size: 0.6rem;
       font-weight: 600;
       color: $text-white;
       margin-bottom: 0.5rem;

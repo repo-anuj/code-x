@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Collapse, Container, NavbarToggler, NavLink } from "reactstrap";
 import Scrollspy from "react-scrollspy";
 import { Link } from "react-router-dom";
-import CareerPage from "./CareerPage";
 import LightDark from "../../../Components/Common/LightDark";
 // Import Images
 import logodark from "../../../assets/images/logo-light.png";
@@ -104,10 +103,9 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
                 "hero",
                 "services",
                 "features",
-                "plans",
                 "reviews",
-                "team",
                 "contact",
+                "About Us",
                 "career",
               ]}
               currentClassName="active"
@@ -131,24 +129,19 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="fs-14" href="#plans">
-                  Plans
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink className="fs-14" href="#reviews">
                   Reviews
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="fs-14" href="#team">
-                  Team
                 </NavLink>
               </li>
               <li className="nav-item">
                 <NavLink className="fs-14" href="#contact">
                   Contact
                 </NavLink>
+              </li>
+              <li className="nav-item">
+                <Link to="/AboutUs">
+                  <NavLink className="fs-14">About Us</NavLink>
+                </Link>
               </li>
               <li className="nav-item">
                 <Link to="/CareerPage">

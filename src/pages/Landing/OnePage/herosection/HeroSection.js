@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import MacbookScroll from "./MacbookScroll";
 import { motion } from "framer-motion";
 import "./HeroSection.scss";
@@ -118,8 +119,12 @@ const HeroSection = ({ src }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <button className="btn primary">Discover Us</button>
-            <button className="btn secondary">Join Us</button>
+            <Link to="/AboutUs">
+              <button className="btn primary">Discover Us</button>
+            </Link>
+            <Link to="/ERPLogin">
+              <button className="btn secondary">Join Us</button>
+            </Link>
           </motion.div>
         </motion.div>
 

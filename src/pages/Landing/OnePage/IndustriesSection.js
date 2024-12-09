@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
+import { Link } from "react-router-dom";
 import { ArrowRight, X } from "lucide-react";
 import steel from "../../../assets/images/industriues/steel.jpg";
 import restaurant from "../../../assets/images/industriues/restaurant.jpeg";
@@ -14,8 +15,8 @@ gsap.registerPlugin(Draggable);
 const IndustriesSection = () => {
   const [selectedCard, setSelectedCard] = useState(null);
   const [isRotating, setIsRotating] = useState(true);
-  const [cardSize, setCardSize] = useState(200);
-  const [duplicateCount, setDuplicateCount] = useState(3);
+  const [cardSize, setCardSize] = useState(100);
+  const [duplicateCount, setDuplicateCount] = useState(1);
   const wheelRef = useRef(null);
   const cardsRef = useRef([]);
   const dragInstanceRef = useRef(null);
@@ -170,19 +171,19 @@ const IndustriesSection = () => {
     },
     // Add image property to all other industries...
   ];
-
+  // Adjust card size and duplicate count based on screen size
   // Adjust card size and duplicate count based on screen size
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 480) {
-        setCardSize(80);
-        setDuplicateCount(8);
+        setCardSize(120);
+        setDuplicateCount(3);
       } else if (window.innerWidth <= 768) {
-        setCardSize(100);
-        setDuplicateCount(2);
+        setCardSize(120);
+        setDuplicateCount(3);
       } else {
-        setCardSize(140);
-        setDuplicateCount(8);
+        setCardSize(120);
+        setDuplicateCount(3);
       }
     };
 
@@ -205,13 +206,13 @@ const IndustriesSection = () => {
     ...(duplicateCount > 1
       ? industries.map((industry) => ({
           ...industry,
-          uniqueId: `${industry.id}-2`,
+          uniqueId: `${industry.id}-1`,
         }))
       : []),
     ...(duplicateCount > 2
       ? industries.map((industry) => ({
           ...industry,
-          uniqueId: `${industry.id}-3`,
+          uniqueId: `${industry.id}-1`,
         }))
       : []),
   ];
@@ -274,7 +275,6 @@ const IndustriesSection = () => {
       rotationRef.current.kill();
     }
   };
-
   const handleCardClick = (industry, index) => {
     const isClosing = selectedCard?.uniqueId === industry.uniqueId;
     setSelectedCard(isClosing ? null : industry);
@@ -371,12 +371,12 @@ const IndustriesSection = () => {
 
         <div className="industries-section__wheel">
           <div ref={wheelRef} className="wheel">
-            {industries.map((industry, index) => (
+            {repeatedIndustries.map((industry, index) => (
               <div
-                key={industry.id}
+                key={industry.uniqueId}
                 ref={(el) => (cardsRef.current[index] = el)}
                 className={`industries-section__card ${
-                  selectedCard?.id === industry.id
+                  selectedCard?.uniqueId === industry.uniqueId
                     ? "industries-section__card--selected"
                     : ""
                 }`}
@@ -396,7 +396,6 @@ const IndustriesSection = () => {
                       {industry.title}
                     </h3>
                   </div>
-                  >
                 </div>
               </div>
             ))}
@@ -449,7 +448,7 @@ const IndustriesSection = () => {
 
                 <div className="industries-section__modal-actions">
                   <button>
-                    Learn More
+                    <Link to="/Services_all">Learn More</Link>
                     <ArrowRight />
                   </button>
                 </div>
