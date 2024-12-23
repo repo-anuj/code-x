@@ -3,11 +3,14 @@ import { gsap } from "gsap";
 import { Draggable } from "gsap/Draggable";
 import { Link } from "react-router-dom";
 import { ArrowRight, X } from "lucide-react";
-import steel from "../../../assets/images/industriues/steel.jpg";
-import restaurant from "../../../assets/images/industriues/restaurant.jpeg";
-import hospital from "../../../assets/images/industriues/hospital.jpg";
-import educational from "../../../assets/images/industriues/educational.png";
-import theater from "../../../assets/images/industriues/theater.jpg";
+import steel from "../../../assets/images/industriues/steel-industry.svg";
+import restaurant from "../../../assets/images/industriues/restaurants.svg";
+import hospital from "../../../assets/images/industriues/hospital.svg";
+import educational from "../../../assets/images/industriues/education.svg";
+import theater from "../../../assets/images/industriues/theater.svg";
+import retail from "../../../assets/images/industriues/retail.png";
+import supplier from "../../../assets/images/industriues/supplier.svg";
+import industry from "../../../assets/images/industriues/industry.svg";
 import "../../../assets/scss/pages/IndustriesSection.scss";
 
 gsap.registerPlugin(Draggable);
@@ -88,7 +91,7 @@ const IndustriesSection = () => {
         satisfaction: 93,
         automation: 85,
       },
-      img: steel,
+      img: supplier,
       features: [
         "Procurement Tools",
         "Supply Chain Management",
@@ -124,7 +127,7 @@ const IndustriesSection = () => {
         satisfaction: 91,
         automation: 80,
       },
-      img: theater,
+      img: retail,
       features: [
         "Inventory Tracking",
         "Sales Analytics",
@@ -151,7 +154,7 @@ const IndustriesSection = () => {
     },
     {
       id: 8,
-      title: "Solvent Extraction Plant Management",
+      title: "Solvent Plant Management",
       subtitle: "Optimize with Infinity ERP",
       description:
         "Streamline the operations of your solvent extraction plant, from raw material handling to extraction processes and quality control, all in one system.",
@@ -160,7 +163,7 @@ const IndustriesSection = () => {
         satisfaction: 91,
         automation: 86,
       },
-      img: steel,
+      img: industry,
       features: [
         "Material Handling",
         "Extraction Processes",

@@ -83,7 +83,7 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
           </Link>
 
           <NavbarToggler
-            className="navbar-toggler py-0 fs-20 text-body"
+            className="navbar-toggler py-0 fs-20 text-body "
             onClick={toggle}
             type="button"
             aria-expanded={isOpenMenu}
