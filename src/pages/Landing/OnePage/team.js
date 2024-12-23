@@ -335,7 +335,7 @@ const Team = () => {
                     <h6 className="text-primary mb-3">About</h6>
                     <p className="mb-4">{selectedMember.background}</p>
 
-                    <h6 className="text-primary mb-3">Education</h6>
+                    {/* <h6 className="text-primary mb-3">Education</h6>
                     <p className="mb-4">{selectedMember.education}</p>
 
                     <h6 className="text-primary mb-3">Areas of Expertise</h6>
@@ -348,7 +348,7 @@ const Team = () => {
                           {skill}
                         </span>
                       ))}
-                    </div>
+                    </div> */}
                   </div>
                 </Col>
               </Row>
