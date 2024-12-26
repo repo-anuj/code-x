@@ -86,6 +86,9 @@ const Navbar = ({ onChangeLayoutMode, layoutModeType }) => {
             className="navbar-toggler py-0 fs-20 text-body "
             onClick={toggle}
             type="button"
+            style={{
+              color: "white !important",
+            }}
             aria-expanded={isOpenMenu}
             aria-label="Toggle navigation"
           >
